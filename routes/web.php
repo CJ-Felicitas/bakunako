@@ -16,7 +16,7 @@ use App\Http\Controllers\ConnectionTestController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::get('/test', [TestController::class, 'test']);
