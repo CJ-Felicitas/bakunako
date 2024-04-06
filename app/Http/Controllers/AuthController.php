@@ -40,7 +40,7 @@ class AuthController extends Controller
             }
         } catch (\Exception $e) {
             // if an exception is thrown, it will redirect the user back to the login page
-            return redirect('/login')->with('error', $e->getMessage());
+            return redirect('/login')->with('error', $e->getMessage())->withInput();
         }
     }
 

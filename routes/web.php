@@ -2,15 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SmsController;
-
+use App\Http\Controllers\RegistrationController;
 // get the landing page/default page
 Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/sendsms', [SmsController::class, 'index']);
-
+Route::get('/register', function () {
+    return view('register');
+});
 
 
 // get the login page
@@ -20,6 +20,7 @@ Route::get('/login', function () {
 
 // login attempt
 Route::post('/login_', [AuthController::class, 'login']);
+Route::post('/register_', [RegistrationController::class, 'register']);
 
 // grouped routes for the parent pages
 Route::prefix('parent')->group(function () {
