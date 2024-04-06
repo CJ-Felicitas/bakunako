@@ -7,7 +7,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-            <img width="100%" src="/ruangadminkit/img/markup-logo.png">
+            <img width="100%" src="/images/favicon.png">
         </div>
         <div class="sidebar-brand-text mx-3">Bakunako</div>
     </a>
@@ -46,23 +46,23 @@
         <li class="nav-item active">
             <a class="nav-link" href="/staff/dashboard">
                 <i class="fas fa-user fa-fw text-primary"></i>
-                <span>Home</span></a>
+                <span>Infant Vaccination</span></a>
         </li>
 
         <li class="nav-item active">
             <a class="nav-link" href="/staff/enrollstudent">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Enrollment</span></a>
+                <span>Vaccine Descriptions and Information</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/staff/managestudents">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Manage</span></a>
+                <span>Recommended Vaccines and Schedules</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="activity">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Activity Logs</span></a>
+                <span>Submit Feedback</span></a>
         </li>
     @endif
     <hr class="sidebar-divider">
