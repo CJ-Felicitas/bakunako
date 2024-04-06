@@ -10,11 +10,22 @@
                         </p>
                     </div>
                     <div class="card-body">
+
                         <form action="/login_" method="post">
-                            <input value="{{old('email')}}" type="text" name="email" class="mb-2 form-control form-control-lg" placeholder="Username">
-                            <input type="password" name="password" class="form-control form-control-lg mb-2" placeholder="password">
+                            @csrf
+                            <input value="{{ old('username') }}" type="text" name="username"
+                                class="mb-2 form-control form-control-lg" placeholder="Username">
+
+                            <input value="{{ old('password') }}" type="password" name="password"
+                                class="form-control form-control-lg mb-2" placeholder="Password">
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    Invalid Credentials
+                                </div>
+                            @endif
                             <button class="btn mb-2 btn-primary btn-block" type="submit">Login</button>
                         </form>
+
                         <label for="">Dont have an account? <a href="/register">Register here</a></label>
                     </div>
                 </div>
