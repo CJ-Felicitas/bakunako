@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
+
 // get the landing page/default page
 Route::get('/', function () {
     return view('landing');
@@ -17,6 +18,12 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/test', function () {
+    return view('site.client.dashboard');
+});
+
+
 
 // login attempt
 Route::post('/login_', [AuthController::class, 'login']);

@@ -11,9 +11,9 @@ use BenSampo\Enum\Enum;
  */
 final class UserTypeEnum extends Enum
 {
-    const ADMINISTRATOR = 0;
-    const HEALTHCARE_PROVIDER = 1;
+    const ADMINISTRATOR = 1;
+    const HEALTHCARE_PROVIDER = 2;
     
     // parent is the target user
-    const PARENT = 2;
+    const PARENT = 3;
 }
