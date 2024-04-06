@@ -19,6 +19,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/logout', [AuthController::class, 'logout']);
+
 Route::get('/test', function () {
     return view('site.client.dashboard');
 });
