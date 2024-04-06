@@ -28,23 +28,33 @@ Route::post('/login_', [AuthController::class, 'login']);
 // register attempt
 Route::post('/register_', [RegistrationController::class, 'register']);
 
-// grouped routes for the parent pages
+// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+// grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
-
     // get the parent dashboard
     Route::get('/dashboard', function () {
         return view('site.client.dashboard');
-    }); 
-
+    });
 });
+// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-// grouped routes for the admin pages
+// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+// grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
-
     // get the admin dashboard
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        return view('site.admin.dashboard');
     });
-
 });
+// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+// grouped routes for the HEALTHCARE PROVIDER pages
+Route::prefix('admin')->middleware('HealthcareProviderPageRoutes')->group(function () {
+    // get the healthcare provider dashboard
+    Route::get('/dashboard', function () {
+        return view('site.healthcare_provider.dashboard');
+    });
+});
+// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypeEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    // login function
     public function login(Request $request)
     {
         // validates the payload if it contains username and password
@@ -16,7 +18,7 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-        
+
         /**
          * If the validator fails, it will redirect the user back to the login page
          * with an error message and kills the whole function, preventing the code below to run.
@@ -30,10 +32,16 @@ class AuthController extends Controller
 
         // try to authenticate the user
         try {
-            $credentials = $request->only('username', 'password');
-            if (Auth::attempt($credentials)) {
+            if (Auth::attempt($validated)) {
                 // if the user is authenticated, it will redirect to another page
-                return "okay";
+                if (Auth::user()->user_type_id == UserTypeEnum::PARENT) {
+                    return redirect('/parent/dashboard');
+                } else if (Auth::user()->user_type_id == UserTypeEnum::ADMINISTRATOR) {
+                    return redirect('/admin/dashboard');
+                } else if (Auth::user()->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER) {
+                    return redirect('/healthcare_provider/dashboard');
+                }
+
             } else {
                 // if the user is not authenticated, it will throw an exception
                 throw new \Exception('Invalid credentials');
@@ -44,7 +52,7 @@ class AuthController extends Controller
         }
     }
 
-    
+    // kill all sessions and logout the authenticated user
     public function logout()
     {
         Auth::logout();
