@@ -4,7 +4,7 @@
     $user = Auth::user();
 @endphp
 <!-- Sidebar -->
-<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-light accordion custom-font-size" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
             <img width="100%" src="/images/favicon.png">
@@ -44,7 +44,7 @@
         <!-- Check if user is staff -->
         <!-- Show only manage patients and activity logs for staff -->
         <li class="nav-item active">
-            <a class="nav-link" href="/staff/dashboard">
+            <a class="nav-link" href="/parent/dashboard">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Infant Vaccination</span></a>
         </li>
@@ -57,7 +57,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="/staff/managestudents">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Recommended Vaccines and Schedules</span></a>
+                <span>Recommended Schedules</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="activity">
