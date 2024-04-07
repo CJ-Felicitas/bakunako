@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ParentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
@@ -31,10 +32,21 @@ Route::post('/register_', [RegistrationController::class, 'register']);
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
+    
     // get the parent dashboard
-    Route::get('/dashboard', function () {
-        return view('site.client.dashboard');
+    Route::get('/dashboard', [ParentController::class, 'index']);
+
+    // get the add baby page
+    Route::get('/addinfant', function () {
+        return view('site.client.addinfant');
     });
+
+    // store or save the record of the baby
+    Route::post('/addinfant_', [ParentController::class, 'store']);
+
+    // get the full details of the baby page
+    Route::get('/infant/{id}', [ParentController::class, 'show']);
+    
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -50,7 +62,7 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 // grouped routes for the HEALTHCARE PROVIDER pages
-Route::prefix('admin')->middleware('HealthcareProviderPageRoutes')->group(function () {
+Route::prefix('healthcareprovider')->middleware('HealthcareProviderPageRoutes')->group(function () {
     // get the healthcare provider dashboard
     Route::get('/dashboard', function () {
         return view('site.healthcare_provider.dashboard');
