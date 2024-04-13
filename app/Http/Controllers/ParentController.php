@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Infant;
+use App\Models\Voucher;
+use App\Models\VoucherType;
+use App\Models\Vaccine;
+use App\Models\Schedule;
+use Auth;
+use DB;
 
 class ParentController extends Controller
 {
@@ -17,7 +23,8 @@ class ParentController extends Controller
         $infants = Infant::where('user_id', auth()->user()->id)->get();
         return view('site.client.dashboard', compact('infants'));
     }
-    
+
+
     // get all the infant details
     public function show($id)
     {
@@ -32,6 +39,7 @@ class ParentController extends Controller
     // store the infant details
     public function store(Request $request)
     {
+        DB::beginTransaction();
         // validate if all fields are present during passing the payload
         $validator = Validator::make($request->all(), [
             'infant_firstname' => 'required',
@@ -92,10 +100,59 @@ class ParentController extends Controller
             $infant->updated_at = Carbon::now();
             $infant->save();
 
+            // loop through the vaccines and to assign a schedule to the infant to the schedules table
+            $vaccines = Vaccine::all();
+            foreach ($vaccines as $vaccine) {
+                $schedule = new Schedule();
+                $schedule->infants_id = $infant->id;
+                $schedule->vaccines_id = $vaccine->id;
+                $schedule->date = Carbon::parse($infant->date_of_birth)->addDays($vaccine->days_count);
+                // add a time from 8am to 5pm
+                $schedule->time_schedule_start = Carbon::parse('08:00:00');
+                $schedule->time_schedule_end = Carbon::parse('17:00:00');
+                $schedule->dose_number = $vaccine->dose_number;
+                // $schedule->healthcare_provider_id = Auth::user()->id; -> this is the old code but it is now nullable
+                $schedule->status = 'pending';
+                // $schedule->remarks = 'pending'; -> this is the old code but it is now nullable
+                $schedule->created_at = Carbon::now();
+                $schedule->updated_at = Carbon::now();
+                $schedule->save();
+            }
+            // assign all the voucher to a single infant
+            // $vouchers = [
+            //     'BCG',
+            //     'Hepatitis',
+            //     'Pentavalent',
+            //     'OPV',
+            //     'IPV',
+            //     'PCV',
+            //     'MMR'
+            // ];
+
+            // // ayaw lang sa e mind ang kaning voucher system [kay dili pa klaro ang concept sa voucher system]
+            // // ============================================================================================
+            // // loop through the vouchers and assign them to the infant
+
+            // foreach ($vouchers as $voucher) {
+            //     $voucher_type = VoucherType::where('name', $voucher)->first();
+            //     $voucher = new Voucher();
+            //     $voucher->voucher_type_id = $voucher_type->id;
+            //     $voucher->infant_id = $infant->id; // This is the infant's unique identifier
+            //     $voucher->voucher_code = strtoupper(substr($voucher_type->name, 0, 3)) . '-' . $infant->id;
+            //     $voucher->reedamable = 0;
+            //     $voucher->claimed = 0;
+            //     $voucher->created_at = Carbon::now();
+            //     $voucher->updated_at = Carbon::now();
+            //     $voucher->save();
+            // }
+            // // ============================================================================================
+            DB::commit();
             return redirect('/parent/dashboard')->with('success', 'Infant added successfully');
 
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $th;
         }
     }
+
 }

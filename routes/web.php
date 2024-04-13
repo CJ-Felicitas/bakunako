@@ -4,6 +4,8 @@ use App\Http\Controllers\ParentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\Smscontroller;
+
 
 // get the landing page/default page
 Route::get('/', function () {
@@ -15,6 +17,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
+Route::get('/sms', [Smscontroller::class, 'sendSms']);
 // get the login page
 Route::get('/login', function () {
     return view('login');
@@ -32,7 +35,7 @@ Route::post('/register_', [RegistrationController::class, 'register']);
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
-    
+
     // get the parent dashboard
     Route::get('/dashboard', [ParentController::class, 'index']);
 
@@ -46,7 +49,7 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
     // get the full details of the baby page
     Route::get('/infant/{id}', [ParentController::class, 'show']);
-    
+
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -13,6 +13,7 @@ class RegistrationController extends Controller
 {
     public function register(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'middle_name' => 'required',

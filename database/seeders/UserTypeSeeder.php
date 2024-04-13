@@ -22,6 +22,9 @@ class UserTypeSeeder extends Seeder
         DB::table('user_type')->insert([
             'type' => 'parent'
         ]);
+        DB::table('user_type')->insert([
+            'type' => 'healthcare_provider'
+        ]);
         
         DB::commit();
     }
