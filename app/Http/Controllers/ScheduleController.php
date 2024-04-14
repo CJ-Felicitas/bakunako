@@ -23,7 +23,7 @@ class ScheduleController extends Controller
          * - remarks
          * - last_updated_by
          * - status
-         * 
+         *
          */
 
         // $validation = Validator::make($request->all(), [
@@ -67,7 +67,8 @@ class ScheduleController extends Controller
 
             DB::commit();
 
-            $this->release_voucher($request->infant_id, $request->schedule_id);
+            // code is not functional yet
+            // $this->release_voucher($request->infant_id, $request->schedule_id);
 
             return response()->json([
                 'status' => 'success',
@@ -83,31 +84,31 @@ class ScheduleController extends Controller
         }
     }
 
-    private function release_voucher($infant_id, $schedule_id)
-    {
+    // private function release_voucher($infant_id, $schedule_id)
+    // {
 
-        try {
-            $verify_schedule = Schedule::where('infants_id', $infant_id)
-                ->where('id', $schedule_id)
-                ->where('status', 'done')
-                ->first();
+    //     try {
+    //         $verify_schedule = Schedule::where('infants_id', $infant_id)
+    //             ->where('id', $schedule_id)
+    //             ->where('status', 'done')
+    //             ->first();
 
-            if ($verify_schedule) {
-                $voucher = Voucher::where('infant_id', $infant_id)
-                    ->where('voucher_type_id', $verify_schedule->vaccines_id)
-                    ->first();
+    //         if ($verify_schedule) {
+    //             $voucher = Voucher::where('infant_id', $infant_id)
+    //                 ->where('voucher_type_id', $verify_schedule->vaccines_id)
+    //                 ->first();
 
-                if ($voucher) {
-                    $voucher->reedamable = 1;
-                    $voucher->save();
-                }
-            }
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Failed to update voucher status',
-                'error' => $th->getMessage()
-            ], 500);
-        }
-    }
+    //             if ($voucher) {
+    //                 $voucher->reedamable = 1;
+    //                 $voucher->save();
+    //             }
+    //         }
+    //     } catch (\Throwable $th) {
+    //         return response()->json([
+    //             'status' => 'error',
+    //             'message' => 'Failed to update voucher status',
+    //             'error' => $th->getMessage()
+    //         ], 500);
+    //     }
+    // }
 }
