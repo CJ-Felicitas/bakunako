@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
@@ -12,12 +13,16 @@ Route::get('/', function () {
     return view('landing');
 });
 
+Route::post('/verify_schedule', [ScheduleController::class, 'verify_schedule_session']);
+Route::get('/verify', function () {
+    return view('sched');
+});
+
 // get the register page
 Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/sms', [Smscontroller::class, 'sendSms']);
 // get the login page
 Route::get('/login', function () {
     return view('login');

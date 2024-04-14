@@ -1,14 +1,8 @@
-# To-Do List
-
-
-## Backend
-- Database
-1. Create the user table [MySQL] [done] 
-2. Create vaccines table [MySQL] [done] 
-3. feedback table [MySQL] [done]
-4. infant table [MongoDB] [pending]
-
-## Frontend
-1. Login Page [on progress]
-2. Registration Page [on progress]
-3. Landing Page [for polishing / done]
+## TO DO
+- Vaccination Schedule Module
+- Test Vaccination Schedule
+- Test Deploy to VirtualBox Ubuntu Server for SMS API notification
+- Add User Module
+- Feedback Module
+- Xampp FTP Filezilla for File Server
+- Test Deploy Sa Laptop ni Kary
