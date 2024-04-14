@@ -5,6 +5,7 @@
     @include('site.layouts.header')
     @yield('custom-css')
     <title>@yield('title')</title>
+    @yield('custom-script-header')
 </head>
 
 <body id="page-top">

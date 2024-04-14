@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,12 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     Route::get('/addinfant', function () {
         return view('site.client.addinfant');
     });
+
+    // get the feedback page for the parent page
+    Route::get('/feedback', [FeedbackController::class, 'view']);
+
+    // submit feedback controller for the parent page
+    Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
 
     // store or save the record of the baby
     Route::post('/addinfant_', [ParentController::class, 'store']);

@@ -60,7 +60,7 @@
                 <span>Recommended Schedules</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="activity">
+            <a class="nav-link" href="/parent/feedback">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Submit Feedback</span></a>
         </li>
