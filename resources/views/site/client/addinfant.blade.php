@@ -1,4 +1,7 @@
 @extends('site.layouts.app')
+@section('custom-css')
+    <link rel="stylesheet" href="/izitoast/iziToast.min.css">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -45,8 +48,8 @@
                         <div class="col-md-4">
                             <label for="">Sex</label>
                             <select class="form-control" name="sex" id="">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                                 <option value="">Bayot</option>
                             </select>
                         </div>
@@ -99,11 +102,34 @@
                         </div>
                     </div>
                     <div class="row mt-4">
-                        @if (session('already_registered'))
+
+                        {{-- @if (session('already_registered'))
                             <div class="alert alert-danger" role="alert">
                                 The infant has already been registered
                             </div>
+                        @endif --}}
+                        @if (session('already_registered'))
+                            <script>
+                                window.onload = function() {
+                                    iziToast.danger({
+                                        title: 'Registration Error',
+                                        message: 'The infant has already been registered.',
+                                    });
+                                };
+                            </script>
                         @endif
+                            
+                        @if (session('success'))
+                        <script>
+                            window.onload = function() {
+                                iziToast.success({
+                                    title: 'Registration Success',
+                                    message: 'The infant has been registered successfully.',
+                                });
+                            };
+                        </script>
+                    @endif
+
 
                     </div>
 
@@ -117,3 +143,8 @@
         </div>
     </div>
 @endsection
+
+@section('custom-script-header')
+<script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
+@endsection
+

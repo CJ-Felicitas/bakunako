@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Smscontroller;
+use App\Http\Controllers\HealthCareProviderController;
 
 
 // get the landing page/default page
@@ -53,6 +54,10 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     // get the feedback page for the parent page
     Route::get('/feedback', [FeedbackController::class, 'view']);
 
+    Route::get('/vaccines', function () {
+        return view('site.client.vaccine');
+    });
+
     // submit feedback controller for the parent page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
 
@@ -77,11 +82,14 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 // grouped routes for the HEALTHCARE PROVIDER pages
-Route::prefix('healthcareprovider')->middleware('HealthcareProviderPageRoutes')->group(function () {
+Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->group(function () {
     // get the healthcare provider dashboard
-    Route::get('/dashboard', function () {
-        return view('site.healthcare_provider.dashboard');
-    });
+    Route::get('/dashboard', [HealthCareProviderController::class, 'view_infants_schedule']);
+    // get the feedback page for the healthcare provider page
+    Route::get('/feedback', [FeedbackController::class, 'view']);
+
+    // submit feedback controller for the healthcare provider page
+    Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

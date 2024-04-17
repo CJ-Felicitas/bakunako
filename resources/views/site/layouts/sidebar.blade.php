@@ -3,6 +3,7 @@
     use App\Enums\UserTypeEnum;
     $user = Auth::user();
 @endphp
+
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion custom-font-size" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -13,8 +14,7 @@
     </a>
     <hr class="sidebar-divider my-0">
     @if ($user->user_type_id == UserTypeEnum::ADMINISTRATOR)
-        <!-- Check if user is admin -->
-        <!-- Show all navigation options -->
+        <!-- Show all navigation options for administrator -->
         <li class="nav-item active">
             <a class="nav-link" href="/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt text-primary"></i>
@@ -40,32 +40,35 @@
                 <i class="fas fa-users fa-fw text-primary"></i>
                 <span>Manage Staffs</span></a>
         </li>
-    @elseif($user->user_type_id == UserTypeEnum::PARENT)
-        <!-- Check if user is staff -->
-        <!-- Show only manage patients and activity logs for staff -->
+    @elseif ($user->user_type_id == UserTypeEnum::PARENT)
+        <!-- Show specific navigation options for parent -->
         <li class="nav-item active">
             <a class="nav-link" href="/parent/dashboard">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Infant Vaccination</span></a>
         </li>
-
         <li class="nav-item active">
-            <a class="nav-link" href="/staff/enrollstudent">
+            <a class="nav-link" href="/parent/vaccines">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Vaccine Descriptions and Information</span></a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/staff/managestudents">
-                <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Recommended Schedules</span></a>
+                <span>Vaccine Description and Information</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/parent/feedback">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Submit Feedback</span></a>
         </li>
+    @elseif ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER)
+        <!-- Show specific navigation options for healthcare provider -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/healthcare_provider/dashboard">
+                <i class="fas fa-user fa-fw text-primary"></i>
+                <span>Infant Vaccination</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/healthcare_provider/feedback">
+                <i class="fas fa-clock fa-fw text-primary"></i>
+                <span>Submit Feedback</span></a>
+        </li>
     @endif
-    <hr class="sidebar-divider">
-
 </ul>
 <!-- Sidebar -->

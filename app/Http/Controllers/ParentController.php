@@ -30,9 +30,10 @@ class ParentController extends Controller
     {
         try {
             $infant = Infant::findOrFail($id);
-            return view('site.client.infantinfo', compact('infant'));
-        } catch (ModelNotFoundException $e) {
-            return redirect('/parent/dashboard')->with('error', 'Infant not found');
+            $schedules = Schedule::where('infants_id', $infant->id)->get();
+            return view('site.client.infantinfo', compact('infant', 'schedules'));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
         }
     }
 

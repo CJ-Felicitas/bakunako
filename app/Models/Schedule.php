@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+    use HasFactory;
     public $table = "schedules";
     public $fillable = [
-        'infant_id',
-        'vaccine_id',
+        'infants_id',
+        'vaccines_id',
         'dose_number',
         'healthcare_provider_id',
         'status',
@@ -20,5 +21,13 @@ class Schedule extends Model
         'updated_at'
     ];
 
-    use HasFactory;
+    public function infant()
+    {
+        return $this->belongsTo(Infant::class, 'infants_id');
+    }
+
+    public function vaccine()
+    {
+        return $this->belongsTo(Vaccine::class, 'vaccines_id');
+    }
 }

@@ -5,6 +5,7 @@
             text-decoration: none
         }
     </style>
+    <link rel="stylesheet" href="/izitoast/iziToast.min.css">
 @endsection
 
 @section('content')
@@ -43,4 +44,19 @@
             <button type="button" class="btn btn-primary">Add a Baby</button>
         </a>
     </div>
+
+    @if (session('success'))
+    <script>
+        window.onload = function() {
+            iziToast.success({
+                title: 'Registration Success',
+                message: 'The infant has been registered successfully.',
+            });
+        };
+    </script>
+@endif
 @endsection
+@section('custom-script-header')
+<script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
+@endsection
+
