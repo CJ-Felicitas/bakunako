@@ -1,5 +1,7 @@
 @extends('site.layouts.app')
-
+@section('custom-css')
+    <link rel="stylesheet" href="/izitoast/iziToast.min.css">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -68,5 +70,18 @@
             </form>
             </div>
         </div>
+        @if (session('success'))
+        <script>
+            window.onload = function() {
+                iziToast.success({
+                    title: 'Success',
+                    message: 'The user has been added to the system successfully.',
+                });
+            };
+        </script>
+    @endif
     </div>
+@endsection
+@section('custom-script-header')
+<script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
 @endsection

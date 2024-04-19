@@ -94,7 +94,7 @@ class AdminController extends Controller
             $user->save();
             DB::commit();
 
-            return "ni gana";
+            return redirect()->back()->with('success', 'register success');
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th->getMessage();
