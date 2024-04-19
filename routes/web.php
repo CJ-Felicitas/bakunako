@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Smscontroller;
 use App\Http\Controllers\HealthCareProviderController;
+use App\Http\Controllers\AdminController;
 
 
 // get the landing page/default page
@@ -67,6 +68,9 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     // get the full details of the baby page
     Route::get('/infant/{id}', [ParentController::class, 'show']);
 
+    Route::get('/recommendedvaccinesandschedules', function () {
+        return view('site.client.recommended_vaccines_and_schedules');
+    });
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -77,19 +81,31 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::get('/dashboard', function () {
         return view('site.admin.dashboard');
     });
+    Route::post('/adduser_', [AdminController::class,'addUser_']);
+    Route::get('/adduser', [AdminController::class,'add_user_view']);
+    Route::get('/dashboard', [AdminController::class,'dashboard_view']);
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 // grouped routes for the HEALTHCARE PROVIDER pages
+
 Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->group(function () {
+    
     // get the healthcare provider dashboard
     Route::get('/dashboard', [HealthCareProviderController::class, 'view_infants_schedule']);
+    
     // get the feedback page for the healthcare provider page
     Route::get('/feedback', [FeedbackController::class, 'view']);
-
+    
+    Route::get('/vaccination_details/{id}', [HealthCareProviderController::class, 'view_vaccination_details']);    
+    
     // submit feedback controller for the healthcare provider page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
+
+    // update status
+    Route::post('/updateStatus', [HealthCareProviderController::class, 'updateStatus']);
+
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

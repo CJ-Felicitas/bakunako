@@ -16,29 +16,24 @@
     @if ($user->user_type_id == UserTypeEnum::ADMINISTRATOR)
         <!-- Show all navigation options for administrator -->
         <li class="nav-item active">
-            <a class="nav-link" href="/dashboard">
+            <a class="nav-link" href="/admin/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt text-primary"></i>
                 <span>Dashboard</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/managepatient">
                 <i class="fas fa-user fa-fw text-primary"></i>
-                <span>Manage Patients</span></a>
+                <span>Vaccine Infants</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="activity">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Activity Logs</span></a>
+                <span>Feedbacks</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/admin/adduser">
                 <i class="fas fa-money-bill fa-fw text-primary"></i>
-                <span>Track Revenue</span></a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/admin/staff">
-                <i class="fas fa-users fa-fw text-primary"></i>
-                <span>Manage Staffs</span></a>
+                <span>Create an Account</span></a>
         </li>
     @elseif ($user->user_type_id == UserTypeEnum::PARENT)
         <!-- Show specific navigation options for parent -->
@@ -53,10 +48,16 @@
                 <span>Vaccine Description and Information</span></a>
         </li>
         <li class="nav-item active">
+            <a class="nav-link" href="/parent/recommendedvaccinesandschedules">
+                <i class="fas fa-clock fa-fw text-primary"></i>
+                <span>Recommended Vaccines and Schedules</span></a>
+        </li>
+        <li class="nav-item active">
             <a class="nav-link" href="/parent/feedback">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Submit Feedback</span></a>
         </li>
+
     @elseif ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER)
         <!-- Show specific navigation options for healthcare provider -->
         <li class="nav-item active">

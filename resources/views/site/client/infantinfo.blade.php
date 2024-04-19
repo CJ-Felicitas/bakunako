@@ -1,4 +1,30 @@
 @extends('site.layouts.app')
+@section('custom-css')
+    <style>
+        #dataTableHover {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #dataTableHover th,
+        #dataTableHover td {
+            border: 1px solid #999;
+            /* Adjusted border color */
+            padding: 8px;
+            text-align: left;
+        }
+
+        #dataTableHover th {
+            background-color: #f2f2f2;
+        }
+
+        /* Darker border for input fields */
+        input.form-control {
+            border: 1px solid #999;
+            /* Adjusted border color */
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -45,7 +71,7 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Schedule Info</h6>
                 </div>
-                <div class="table-responsive p-3">
+                <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                         <thead class="thead-light">
                             <tr>
@@ -77,6 +103,7 @@
                             @endforeach
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

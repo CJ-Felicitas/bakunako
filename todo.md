@@ -1,8 +1,7 @@
-## TO DO
-- Vaccination Schedule Module - done
-- Test Vaccination Schedule - done
-- Test Deploy to VirtualBox Ubuntu Server for SMS API notification 
-- Add User Module - doing
-- Feedback Module
-- Xampp FTP Filezilla for File Server
-- Test Deploy Sa Laptop ni Kary
+# TO DO
+
+1. Table border highlight -- done
+2. Profile Settings for account -- 
+3. Infant information text border highlight -- done
+4. Di mo gana ang izitoast sa update status -- yawa
+
