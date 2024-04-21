@@ -16,12 +16,15 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::post('/verify_schedule', [ScheduleController::class, 'verify_schedule_session']);
-Route::get('/verify', function () {
-    return view('sched');
-});
+// Route::post('/verify_schedule', [ScheduleController::class, 'verify_schedule_session']);
+
+// Route::get('/verify', function () {
+//     return view('sched');
+// });
 
 // get the register page
+Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
+
 Route::get('/register', function () {
     return view('register');
 });
@@ -85,6 +88,7 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::post('/adduser_', [AdminController::class,'addUser_']);
     Route::get('/adduser', [AdminController::class,'add_user_view']);
     Route::get('/dashboard', [AdminController::class,'dashboard_view']);
+    Route::get('/infant/{id}', [ParentController::class, 'show']);
 });
 // ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -8,6 +8,7 @@ use App\Models\Schedule;
 use Validator;
 use DB;
 use Hash;
+use App\Models\Infant;
 
 class HealthCareProviderController extends Controller
 {
@@ -26,12 +27,12 @@ class HealthCareProviderController extends Controller
     public function view_vaccination_details($id)
     {
         $currentDate = Carbon::now()->toDateString();
-
+        $infant = Infant::find($id);
         $schedules = Schedule::where('infants_id', $id)
             ->orderByRaw("CASE WHEN date = '{$currentDate}' THEN 0 WHEN date = '2024-05-16' THEN 1 ELSE 2 END")
             ->get();
 
-        return view('site.healthcare_provider.vaccinationdetails', compact('schedules'));
+        return view('site.healthcare_provider.vaccinationdetails', compact('schedules', 'infant'));
     }
 
     public function updateStatus(Request $request)
@@ -65,8 +66,6 @@ class HealthCareProviderController extends Controller
             $schedule->remarks = $validated['remarks'];
             $schedule->save();
             DB::commit();
-
-
 
             return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
         } catch (\Exception $e) {

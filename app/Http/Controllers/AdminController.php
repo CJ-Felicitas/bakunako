@@ -10,7 +10,7 @@ use App\Models\Infant;
 use Hash;
 use App\Enums\UserTypeEnum;
 use App\Models\Feedback;
-
+use App\Models\Schedule;
 class AdminController extends Controller
 {
     public function addUser_(Request $request)
@@ -109,10 +109,12 @@ class AdminController extends Controller
         $male_count = Infant::where('sex', 'Male')->count();
         $female_count = Infant::where('sex', 'Female')->count();
         $total = $male_count + $female_count;
+        $infants = Infant::all();
         return view('site.admin.dashboard', [
             'male_count' => $male_count,
             'female_count' => $female_count,
-            'total' => $total
+            'total' => $total,
+            'infants' => $infants          
         ]);
     }
     public function add_user_view()
@@ -127,5 +129,16 @@ class AdminController extends Controller
         return view('site.admin.feedbacks', [
             'feedbacks' => $feedbacks
         ]);
+    }
+
+    public function show($id)
+    {
+        try {
+            $infant = Infant::findOrFail($id);
+            $schedules = Schedule::where('infants_id', $infant->id)->get();
+            return view('site.admin.infantinfo', compact('infant', 'schedules'));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 }

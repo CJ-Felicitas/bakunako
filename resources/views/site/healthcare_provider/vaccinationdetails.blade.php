@@ -1,4 +1,7 @@
 @extends('site.layouts.app')
+@section('custom-css')
+    <link rel="stylesheet" href="/izitoast/iziToast.min.css">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -11,9 +14,9 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Vaccines needed to be injected today</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Vaccination Details of {{ $infant->infant_firstname }} {{$infant->infant_middlename}} {{$infant->infant_lastname}}</h6>
                 </div>
-                <div class="table-responsive p-3">
+                <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                         <thead class="thead-light">
                             <tr>
@@ -63,6 +66,26 @@
                     </table>
                 </div>
             </div>
+            @if (session('success'))
+                <script>
+                    window.onload = function() {
+                        iziToast.success({
+                            title: 'Success',
+                            message: 'The status of the infant has been updated successfully!',
+                        });
+                    };
+                </script>
+            @endif
+            @if (session('password'))
+                <script>
+                    window.onload = function() {
+                        iziToast.error({
+                            title: 'Password Error',
+                            message: 'The password is incorrect! Please try again.',
+                        });
+                    };
+                </script>
+            @endif
         </div>
         @include('site.healthcare_provider.updateinfantstatusmodal')
     </div>
@@ -81,5 +104,6 @@
         });
     </script>
 @endsection
-
-
+@section('custom-script-header')
+    <script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
+@endsection
