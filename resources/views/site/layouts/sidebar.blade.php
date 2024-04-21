@@ -26,7 +26,7 @@
                 <span>Vaccine Infants</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="activity">
+            <a class="nav-link" href="/admin/feedbacks">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Feedbacks</span></a>
         </li>

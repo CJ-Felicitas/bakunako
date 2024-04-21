@@ -78,9 +78,10 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     // get the admin dashboard
-    Route::get('/dashboard', function () {
-        return view('site.admin.dashboard');
-    });
+    // Route::get('/dashboard', function () {
+    //     return view('site.admin.dashboard');
+    // });
+    Route::get('/feedbacks', [AdminController::class,'view_feedbacks']);
     Route::post('/adduser_', [AdminController::class,'addUser_']);
     Route::get('/adduser', [AdminController::class,'add_user_view']);
     Route::get('/dashboard', [AdminController::class,'dashboard_view']);

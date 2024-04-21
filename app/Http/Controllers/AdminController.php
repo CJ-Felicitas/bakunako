@@ -8,6 +8,9 @@ use App\Models\User;
 use DB;
 use App\Models\Infant;
 use Hash;
+use App\Enums\UserTypeEnum;
+use App\Models\Feedback;
+
 class AdminController extends Controller
 {
     public function addUser_(Request $request)
@@ -34,7 +37,7 @@ class AdminController extends Controller
             'password' => 'required',
             'username' => 'required',
             'phone_number' => 'required',
-            'user_type_id' => 'required',
+            // 'user_type_id' => 'required', // this one is not applicable anymore because only one admin should exist
             'address' => 'required',
             'confirm_password' => 'required'
         ]);
@@ -71,7 +74,7 @@ class AdminController extends Controller
             ->first();
 
         // check the confirm password
-        if($validated['password'] != $validated['confirm_password']){
+        if ($validated['password'] != $validated['confirm_password']) {
             return "mali ang password";
         }
 
@@ -90,7 +93,7 @@ class AdminController extends Controller
             $user->username = $validated["username"];
             $user->phone_number = $validated["phone_number"];
             $user->address = $validated["address"];
-            $user->user_type_id = $validated["user_type_id"];
+            $user->user_type_id = UserTypeEnum::HEALTHCARE_PROVIDER;
             $user->save();
             DB::commit();
 
@@ -111,11 +114,18 @@ class AdminController extends Controller
             'female_count' => $female_count,
             'total' => $total
         ]);
-
     }
-
     public function add_user_view()
     {
         return view('site.admin.adduser');
+    }
+
+    public function view_feedbacks()
+    {
+        $feedbacks = Feedback::all();
+
+        return view('site.admin.feedbacks', [
+            'feedbacks' => $feedbacks
+        ]);
     }
 }

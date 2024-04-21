@@ -49,13 +49,13 @@
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label for="level">Select Priviledge Level</label>
+                                {{-- <label for="level">Select Priviledge Level</label>
                                 <select required name="user_type_id" id="level" class="form-control">
                                     <option value="" selected disabled hidden>Select Priviledge Level</option>
                                     <option value="1">Administrator (Full Access)</option>
                                     <option value="3">Healthcare provider</option>
-                                </select>
-                                <label for="" class="mt-3">Address</label>
+                                </select> --}}
+                                <label for="" class="">Address</label>
                                 <input required type="text" class="form-control" placeholder="Address" id="address" name="address">
                             </div>
                         </div>
