@@ -30,27 +30,27 @@
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Feedbacks</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/admin/adduser">
                 <i class="fas fa-money-bill fa-fw text-primary"></i>
                 <span>Create an Account</span></a>
         </li>
     @elseif ($user->user_type_id == UserTypeEnum::PARENT)
         <!-- Show specific navigation options for parent -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/parent/dashboard">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Infant Vaccination</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/parent/vaccines">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Vaccine Description and Information</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/parent/recommendedvaccinesandschedules">
                 <i class="fas fa-clock fa-fw text-primary"></i>
-                <span>Recommended Vaccines and Schedules</span></a>
+                <span>Recommended Vaccine Schedules</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/parent/feedback">
