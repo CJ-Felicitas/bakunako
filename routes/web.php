@@ -9,7 +9,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Smscontroller;
 use App\Http\Controllers\HealthCareProviderController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\PDFController;
 
 // get the landing page/default page
 Route::get('/', function () {
@@ -28,6 +28,8 @@ Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
 Route::get('/register', function () {
     return view('register');
 });
+
+Route::get('/pdf', [PDFController::class, 'generatePDF']);
 
 // get the login page
 Route::get('/login', function () {
