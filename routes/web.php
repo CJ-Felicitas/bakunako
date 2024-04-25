@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -45,7 +46,11 @@ Route::post('/login_', [AuthController::class, 'login']);
 // register attempt
 Route::post('/register_', [RegistrationController::class, 'register']);
 
-// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+// get the profile page
+Route::get('/profile', [ProfileController::class, 'showProfile']);
+
+
+
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
@@ -77,9 +82,7 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
         return view('site.client.recommended_vaccines_and_schedules');
     });
 });
-// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     // get the admin dashboard
@@ -91,11 +94,11 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::get('/adduser', [AdminController::class,'add_user_view']);
     Route::get('/dashboard', [AdminController::class,'dashboard_view']);
     Route::get('/infant/{id}', [ParentController::class, 'show']);
-});
-// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    Route::post('/editprofile', [ProfileController::class, 'editProfile']);
+    Route::post('/updatepassword', [ProfileController::class, 'updatepassword']);
 
-// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-// grouped routes for the HEALTHCARE PROVIDER pages
+});
+
 
 Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->group(function () {
     
@@ -114,5 +117,5 @@ Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->gr
     Route::post('/updateStatus', [HealthCareProviderController::class, 'updateStatus']);
 
 });
-// ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 

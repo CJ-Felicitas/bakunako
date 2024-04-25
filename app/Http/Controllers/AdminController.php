@@ -141,4 +141,9 @@ class AdminController extends Controller
             return $th->getMessage();
         }
     }
+
+    public function profile()
+    {
+        return view('site.admin.profile');
+    }
 }

@@ -7,9 +7,11 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Infant;
 use App\Models\Schedule;
+
 class PDFController extends Controller
 {
-    public function generatePDF(){
+    public function generatePDF()
+    {
         $users = User::get();
         $infants = Infant::get();
         $schedule = Schedule::get();
@@ -20,10 +22,9 @@ class PDFController extends Controller
             'users' => $users,
             'infants' => $infants,
             'schedule' => $schedule
-        ]; 
+        ];
 
         $pdf = PDF::loadView('myPDF', $data);
-        
         return $pdf->download('bakunako.pdf');
     }
 }

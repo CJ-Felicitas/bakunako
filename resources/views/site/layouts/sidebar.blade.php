@@ -15,17 +15,17 @@
     <hr class="sidebar-divider my-0">
     @if ($user->user_type_id == UserTypeEnum::ADMINISTRATOR)
         <!-- Show all navigation options for administrator -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/admin/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt text-primary"></i>
                 <span>Dashboard</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/managepatient">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Vaccine Infants</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/admin/feedbacks">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Feedbacks</span></a>
