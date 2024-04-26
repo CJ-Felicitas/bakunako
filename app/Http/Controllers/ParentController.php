@@ -110,7 +110,7 @@ class ParentController extends Controller
                 $schedule->date = Carbon::parse($infant->date_of_birth)->addDays($vaccine->days_count);
                 // add a time from 8am to 5pm
                 $schedule->time_schedule_start = Carbon::parse('08:00:00');
-                $schedule->time_schedule_end = Carbon::parse('17:00:00');
+                $schedule->time_schedule_end = Carbon::parse('15:00:00');
                 $schedule->dose_number = $vaccine->dose_number;
                 // $schedule->healthcare_provider_id = Auth::user()->id; -> this is the old code but it is now nullable
                 $schedule->status = 'pending';

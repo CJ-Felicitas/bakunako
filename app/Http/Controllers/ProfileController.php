@@ -18,7 +18,7 @@ class ProfileController extends Controller
             return view('site.admin.profile', ['user' => $user]);
         }
         if ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER) {
-            return view('site.healthcareprovider.profile', ['user' => $user]);
+            return view('site.healthcare_provider.profile', ['user' => $user]);
         }
         if ($user->user_type_id == UserTypeEnum::PARENT) {
             return view('site.client.profile', ['user' => $user]);

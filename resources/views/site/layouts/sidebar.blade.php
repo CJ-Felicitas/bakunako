@@ -21,7 +21,7 @@
                 <span>Dashboard</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/managepatient">
+            <a class="nav-link" href="/admin/vaccination">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Vaccine Infants</span></a>
         </li>

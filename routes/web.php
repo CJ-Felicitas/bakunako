@@ -85,31 +85,32 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
-    // get the admin dashboard
-    // Route::get('/dashboard', function () {
-    //     return view('site.admin.dashboard');
-    // });
-    Route::get('/feedbacks', [AdminController::class,'view_feedbacks']);
-    Route::post('/adduser_', [AdminController::class,'addUser_']);
-    Route::get('/adduser', [AdminController::class,'add_user_view']);
-    Route::get('/dashboard', [AdminController::class,'dashboard_view']);
+   
+    Route::get('/feedbacks', [AdminController::class, 'view_feedbacks']);
+    Route::post('/adduser_', [AdminController::class, 'addUser_']);
+    Route::get('/adduser', [AdminController::class, 'add_user_view']);
+    Route::get('/dashboard', [AdminController::class, 'dashboard_view']);
     Route::get('/infant/{id}', [ParentController::class, 'show']);
     Route::post('/editprofile', [ProfileController::class, 'editProfile']);
     Route::post('/updatepassword', [ProfileController::class, 'updatepassword']);
 
+    // manage vaccination
+    Route::get('/vaccination', [AdminController::class, 'view_infants_schedule']);
+    Route::get('/vaccination_details/{id}', [AdminController::class, 'view_vaccination_details']);
+    Route::post('/updateStatus', [AdminController::class, 'updateStatus']);
 });
 
 
 Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->group(function () {
-    
+
     // get the healthcare provider dashboard
     Route::get('/dashboard', [HealthCareProviderController::class, 'view_infants_schedule']);
-    
+
     // get the feedback page for the healthcare provider page
     Route::get('/feedback', [FeedbackController::class, 'view']);
-    
-    Route::get('/vaccination_details/{id}', [HealthCareProviderController::class, 'view_vaccination_details']);    
-    
+
+    Route::get('/vaccination_details/{id}', [HealthCareProviderController::class, 'view_vaccination_details']);
+
     // submit feedback controller for the healthcare provider page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
 
