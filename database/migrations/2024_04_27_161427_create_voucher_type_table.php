@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('voucher_type', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('partner_id');
+            $table->foreign('partner_id')->references('id')->on('partners');
+            $table->string('item_name');
+            $table->integer('total_quantity');
+            $table->integer('remaining_quantity');
+            $table->integer('redeemed_quantity')->default(0);
             $table->unsignedBigInteger('vaccine_id');
             $table->foreign('vaccine_id')->references('id')->on('vaccines');
-            $table->longText('description');
             $table->timestamps();
         });
     }

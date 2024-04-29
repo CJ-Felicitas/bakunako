@@ -12,12 +12,21 @@ class VoucherType extends Model
      * apply the fillable fields
      * 
      */
+
     protected $fillable = [
-        'name',
-        'description',
+        'partner_id',
+        'item_name',
+        'total_quantity',
+        'redeeemed_quantity',
+        'vaccine_id',
         'created_at',
         'updated_at'
     ];
-    
+
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class);
+    }
+
     use HasFactory;
 }

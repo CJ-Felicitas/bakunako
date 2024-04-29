@@ -73,22 +73,22 @@
                     <a href="" class="btn btn-primary btn-sm">Download PDF</a>
                 </div>
                 <div class="table-responsive p-2">
-                    <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <table class="table align-items-center table-flush" id="dataTableHover">
                         <thead class="thead-light">
                             <tr>
-                                <th>Vaccine</th>
-                                <th>Dose No.</th>
-                                <th>Schedule</th>
-                                <th>Time</th>
-                                <th>Indicator</th>
-                                <th>Remarks</th>
+                                <th class="text-center">Vaccine</th>
+                                <th class="text-center">Dose No.</th>
+                                <th class="text-center">Schedule</th>
+                                <th class="text-center">Time</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Remarks</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($schedules as $schedule)
                                 <tr>
                                     <td>{{ $schedule->vaccine->name }}</td>
-                                    <td>{{ $schedule->dose_number }}</td>
+                                    <td class="text-center">{{ $schedule->dose_number }}</td>
                                     <td>{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}</td>
                                     <td>{{ \Carbon\Carbon::parse($schedule->time_schedule_start)->format('h:i A') }} -
                                         {{ \Carbon\Carbon::parse($schedule->time_schedule_end)->format('h:i A') }}</td>

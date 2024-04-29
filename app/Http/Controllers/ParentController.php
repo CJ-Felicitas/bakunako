@@ -119,48 +119,15 @@ class ParentController extends Controller
                 $schedule->updated_at = Carbon::now();
                 $schedule->save();
             }
-            // assign all the voucher to a single infant
-            $vouchers = [
-                'BCG',
-                'Hepatitis',
-                'Pentavalent 1',
-                'Pentavalent 2',
-                'Pentavalent 3',
-                'OPV 1',
-                'OPV 2',
-                'OPV 3',
-                'IPV',
-                'PCV 1',
-                'PCV 2',
-                'PCV 3',
-                'MMR 1',
-                'MMR 2'
-            ];
-
-            // ayaw lang sa e mind ang kaning voucher system [kay dili pa klaro ang concept sa voucher system]
-            // ============================================================================================
-            // loop through the vouchers and assign them to the infant
-
-            foreach ($vouchers as $voucher) {
-                $voucher_type = VoucherType::where('name', $voucher)->first();
-                $voucher = new Voucher();
-                $voucher->voucher_type_id = $voucher_type->id;
-                $voucher->infant_id = $infant->id; // This is the infant's unique identifier
-                $voucher->voucher_code = strtoupper(substr($voucher_type->name, 0, 3)) . '-' . $infant->id;
-                $voucher->reedamable = 0;
-                $voucher->claimed = 0;
-                $voucher->created_at = Carbon::now();
-                $voucher->updated_at = Carbon::now();
-                $voucher->save();
-            }
-            // ============================================================================================
             DB::commit();
             return redirect('/parent/dashboard')->with('success', 'Infant added successfully');
 
         } catch (\Throwable $th) {
             DB::rollBack();
-            return $th;
+            return $th->getMessage();
         }
     }
-
+    public function voucher_view(){
+        return view('site.client.voucher');
+    }
 }

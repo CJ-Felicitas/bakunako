@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Smscontroller;
 use App\Http\Controllers\HealthCareProviderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\VoucherController;
 
 // get the landing page/default page
 Route::get('/', function () {
@@ -25,6 +27,14 @@ Route::get('/', function () {
 
 // get the register page
 Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
+
+Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
+Route::post('/addPartner', [PartnerController::class, 'addPartner']);
+Route::get('/partner', function () {
+    return view('site.admin.partner');
+});
+
+
 
 Route::get('/register', function () {
     return view('register');
@@ -78,6 +88,8 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     // get the full details of the baby page
     Route::get('/infant/{id}', [ParentController::class, 'show']);
 
+    Route::get('/voucher', [ParentController::class, 'voucher_view']);
+    
     Route::get('/recommendedvaccinesandschedules', function () {
         return view('site.client.recommended_vaccines_and_schedules');
     });
@@ -85,7 +97,7 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
-   
+
     Route::get('/feedbacks', [AdminController::class, 'view_feedbacks']);
     Route::post('/adduser_', [AdminController::class, 'addUser_']);
     Route::get('/adduser', [AdminController::class, 'add_user_view']);
@@ -98,6 +110,10 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::get('/vaccination', [AdminController::class, 'view_infants_schedule']);
     Route::get('/vaccination_details/{id}', [AdminController::class, 'view_vaccination_details']);
     Route::post('/updateStatus', [AdminController::class, 'updateStatus']);
+
+    // manage voucher
+    Route::get('/voucher', [VoucherController::class, 'view_voucher']);
+    Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
 });
 
 

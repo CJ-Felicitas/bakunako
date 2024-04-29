@@ -9,6 +9,7 @@ use Validator;
 use DB;
 use Hash;
 use App\Models\Infant;
+use App\Models\Voucher;
 
 class HealthCareProviderController extends Controller
 {
@@ -60,15 +61,51 @@ class HealthCareProviderController extends Controller
                 return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('password', 'Password is incorrect');
             }
 
-            DB::beginTransaction();
-            // update the status of the schedule
-            $schedule->status = $validated['status'];
-            $schedule->remarks = $validated['remarks'];
-            $schedule->save();
-            DB::commit();
+            // check if the infant has a voucher allocated to its vaccine schedule
+            $infant_id = $schedule->infants_id;
+            $vaccine_id = $schedule->vaccine_id;
 
-            return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+            // check if the infant has a voucher
+            $voucher = Voucher::where('infant_id', $infant_id)
+                ->whereHas('voucherType', function ($query) use ($vaccine_id) {
+                    $query->where('vaccine_id', $vaccine_id);
+                })->first();
+
+            // if there is no voucher then proceed to normal schedule update
+            if (!$voucher) {
+
+                // start transaction for safety purposes
+                DB::beginTransaction();
+                
+                // update the status of the schedule
+                $schedule->status = $validated['status'];
+                $schedule->remarks = $validated['remarks'];
+                $schedule->save();
+                
+                // save the changes
+                DB::commit();
+                
+                return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+            } elseif ($voucher) {
+                DB::beginTransaction();
+                // update the status of the schedule
+                $schedule->status = $validated['status'];
+                $schedule->remarks = $validated['remarks'];
+                $schedule->save();
+
+                // update the voucher status
+                $voucher->reedamable = 1;
+                $voucher->updated_at = Carbon::now();
+                $voucher->save();
+
+                // save changes
+                DB::commit();
+                
+                // return back to the page with a success message
+                return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+            }
         } catch (\Exception $e) {
+            DB::rollBack();
             return $e->getMessage();
         }
 

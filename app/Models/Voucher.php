@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voucher extends Model
 {
-    public $table = "voucher";
+    public $table = "vouchers";
 
     /**
      * apply the fillable fields
@@ -22,6 +22,12 @@ class Voucher extends Model
         'created_at',
         'updated_at'
     ];
+    
+    public function voucherType()
+    {
+        return $this->belongsTo(VoucherType::class);
+    }
+
     
     use HasFactory;
 }

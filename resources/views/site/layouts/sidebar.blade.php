@@ -35,6 +35,11 @@
                 <i class="fas fa-money-bill fa-fw text-primary"></i>
                 <span>Create an Account</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/voucher">
+                <i class="fas fa-money-bill fa-fw text-primary"></i>
+                <span>Manage Voucher</span></a>
+        </li>
     @elseif ($user->user_type_id == UserTypeEnum::PARENT)
         <!-- Show specific navigation options for parent -->
         <li class="nav-item">
@@ -57,7 +62,11 @@
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Submit Feedback</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="/parent/voucher">
+                <i class="fas fa-money-bill fa-fw text-primary"></i>
+                <span>Voucher</span></a>
+        </li>
     @elseif ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER)
         <!-- Show specific navigation options for healthcare provider -->
         <li class="nav-item active">
