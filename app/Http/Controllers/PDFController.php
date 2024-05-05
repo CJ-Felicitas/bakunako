@@ -10,21 +10,25 @@ use App\Models\Schedule;
 
 class PDFController extends Controller
 {
-    public function generatePDF()
+    public function generatePDF($id)
     {
+
         $users = User::get();
-        $infants = Infant::get();
-        $schedule = Schedule::get();
+
+        $infant = Infant::where('id', $id)->first();
+        $schedule = Schedule::where('infants_id', $id)->get();
 
         $data = [
             'title' => "Infant's Information",
             'date' => date('m/d/Y'),
             'users' => $users,
-            'infants' => $infants,
-            'schedule' => $schedule
+            'infant' => $infant,
+            'schedules' => $schedule
         ];
-
+        
         $pdf = PDF::loadView('myPDF', $data);
+        $pdf->setBasePath(public_path());
+
         return $pdf->download('bakunako.pdf');
     }
 }
