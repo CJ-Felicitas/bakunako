@@ -1,28 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Laravel 9 Create PDF File using DomPDF Tutorial - LaravelTuts.com</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Infant Information</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .row>.col {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        .centered-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 200px;
+            /* Adjust the max-width as needed */
+        }
+    </style>
 </head>
+
 <body>
-    <h1>{{ $title }}</h1>
-    <p>{{ $date }}</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.</p>
-  
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-        @foreach($users as $user)
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-            </tr>
-        @endforeach
-    </table>
+    <div class="container">
+        <div class="header">
+            <img src="images/pdf-logo.jpg" class="centered-image" alt="Logo"> <!-- Image centered here -->
+        </div>
+        <hr>
+        <div class="content">
+            <div class="row">
+                <div class="col">
+                    <h3 style="text-align: center">Personal Information</h3>
+                    <p><strong>Name:</strong> {{ $infant->infant_firstname }} {{$infant->infant_middlename}} {{$infant->infant_lastname}}</p>
+                    <p><strong>Date of Birth:</strong> {{ $infant->date_of_birth }}</p>
+                    <p><strong>Place of Birth:</strong> {{ $infant->place_of_birth }}</p>
+                    <p><strong>Sex:</strong> {{ $infant->sex }}</p>
+                    <p><strong>Address:</strong> {{ $infant->address }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <h3 style="text-align: center">Vaccination Schedule</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Vaccine</th>
+                                <th>Dose No.</th>
+                                <th>Schedule</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($schedules as $schedule)
+                                <tr>
+                                    <td>{{ $schedule->vaccine->name }}</td>
+                                    <td>{{ $schedule->dose_number }}</td>
+                                    <td>{{ $schedule->date }}</td>
+                                    <td>{{ $schedule->time_schedule_start }} {{ $schedule->time_schedule_end }}</td>
+                                    <td>{{ $schedule->status }}</td>
+                                    <td>{{ $schedule->remarks }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p style="font-size: 10px; text-align: right;">System Generated - {{ date('Y-m-d') }}</p>
+        </footer>
+    </div>
 </body>
+
 </html>

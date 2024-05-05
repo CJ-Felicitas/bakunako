@@ -37,7 +37,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/pdf', [PDFController::class, 'generatePDF']);
+
 
 // get the login page
 Route::get('/login', function () {
@@ -61,6 +61,8 @@ Route::get('/profile', [ProfileController::class, 'showProfile']);
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
+    Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
+
     // get the parent dashboard
     Route::get('/dashboard', [ParentController::class, 'index']);
 
@@ -75,7 +77,7 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     Route::get('/vaccines', function () {
         return view('site.client.vaccine');
     });
-    
+
     Route::get('/claimvoucher/{id}', [VoucherController::class, 'claimVoucher']);
     // submit feedback controller for the parent page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
@@ -87,7 +89,7 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     Route::get('/infant/{id}', [ParentController::class, 'show']);
 
     Route::get('/voucher', [ParentController::class, 'voucher_view']);
-    
+
     Route::get('/recommendedvaccinesandschedules', function () {
         return view('site.client.recommended_vaccines_and_schedules');
     });
