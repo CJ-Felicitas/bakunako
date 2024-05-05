@@ -11,15 +11,27 @@ use App\Models\Vaccine;
 use App\Models\Infant;
 use App\Models\VoucherType;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class VoucherController extends Controller
 {
 
+    public function detailed_voucher($id)
+    {
+        // detailed list of vouchers
+        $vouchers = Voucher::where('voucher_type_id', $id)->get();
+        $voucher_type = VoucherType::where('id', $id)->first();
+        return view('site.admin.voucherlist', compact('vouchers', 'voucher_type'));
+    }
+
     public function view_voucher()
     {
+        // general view for voucher that returns the list of voucher_types
         $partners = Partner::all();
         $vaccines = Vaccine::all();
-        return view('site.admin.managevoucher', compact('partners','vaccines'));
+        $vouchers = Voucher::all();
+        $voucher_types = VoucherType::all();
+        return view('site.admin.managevoucher', compact('partners', 'vaccines', 'vouchers', 'voucher_types'));
     }
 
     public function addVoucher(Request $request)
@@ -41,11 +53,9 @@ class VoucherController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return "validation error";
             return redirect()->back()->with('error', 'Validation failed');
         }
         $validated = $validator->validated();
-
         try {
 
             // check if partner exists
@@ -54,7 +64,6 @@ class VoucherController extends Controller
             if (!$partner) {
                 return redirect()->back()->with('error', 'Partner does not exist');
             }
-
             // check if vaccine exists
             $vaccine = Vaccine::find($validated['vaccine_id']);
 
@@ -107,9 +116,40 @@ class VoucherController extends Controller
                     $voucher->save();
                 }
             }
-      
-            return "lmao ni gana";
+            return redirect()->back()->with('voucher_distribute_success', 'Voucher added successfully');
         } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function claimVoucher($id)
+    {
+        // id = voucher id
+        try {
+            $voucher = Voucher::findOrFail($id);
+            $voucher_type = VoucherType::where('id', $voucher->voucher_type_id)->first();
+
+            if ($voucher->is_redeemed == 1) {
+                return back()->with('already_claimed', 'Voucher has already been claimed');
+            }
+
+            if ($voucher->is_reedeemable == 1 && $voucher->is_redeemed == 0) {
+                // claim the voucher
+                $voucher->is_redeemed = 1;
+                $voucher->redeemed_at = Carbon::now();
+                $voucher->save();
+
+                $total_redeemed = Voucher::where('voucher_type_id', $voucher_type->id)->where('is_redeemed', 1)->count();
+
+                // update the voucher type status
+                $voucher_type->redeemed_quantity = $total_redeemed;
+                $voucher_type->save();
+
+                return redirect('/parent/voucher')->with('success', 'Voucher claimed successfully');
+            } elseif ($voucher->is_reedeemable == 0) {
+                return redirect('/parent/voucher')->with('error', 'Voucher is not reedeemable');
+            }
+        } catch (ModelNotFoundException $th) {
             return $th->getMessage();
         }
     }

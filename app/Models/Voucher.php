@@ -17,8 +17,9 @@ class Voucher extends Model
         'voucher_type_id',
         'infant_id',
         'voucher_code',
-        'reedamable',
-        'claimed',
+        'is_reedeemable',
+        'is_redeemed',
+        'redeemed_at',
         'created_at',
         'updated_at'
     ];
@@ -28,6 +29,10 @@ class Voucher extends Model
         return $this->belongsTo(VoucherType::class);
     }
 
-    
+    public function infant()
+    {
+        return $this->belongsTo(Infant::class, 'infant_id', 'id');
+    }
+
     use HasFactory;
 }

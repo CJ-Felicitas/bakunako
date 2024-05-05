@@ -28,5 +28,13 @@ class VoucherType extends Model
         return $this->hasMany(Voucher::class);
     }
 
+    public function partners(){
+        return $this->belongsTo(Partner::class, 'partner_id');
+    }
+
+    public function vaccines(){
+        return $this->belongsTo(Vaccine::class, 'vaccine_id');
+    }
+
     use HasFactory;
 }

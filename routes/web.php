@@ -28,11 +28,8 @@ Route::get('/', function () {
 // get the register page
 Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
 
-Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
-Route::post('/addPartner', [PartnerController::class, 'addPartner']);
-Route::get('/partner', function () {
-    return view('site.admin.partner');
-});
+
+
 
 
 
@@ -78,7 +75,8 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     Route::get('/vaccines', function () {
         return view('site.client.vaccine');
     });
-
+    
+    Route::get('/claimvoucher/{id}', [VoucherController::class, 'claimVoucher']);
     // submit feedback controller for the parent page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
 
@@ -98,6 +96,8 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
+    Route::get('/partners', [PartnerController::class, 'partner_view']);
+    Route::post('/addPartner', [PartnerController::class, 'addPartner']);
     Route::get('/feedbacks', [AdminController::class, 'view_feedbacks']);
     Route::post('/adduser_', [AdminController::class, 'addUser_']);
     Route::get('/adduser', [AdminController::class, 'add_user_view']);
@@ -114,6 +114,7 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     // manage voucher
     Route::get('/voucher', [VoucherController::class, 'view_voucher']);
     Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
+    Route::get('/viewvouchers/{id}', [VoucherController::class, 'detailed_voucher']);
 });
 
 
@@ -121,15 +122,11 @@ Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->gr
 
     // get the healthcare provider dashboard
     Route::get('/dashboard', [HealthCareProviderController::class, 'view_infants_schedule']);
-
     // get the feedback page for the healthcare provider page
     Route::get('/feedback', [FeedbackController::class, 'view']);
-
     Route::get('/vaccination_details/{id}', [HealthCareProviderController::class, 'view_vaccination_details']);
-
     // submit feedback controller for the healthcare provider page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
-
     // update status
     Route::post('/updateStatus', [HealthCareProviderController::class, 'updateStatus']);
 

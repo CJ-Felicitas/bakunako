@@ -1,3 +1,4 @@
+{{-- manage infant page --}}
 @extends('site.layouts.app')
 @section('content')
     <div class="row">
@@ -8,10 +9,10 @@
         </div>
     </div>
     <div class="card mb-4">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Infants Details</h6>
+        <div class="card-header d-flex flex-row">
+            <h6 class="font-weight-bold text-primary">Infants Details</h6>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive p-3">
             <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                 <thead class="thead-light">
                     <tr>
@@ -37,4 +38,17 @@
             </table>
         </div>
     </div>
+    @if ($schedules->isEmpty())
+        <div class="alert alert-warning">
+            There are no vaccination schedule for today.
+        </div>
+        
+    @endif
+@endsection
+@section('custom-script')
+    <script>
+        $(document).ready(function() {
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+    </script>
 @endsection

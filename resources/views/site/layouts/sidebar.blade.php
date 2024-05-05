@@ -15,66 +15,82 @@
     <hr class="sidebar-divider my-0">
     @if ($user->user_type_id == UserTypeEnum::ADMINISTRATOR)
         <!-- Show all navigation options for administrator -->
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt text-primary"></i>
                 <span>Dashboard</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('admin/vaccination*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/vaccination">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Vaccine Infants</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('admin/feedbacks*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/feedbacks">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Feedbacks</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('admin/adduser*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/adduser">
                 <i class="fas fa-money-bill fa-fw text-primary"></i>
                 <span>Create an Account</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('admin/voucher*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/voucher">
                 <i class="fas fa-money-bill fa-fw text-primary"></i>
                 <span>Manage Voucher</span></a>
         </li>
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('admin/partners*') ? 'active' : '' }}">
+            <a class="nav-link" href="/admin/partners">
+                <i class="fas fa-money-bill fa-fw text-primary"></i>
+                <span>Manage Partners</span></a>
+        </li>
     @elseif ($user->user_type_id == UserTypeEnum::PARENT)
         <!-- Show specific navigation options for parent -->
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('parent/dashboard*') ? 'active' : '' }}">
             <a class="nav-link" href="/parent/dashboard">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Infant Vaccination</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('parent/vaccines*') ? 'active' : '' }}">
             <a class="nav-link" href="/parent/vaccines">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Vaccine Description and Information</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('parent/recommendedvaccinesandschedules*') ? 'active' : '' }}">
             <a class="nav-link" href="/parent/recommendedvaccinesandschedules">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Recommended Vaccine Schedules</span></a>
         </li>
-        <li class="nav-item active">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('parent/feedback*') ? 'active' : '' }}">
             <a class="nav-link" href="/parent/feedback">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Submit Feedback</span></a>
         </li>
-        <li class="nav-item">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('parent/voucher*') ? 'active' : '' }}">
             <a class="nav-link" href="/parent/voucher">
                 <i class="fas fa-money-bill fa-fw text-primary"></i>
                 <span>Voucher</span></a>
         </li>
     @elseif ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER)
         <!-- Show specific navigation options for healthcare provider -->
-        <li class="nav-item active">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('healthcare_provider/dashboard*') ? 'active' : '' }}">
             <a class="nav-link" href="/healthcare_provider/dashboard">
                 <i class="fas fa-user fa-fw text-primary"></i>
                 <span>Infant Vaccination</span></a>
         </li>
-        <li class="nav-item active">
+        <!-- Add active class to the li if the current route matches -->
+        <li class="nav-item {{ Request::is('healthcare_provider/feedback*') ? 'active' : '' }}">
             <a class="nav-link" href="/healthcare_provider/feedback">
                 <i class="fas fa-clock fa-fw text-primary"></i>
                 <span>Submit Feedback</span></a>

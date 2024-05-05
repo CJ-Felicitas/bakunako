@@ -155,7 +155,7 @@ class AdminController extends Controller
         $currentDate = Carbon::now()->toDateString();
 
         // Retrieve the first schedule for each infant based on the current date
-        $schedules = Schedule::where('date', '2024-04-1')->get()->unique('infants_id');
+        $schedules = Schedule::where('date', $currentDate)->get()->unique('infants_id');
 
         return view('site.admin.manage', compact('schedules'));
     }
@@ -207,6 +207,5 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
 }

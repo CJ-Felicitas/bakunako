@@ -41,8 +41,10 @@ class PartnerController extends Controller
             DB::rollBack();
             return redirect()->back()->with('error', 'An error occurred');
         }
-
-
-
     }
+
+    public function partner_view(){
+        $partners = Partner::all();
+        return view('site.admin.partner', compact('partners'));
+    } 
 }

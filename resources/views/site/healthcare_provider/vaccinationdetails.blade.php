@@ -14,7 +14,8 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Vaccination Details of {{ $infant->infant_firstname }} {{$infant->infant_middlename}} {{$infant->infant_lastname}}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Vaccination Details of {{ $infant->infant_firstname }}
+                        {{ $infant->infant_middlename }} {{ $infant->infant_lastname }}</h6>
                 </div>
                 <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -36,7 +37,7 @@
                                     <td>{{ $schedule->vaccine->name }}</td>
                                     <td>{{ $schedule->dose_number }}</td>
                                     <td>
-                                        @if ($schedule->date == '2024-04-01')
+                                        @if ($schedule->date == '2024-05-01')
                                             <span
                                                 style="color: green">{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}</span>
                                             (Today)
@@ -56,10 +57,19 @@
                                         @endif
                                     </td>
                                     <td>{{ $schedule->remarks }}</td>
-                                    <td><button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
-                                            data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
-                                            Manage
-                                        </button></td>
+                                    <td>
+                                        @if ($schedule->date == '2024-05-01')
+                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                                data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
+                                                Manage
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                                data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}" disabled>
+                                                Manage
+                                            </button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -9,6 +9,12 @@
 @endsection
 
 @section('content')
+    @if ($infants->isEmpty())
+        <div class="alert alert-warning">
+            There are no infants currently registered as of this moment, register an infant go get started.
+        </div>
+        
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">

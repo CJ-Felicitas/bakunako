@@ -11,6 +11,7 @@ use App\Models\Voucher;
 use App\Models\VoucherType;
 use App\Models\Vaccine;
 use App\Models\Schedule;
+
 use Auth;
 use DB;
 
@@ -119,6 +120,25 @@ class ParentController extends Controller
                 $schedule->updated_at = Carbon::now();
                 $schedule->save();
             }
+
+        //    fetch all voucher_types and assign the infant a voucher for each voucher_type
+        $voucher_types = VoucherType::where('remaining_quantity', '>', 0)->get();
+
+        foreach ($voucher_types as $voucher_type) {
+            $new_voucher = new Voucher();
+            $new_voucher->voucher_type_id = $voucher_type->id;
+            $new_voucher->infant_id = $infant->id;
+            $new_voucher->voucher_code = $voucher_type->item_name . $voucher_type->partner_id . $infant->id . $voucher_type->vaccine_id . $new_voucher->id;
+            $new_voucher->is_reedeemable = 0;
+            $new_voucher->is_redeemed = 0;
+            $new_voucher->created_at = Carbon::now();
+            $new_voucher->updated_at = Carbon::now();
+            $new_voucher->save();
+
+            $update_voucher_type = VoucherType::find($voucher_type->id);
+            $update_voucher_type->remaining_quantity = $update_voucher_type->remaining_quantity - 1;
+            $update_voucher_type->save();
+        }
             DB::commit();
             return redirect('/parent/dashboard')->with('success', 'Infant added successfully');
 
@@ -127,7 +147,23 @@ class ParentController extends Controller
             return $th->getMessage();
         }
     }
-    public function voucher_view(){
-        return view('site.client.voucher');
+    public function voucher_view()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+
+        $my_vouchers = Voucher::where('is_redeemed', 1)
+        ->whereHas('infant', function ($query) use ($id) {
+            $query->where('user_id', $id);
+        })->get();
+
+        $vouchers = Voucher::where('is_reedeemable', 1)
+        ->whereHas('infant', function ($query) use ($id) {
+            $query->where('user_id', $id);
+        })->get();
+
+        return view('site.client.voucher', compact('vouchers', 'my_vouchers'));
     }
+
+
 }

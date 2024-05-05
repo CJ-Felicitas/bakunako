@@ -75,12 +75,13 @@
             window.onload = function() {
                 iziToast.success({
                     title: 'Success',
-                    message: 'The user has been added to the system successfully.',
+                    message: 'Partner has been added successfully.',
                 });
             };
         </script>
     @endif
     </div>
+    
 @endsection
 @section('custom-script-header')
 <script src="/izitoast/iziToast.min.js" type="text/javascript"></script>

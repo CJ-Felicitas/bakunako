@@ -37,4 +37,9 @@
             </table>
         </div>
     </div>
+    @if ($schedules->isEmpty())
+        <div class="alert alert-warning">
+            There are no vaccination schedule for today.
+        </div>
+    @endif
 @endsection

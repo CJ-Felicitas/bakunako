@@ -7,7 +7,11 @@
             </div>
         </div>
     </div>
-
+    @if ($feedbacks->isEmpty())
+        <div class="alert alert-warning">
+            There are no feedbacks available as of this moment.
+        </div>
+    @endif
     @foreach ($feedbacks as $feedback)
         <div class="row mt-3">
             <div class="col-md-12">
