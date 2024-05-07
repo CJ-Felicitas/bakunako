@@ -34,8 +34,8 @@
                             @foreach ($schedules as $schedule)
                                 <tr>
                                     {{-- \Carbon\Carbon::parse($schedule->infant->date_of_birth)->format('F j, Y') } --}}
-                                    <td>{{ $schedule->vaccine->name }}</td>
-                                    <td>{{ $schedule->dose_number }}</td>
+                                    <td>{{ str_replace(range(0, 9), '', $schedule->vaccine->name) }}</td>
+                                    <td>@ordinal($schedule->dose_number) dose</td>
                                     <td>
                                         @if ($schedule->date == '2024-05-01')
                                             <span
@@ -51,21 +51,24 @@
                                     </td>
                                     <td>
                                         @if ($schedule->status == 'pending')
-                                            <span class="badge badge-secondary">Pending</span>
+                                            <span class="badge badge-warning">Pending</span>
                                         @elseif($schedule->status == 'done')
                                             <span class="badge badge-success">Done</span>
+                                        @elseif($schedule->status == 'missed')
+                                            <span class="badge badge-danger">Missed</span>
                                         @endif
                                     </td>
                                     <td>{{ $schedule->remarks }}</td>
                                     <td>
-                                        @if ($schedule->date == '2024-05-01')
+                                        @if ($schedule->date == '2024-06-15' || $schedule->status == 'missed')
                                             <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
                                                 data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
                                                 Manage
                                             </button>
                                         @else
                                             <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
-                                                data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}" disabled>
+                                                data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}"
+                                                disabled>
                                                 Manage
                                             </button>
                                         @endif

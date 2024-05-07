@@ -155,18 +155,35 @@ class AdminController extends Controller
         $currentDate = Carbon::now()->toDateString();
 
         // Retrieve the first schedule for each infant based on the current date
-        $schedules = Schedule::where('date', $currentDate)->get()->unique('infants_id');
+        // NOTE:::::::::::: PLEASE READE ME, CHANGE THE DATE TO THE CURRENT DATE IF DEPLOYED IN PROD
+        $schedules = Schedule::where('date', '2024-05-01')->get()->unique('infants_id');
 
+        foreach ($schedules as $schedule) {
+            if ($schedule->date < $currentDate && $schedule->status == 'pending') {
+                $schedule->status = 'missed';
+                $schedule->remarks = 'missed';
+                $schedule->save();
+            }
+        }
+        
         return view('site.admin.manage', compact('schedules'));
     }
 
     public function view_vaccination_details($id)
     {
+  
         $currentDate = Carbon::now()->toDateString();
         $infant = Infant::find($id);
-        $schedules = Schedule::where('infants_id', $id)
-            ->orderByRaw("CASE WHEN date = '{$currentDate}' THEN 0 WHEN date = '2024-05-16' THEN 1 ELSE 2 END")
-            ->get();
+        $schedules = Schedule::where('infants_id', $id)->get();
+
+        // check the current date and the date of the schedule and update status to missed if the date has passed
+        foreach ($schedules as $schedule) {
+            if ($schedule->date < $currentDate && $schedule->status == 'pending') {
+                $schedule->status = 'missed';
+                $schedule->remarks = 'missed';
+                $schedule->save();
+            }
+        }
 
         return view('site.admin.vaccinationdetails', compact('schedules', 'infant'));
     }

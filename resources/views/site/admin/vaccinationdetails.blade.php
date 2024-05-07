@@ -14,7 +14,8 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Vaccination Details of {{ $infant->infant_firstname }} {{$infant->infant_middlename}} {{$infant->infant_lastname}}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Vaccination Details of {{ $infant->infant_firstname }}
+                        {{ $infant->infant_middlename }} {{ $infant->infant_lastname }}</h6>
                 </div>
                 <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -33,10 +34,10 @@
                             @foreach ($schedules as $schedule)
                                 <tr>
                                     {{-- \Carbon\Carbon::parse($schedule->infant->date_of_birth)->format('F j, Y') } --}}
-                                    <td>{{ $schedule->vaccine->name }}</td>
-                                    <td>{{ $schedule->dose_number }}</td>
+                                    <td>{{ str_replace(range(0, 9), '', $schedule->vaccine->name) }}</td>
+                                    <td>@ordinal($schedule->dose_number) dose</td>
                                     <td>
-                                        @if ($schedule->date == '2024-04-01')
+                                        @if ($schedule->date == '2024-05-01')
                                             <span
                                                 style="color: green">{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}</span>
                                             (Today)
@@ -50,16 +51,28 @@
                                     </td>
                                     <td>
                                         @if ($schedule->status == 'pending')
-                                            <span class="badge badge-secondary">Pending</span>
+                                            <span class="badge badge-warning">Pending</span>
                                         @elseif($schedule->status == 'done')
                                             <span class="badge badge-success">Done</span>
+                                        @elseif($schedule->status == 'missed')
+                                            <span class="badge badge-danger">Missed</span>
                                         @endif
                                     </td>
                                     <td>{{ $schedule->remarks }}</td>
-                                    <td><button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
-                                            data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
-                                            Manage
-                                        </button></td>
+                                    <td>
+                                        @if ($schedule->date == '2024-06-15' || $schedule->status == 'missed')
+                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                                data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
+                                                Manage
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                                data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}"
+                                                disabled>
+                                                Manage
+                                            </button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -87,7 +100,7 @@
                 </script>
             @endif
         </div>
-        @include('site.admin.updateinfantstatusmodal')
+        @include('site.healthcare_provider.updateinfantstatusmodal')
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>

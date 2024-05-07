@@ -30,10 +30,21 @@ class ParentController extends Controller
     public function show($id)
     {
         try {
+            DB::beginTransaction();
+            $currentDate = Carbon::now()->toDateString();
             $infant = Infant::findOrFail($id);
             $schedules = Schedule::where('infants_id', $infant->id)->get();
+            foreach ($schedules as $schedule) {
+                if ($schedule->date < $currentDate && $schedule->status == 'pending') {
+                    $schedule->status = 'missed';
+                    $schedule->remarks = 'missed';
+                    $schedule->save();
+                }
+            }
+            DB::commit();
             return view('site.client.infantinfo', compact('infant', 'schedules'));
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $th->getMessage();
         }
     }
@@ -121,24 +132,24 @@ class ParentController extends Controller
                 $schedule->save();
             }
 
-        //    fetch all voucher_types and assign the infant a voucher for each voucher_type
-        $voucher_types = VoucherType::where('remaining_quantity', '>', 0)->get();
+        // //    fetch all voucher_types and assign the infant a voucher for each voucher_type
+        // $voucher_types = VoucherType::where('remaining_quantity', '>', 0)->get();
 
-        foreach ($voucher_types as $voucher_type) {
-            $new_voucher = new Voucher();
-            $new_voucher->voucher_type_id = $voucher_type->id;
-            $new_voucher->infant_id = $infant->id;
-            $new_voucher->voucher_code = $voucher_type->item_name . $voucher_type->partner_id . $infant->id . $voucher_type->vaccine_id . $new_voucher->id;
-            $new_voucher->is_reedeemable = 0;
-            $new_voucher->is_redeemed = 0;
-            $new_voucher->created_at = Carbon::now();
-            $new_voucher->updated_at = Carbon::now();
-            $new_voucher->save();
+        // foreach ($voucher_types as $voucher_type) {
+        //     $new_voucher = new Voucher();
+        //     $new_voucher->voucher_type_id = $voucher_type->id;
+        //     $new_voucher->infant_id = $infant->id;
+        //     $new_voucher->voucher_code = $voucher_type->item_name . $voucher_type->partner_id . $infant->id . $voucher_type->vaccine_id . $new_voucher->id;
+        //     $new_voucher->is_reedeemable = 0;
+        //     $new_voucher->is_redeemed = 0;
+        //     $new_voucher->created_at = Carbon::now();
+        //     $new_voucher->updated_at = Carbon::now();
+        //     $new_voucher->save();
 
-            $update_voucher_type = VoucherType::find($voucher_type->id);
-            $update_voucher_type->remaining_quantity = $update_voucher_type->remaining_quantity - 1;
-            $update_voucher_type->save();
-        }
+        //     $update_voucher_type = VoucherType::find($voucher_type->id);
+        //     $update_voucher_type->remaining_quantity = $update_voucher_type->remaining_quantity - 1;
+        //     $update_voucher_type->save();
+        // }
             DB::commit();
             return redirect('/parent/dashboard')->with('success', 'Infant added successfully');
 

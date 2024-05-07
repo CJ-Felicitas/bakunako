@@ -21,8 +21,8 @@
                                 <th>Voucher ID</th>
                                 <th>Infant Name</th>
                                 <th>Code</th>
-                                <th>Reedemable (Yes or No)</th>
-                                <th>Redeemed (Yes or No)</th>
+                                <th>Claimable</th>
+                                <th>Claimed</th>
                                 <th>Redeemed At</th>
                             </tr>
                         </thead>

@@ -28,7 +28,7 @@ Route::get('/', function () {
 // get the register page
 Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
 
-
+Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
 
 
 
@@ -98,8 +98,12 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
+    // partner routes
     Route::get('/partners', [PartnerController::class, 'partner_view']);
     Route::post('/addPartner', [PartnerController::class, 'addPartner']);
+    Route::post('/delete_partner', [PartnerController::class, 'partner_delete']);
+
+    // misc routes
     Route::get('/feedbacks', [AdminController::class, 'view_feedbacks']);
     Route::post('/adduser_', [AdminController::class, 'addUser_']);
     Route::get('/adduser', [AdminController::class, 'add_user_view']);
@@ -117,6 +121,8 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::get('/voucher', [VoucherController::class, 'view_voucher']);
     Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
     Route::get('/viewvouchers/{id}', [VoucherController::class, 'detailed_voucher']);
+    Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
+    Route::post('/update_active_distribution', [VoucherController::class, 'updateActiveVoucher']);
 });
 
 

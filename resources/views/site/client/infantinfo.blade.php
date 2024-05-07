@@ -28,8 +28,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary text-center">
-                Infant Information
+            <div class="alert alert-primary font-weight-bold text-center">
+                Infant Immunization Record
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Schedule Info</h6>
-                    <a href="/parent/pdf/{{$infant->id}}" class="btn btn-primary btn-sm">Download PDF</a>
+                    <a href="/parent/pdf/{{ $infant->id }}" class="btn btn-primary btn-sm">Download PDF</a>
                 </div>
                 <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush" id="dataTableHover">
@@ -87,16 +87,20 @@
                         <tbody>
                             @foreach ($schedules as $schedule)
                                 <tr>
-                                    <td>{{ $schedule->vaccine->name }}</td>
-                                    <td class="text-center">{{ $schedule->dose_number }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($schedule->time_schedule_start)->format('h:i A') }} -
+                                    <td>{{ str_replace(range(0, 9), '', $schedule->vaccine->name) }}</td>
+                                    <td class="text-center">@ordinal($schedule->dose_number) dose</td>
+                                    <td class="text-center">{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ \Carbon\Carbon::parse($schedule->time_schedule_start)->format('h:i A') }} -
                                         {{ \Carbon\Carbon::parse($schedule->time_schedule_end)->format('h:i A') }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($schedule->status == 'pending')
                                             <span class="badge badge-warning">Pending</span>
                                         @elseif($schedule->status == 'done')
                                             <span class="badge badge-success">Done</span>
+                                        @elseif($schedule->status == 'missed')
+                                            <span class="badge badge-danger">Missed</span>
                                         @endif
                                     </td>
                                     <td>{{ $schedule->remarks }}</td>

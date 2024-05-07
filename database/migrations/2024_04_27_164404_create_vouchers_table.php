@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('voucher_type_id');
             $table->unsignedBigInteger('infant_id');
-            $table->foreign('voucher_type_id')->references('id')->on('voucher_type');
+            $table->foreign('voucher_type_id')->references('id')->on('voucher_type')->onDelete('cascade');
             $table->foreign('infant_id')->references('id')->on('infants');
             $table->string('voucher_code');
             $table->boolean('is_reedeemable')->default(false);

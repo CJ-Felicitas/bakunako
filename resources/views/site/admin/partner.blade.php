@@ -37,19 +37,20 @@
                                     <td>{{ $partner->phone_number }}</td>
                                     <td>{{ $partner->created_at }}</td>
                                     <td>
-                                        <a href="/admin/partner/{{ $partner->id }}" class="btn btn-primary">Manage</a>
+                                        <a href="/admin/partner/{{ $partner->id }}"
+                                            class="btn btn-sm btn-block btn-primary m-1">Edit</a>
+                                        {{-- <button type="button" class="btn btn-block btn-sm btn-danger m-1" data-toggle="modal"
+                                            data-target="#exampleModal" id="#myBtn">Delete</button> --}}
                                     </td>
                                 </tr>
+                                @if (!$partner == null)
+                                    @include('site.admin.deletepartnermodal', ['partners' => $partner])
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-            @if ($partners->isEmpty())
-                <div class="alert alert-warning">
-                    There are no partners available as of this moment.
-                </div>
-            @endif
         </div>
     </div>
     <hr>
@@ -73,7 +74,9 @@
                     <br>
                     <input type="text" class="form-control" name="address" placeholder="Address">
                     <br>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -83,6 +86,16 @@
                     iziToast.success({
                         title: 'Success',
                         message: 'The user has been added to the system successfully.',
+                    });
+                };
+            </script>
+        @endif
+        @if (session('delete_success'))
+            <script>
+                window.onload = function() {
+                    iziToast.warning({
+                        title: 'Deleted',
+                        message: 'Partner has been deleted successfully.',
                     });
                 };
             </script>

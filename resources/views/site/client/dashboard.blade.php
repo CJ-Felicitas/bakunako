@@ -11,7 +11,7 @@
 @section('content')
     @if ($infants->isEmpty())
         <div class="alert alert-warning">
-            There are no infants currently registered as of this moment, register an infant go get started.
+            There are no infants currently added as of this moment, add an infant go get started.
         </div>
         
     @endif
@@ -47,7 +47,7 @@
     <!-- Fixed button -->
     <div style="position: fixed; bottom: 20px; right: 20px;">
         <a href="/parent/addinfant">
-            <button type="button" class="btn btn-primary">Add a Baby</button>
+            <button type="button" class="btn btn-primary"><i class="fas fa-plus fa-fw"></i> Add a Baby</button>
         </a>
     </div>
 
