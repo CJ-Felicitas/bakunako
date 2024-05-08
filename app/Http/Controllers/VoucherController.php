@@ -181,7 +181,7 @@ class VoucherController extends Controller
             if ($voucher->is_reedeemable == 1 && $voucher->is_redeemed == 0) {
                 // claim the voucher
                 $voucher->is_redeemed = 1;
-                $voucher->redeemed_at = Carbon::now();
+                $voucher->redeemed_at = Carbon::now('Asia/Manila');
                 $voucher->save();
 
                 $total_redeemed = Voucher::where('voucher_type_id', $voucher_type->id)->where('is_redeemed', 1)->count();

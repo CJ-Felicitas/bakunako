@@ -37,7 +37,7 @@
                                     <td>{{ str_replace(range(0, 9), '', $schedule->vaccine->name) }}</td>
                                     <td>@ordinal($schedule->dose_number) dose</td>
                                     <td>
-                                        @if ($schedule->date == '2024-05-01')
+                                        @if ($schedule->date == \Carbon\Carbon::now('Asia/Manila')->toDateString())
                                             <span
                                                 style="color: green">{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}</span>
                                             (Today)
@@ -60,7 +60,7 @@
                                     </td>
                                     <td>{{ $schedule->remarks }}</td>
                                     <td>
-                                        @if ($schedule->date == '2024-06-15' || $schedule->status == 'missed')
+                                        @if ($schedule->date == \Carbon\Carbon::now('Asia/Manila')->toDateString() || $schedule->status == 'missed')
                                             <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
                                                 data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
                                                 Manage

@@ -23,7 +23,7 @@
                                 <th>Code</th>
                                 <th>Claimable</th>
                                 <th>Claimed</th>
-                                <th>Redeemed At</th>
+                                <th>Claim Time</th>
                             </tr>
                         </thead>
                         <tbody>

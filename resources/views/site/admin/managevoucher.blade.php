@@ -71,7 +71,7 @@
                                 <th>Partner</th>
                                 <th>Item Name</th>
                                 <th>Remaining</th>
-                                <th>Redeemed</th>
+                                <th>Claimed</th>
                                 <th>Vaccine</th>
                                 <th>Total Number of Voucher</th>
                                 <th>View Vouchers</th>

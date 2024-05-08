@@ -12,6 +12,9 @@ use App\Enums\UserTypeEnum;
 use App\Models\Feedback;
 use App\Models\Schedule;
 use Carbon\Carbon;
+use App\Models\ActiveVoucher;
+use App\Models\Voucher;
+use App\Models\VoucherType;
 class AdminController extends Controller
 {
     public function addUser_(Request $request)
@@ -115,7 +118,7 @@ class AdminController extends Controller
             'male_count' => $male_count,
             'female_count' => $female_count,
             'total' => $total,
-            'infants' => $infants          
+            'infants' => $infants
         ]);
     }
     public function add_user_view()
@@ -156,7 +159,7 @@ class AdminController extends Controller
 
         // Retrieve the first schedule for each infant based on the current date
         // NOTE:::::::::::: PLEASE READE ME, CHANGE THE DATE TO THE CURRENT DATE IF DEPLOYED IN PROD
-        $schedules = Schedule::where('date', '2024-05-01')->get()->unique('infants_id');
+        $schedules = Schedule::where('date', $currentDate)->get()->unique('infants_id');
 
         foreach ($schedules as $schedule) {
             if ($schedule->date < $currentDate && $schedule->status == 'pending') {
@@ -165,13 +168,13 @@ class AdminController extends Controller
                 $schedule->save();
             }
         }
-        
+
         return view('site.admin.manage', compact('schedules'));
     }
 
     public function view_vaccination_details($id)
     {
-  
+
         $currentDate = Carbon::now()->toDateString();
         $infant = Infant::find($id);
         $schedules = Schedule::where('infants_id', $id)->get();
@@ -194,7 +197,6 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'status' => 'required',
             'schedule_id' => 'required',
-            'remarks' => 'required',
             'password' => 'required'
         ]);
 
@@ -204,19 +206,44 @@ class AdminController extends Controller
 
         // assign the data that has been validated
         $validated = $validator->validated();
-
         // check if the password is correct via try catch
         try {
+            DB::beginTransaction();
             $user = auth()->user();
             $schedule = Schedule::find($validated['schedule_id']);
+            $infant_id = $schedule->infants_id;
+            $vaccine_id = $schedule->vaccines_id;
+
             if (!Hash::check($validated['password'], $user->password)) {
                 return redirect("/admin/vaccination_details/$schedule->infants_id")->with('password', 'Password is incorrect');
             }
+            // check the active vouchers that are available for the infant
+            $active_voucher = ActiveVoucher::where('vaccine_id', $schedule->vaccines_id)->first();
+            $active_vouchertype = VoucherType::where('id', $active_voucher->voucher_type_id)->first();
 
-            DB::beginTransaction();
+            // check if the active_vouchertype has a remaining quantity
+
+            if ($active_vouchertype->remaining_quantity > 0) {
+                // if there is still remaining then create new voucher
+                
+                $voucher = new Voucher();
+                $voucher->voucher_type_id = $active_voucher->voucher_type_id;
+                $voucher->infant_id = $infant_id;
+                $random_code = $this->generateRandomString(2);
+                $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
+                $voucher->is_reedeemable = 1;
+                $voucher->is_redeemed = 0;
+                $voucher->created_at = Carbon::now();
+                $voucher->updated_at = Carbon::now();
+                $voucher->save();
+
+                $active_vouchertype->remaining_quantity = $active_vouchertype->remaining_quantity - 1;
+                $active_vouchertype->save();
+            }
+
+         
             // update the status of the schedule
             $schedule->status = $validated['status'];
-            $schedule->remarks = $validated['remarks'];
             $schedule->save();
             DB::commit();
 
@@ -224,5 +251,17 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    private function generateRandomString($length = 12)
+    {
+        // the purpose of this function is to generate a random string of characters for the voucher's code
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

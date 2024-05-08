@@ -25,7 +25,7 @@ class VaccineSeeder extends Seeder
             'days_count' => 0
         ]);
         DB::table('vaccines')->insert([
-            'name' => 'Hepatitis',
+            'name' => 'Hepatitis B',
             'dose_number' => 1,
             'description' => 'Hepatitis B vaccine (HBV)',
             'created_at' => Carbon::now(),

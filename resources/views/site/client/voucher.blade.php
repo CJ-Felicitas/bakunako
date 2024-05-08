@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">All Vouchers</h6>
+            <h6 class="m-0 font-weight-bold text-primary">My Vouchers</h6>
         </div>
         <div class="col-md-12">
             @if ($vouchers->isEmpty())
@@ -38,15 +38,16 @@
                                                 @elseif($my_voucher->is_redeemed == 0)
                                                 <span class="text-success mr-2">NOT YET CLAIMED</span>
                                                 @endif
+                                                <span class="text-uppercase">{{$my_voucher->infant->infant_firstname}} {{$my_voucher->infant->infant_lastname}}</span>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
+                                        {{-- <div class="col-auto">
                                             @if ($my_voucher->is_redeemed == 0)
                                             <a href="/parent/claimvoucher/{{$voucher->id}}" class="btn btn-success btn-sm">CLAIM</a>
                                             @elseif($my_voucher->is_redeemed == 1)
                                             <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
                                             @endif
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +95,7 @@
 
     <div class="row">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">All Vouchers</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Voucher Rewards</h6>
         </div>
         <div class="col-md-12">
             @if ($vouchers->isEmpty())
@@ -119,6 +120,8 @@
                                                 @elseif($voucher->is_redeemed == 0)
                                                 <span class="text-success mr-2">NOT YET CLAIMED</span>
                                                 @endif
+                                                <br>
+                                                <span class="text-uppercase">{{$voucher->infant->infant_firstname}} {{$voucher->infant->infant_lastname}}</span>
                                             </div>
                                         </div>
                                         <div class="col-auto">

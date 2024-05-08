@@ -21,7 +21,8 @@ class HealthCareProviderController extends Controller
         // Get the current date
         $currentDate = Carbon::now()->toDateString();
         // Retrieve the first schedule for each infant based on the current date
-        $schedules = Schedule::where('date', '2024-05-01')->get()->unique('infants_id');
+        // CHANGE THE DATE HERE -------------------
+        $schedules = Schedule::where('date', $currentDate)->get()->unique('infants_id');
         return view('site.healthcare_provider.dashboard', compact('schedules'));
     }
 
@@ -51,7 +52,7 @@ class HealthCareProviderController extends Controller
         $validator = Validator::make($request->all(), [
             'status' => 'required',
             'schedule_id' => 'required',
-            'remarks' => 'required',
+          
             'password' => 'required'
         ]);
 
@@ -78,7 +79,6 @@ class HealthCareProviderController extends Controller
                 
                 // update the status of the schedule
                 $schedule->status = $validated['status'];
-                $schedule->remarks = $validated['remarks'];
                 $schedule->save();
 
                 // check the active vouchers that are available for the infant
