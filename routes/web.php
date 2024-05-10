@@ -88,7 +88,8 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
     // get the full details of the baby page
     Route::get('/infant/{id}', [ParentController::class, 'show']);
 
-    Route::get('/voucher', [ParentController::class, 'voucher_view']);
+    Route::get('/voucher/rewards', [ParentController::class, 'voucher_rewards_view']);
+    Route::get('/voucher/my_vouchers', [ParentController::class, 'my_vouchers_view']);
 
     Route::get('/recommendedvaccinesandschedules', function () {
         return view('site.client.recommended_vaccines_and_schedules');

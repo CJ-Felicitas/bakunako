@@ -1,64 +1,44 @@
 @extends('site.layouts.app')
 @section('custom-css')
     <link rel="stylesheet" href="/izitoast/iziToast.min.css">
+    <style>
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+        text-decoration: none; /* Remove underline on hover */
+    }
+    </style>
 @endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
-                List of Vouchers
+            <div style="background-color: #FDEDD4;" class="alert alert-primary font-weight-bold text-dark">
+                Rewards
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">My Vouchers</h6>
-        </div>
         <div class="col-md-12">
-            @if ($vouchers->isEmpty())
-                <div class="alert alert-warning">
-                    No vouchers available as of this moment
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/parent/voucher/rewards">
+                    <div class="alert alert-success font-weight-bold text-dark text-center">
+                        <i class="fas fa-gift fa-fw"></i> Claim Rewards
+                    </div>
+                </a>
                 </div>
-            @elseif(!$vouchers->isEmpty())
-            <div class="card p-3">
-                <div class="row">
-                        @foreach ($my_vouchers as $my_voucher)
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">{{$my_voucher->voucherType->partners->name}}</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$my_voucher->voucherType->item_name}}</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                @if ($my_voucher->is_redeemed == 1)
-                                                <span class="text-secondary mr-2">CLAIMED AT</span>
-                                                <span>{{$my_voucher->redeemed_at}}</span>
-                                                <p>CODE: <span class="text-success">{{$my_voucher->voucher_code}}</span></p>
-                                                @elseif($my_voucher->is_redeemed == 0)
-                                                <span class="text-success mr-2">NOT YET CLAIMED</span>
-                                                @endif
-                                                <span class="text-uppercase">{{$my_voucher->infant->infant_firstname}} {{$my_voucher->infant->infant_lastname}}</span>
-                                            </div>
-                                        </div>
-                                        {{-- <div class="col-auto">
-                                            @if ($my_voucher->is_redeemed == 0)
-                                            <a href="/parent/claimvoucher/{{$voucher->id}}" class="btn btn-success btn-sm">CLAIM</a>
-                                            @elseif($my_voucher->is_redeemed == 1)
-                                            <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
-                                            @endif
-                                        </div> --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    {{-- end of voucher line --}}
+                <div class="col-md-6">
+                    <a href="/parent/voucher/my_vouchers">
+                    <div style="background-color: #C8A796;" class="alert alert-primary font-weight-bold text-dark text-center">
+                        <i class="fas fa-receipt fa-fw"></i>My Vouchers
+                    </div>
+                </a>
                 </div>
             </div>
-            @endif
         </div>
     </div>
+
     {{-- <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -95,7 +75,7 @@
 
     <div class="row">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Voucher Rewards</h6>
+            <h6 class="m-0 font-weight-bold text-dark">Voucher Rewards</h6>
         </div>
         <div class="col-md-12">
             @if ($vouchers->isEmpty())
@@ -103,55 +83,59 @@
                     No vouchers available as of this moment
                 </div>
             @elseif(!$vouchers->isEmpty())
-            <div class="card p-3">
-                <div class="row">
+
+                    <div class="row">
                         @foreach ($vouchers as $voucher)
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">{{$voucher->voucherType->partners->name}}</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$voucher->voucherType->item_name}}</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                @if ($voucher->is_redeemed == 1)
-                                                <span class="text-secondary mr-2">CLAIMED AT</span>
-                                                <span>{{$voucher->redeemed_at}}</span>
-                                                @elseif($voucher->is_redeemed == 0)
-                                                <span class="text-success mr-2">NOT YET CLAIMED</span>
-                                                @endif
-                                                <br>
-                                                <span class="text-uppercase">{{$voucher->infant->infant_firstname}} {{$voucher->infant->infant_lastname}}</span>
+                            <div class="col-xl-4 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                                    {{ $voucher->voucherType->partners->name }}</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $voucher->voucherType->item_name }}</div>
+                                                <div class="mt-2 mb-0 text-muted text-xs">
+                                                    @if ($voucher->is_redeemed == 1)
+                                                        <span class="text-secondary mr-2">CLAIMED AT</span>
+                                                        <span>{{ $voucher->redeemed_at }}</span>
+                                                    @elseif($voucher->is_redeemed == 0)
+                                                        <span class="text-success mr-2">NOT YET CLAIMED</span>
+                                                    @endif
+                                                    <br>
+                                                    <span class="text-uppercase">{{ $voucher->infant->infant_firstname }}
+                                                        {{ $voucher->infant->infant_lastname }}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            @if ($voucher->is_redeemed == 0)
-                                            <a href="/parent/claimvoucher/{{$voucher->id}}" class="btn btn-success btn-sm">CLAIM</a>
-                                            @elseif($voucher->is_redeemed == 1)
-                                            <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
-                                            @endif
+                                            <div class="col-auto">
+                                                @if ($voucher->is_redeemed == 0)
+                                                    <a href="/parent/claimvoucher/{{ $voucher->id }}"
+                                                        class="btn btn-success btn-sm">CLAIM</a>
+                                                @elseif($voucher->is_redeemed == 1)
+                                                    <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
-                    {{-- end of voucher line --}}
-                </div>
-            </div>
+                        {{-- end of voucher line --}}
+                    </div>
+
             @endif
         </div>
     </div>
     @if (session('success'))
-    <script>
-        window.onload = function() {
-            iziToast.success({
-                title: 'Voucher Claimed',
-                message: 'The voucher has been claimed successfully',
-            });
-        };
-    </script>
-@endif
+        <script>
+            window.onload = function() {
+                iziToast.success({
+                    title: 'Voucher Claimed',
+                    message: 'The voucher has been claimed successfully',
+                });
+            };
+        </script>
+    @endif
 @endsection
 
 @section('custom-script')
@@ -162,5 +146,5 @@
     </script>
 @endsection
 @section('custom-script-header')
-<script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
+    <script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
 @endsection

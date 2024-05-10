@@ -86,7 +86,7 @@ class ParentController extends Controller
             ->where('place_of_birth', $validated['place_of_birth'])
             ->first();
 
-        // kill the function and return to the page if the infant is already registered 
+        // kill the function and return to the page if the infant is already registered
         if ($already_registered) {
             return redirect('/parent/addinfant')->with('already_registered', 'Infant already registered');
         }
@@ -158,7 +158,7 @@ class ParentController extends Controller
             return $th->getMessage();
         }
     }
-    public function voucher_view()
+    public function voucher_rewards_view()
     {
         $current_user = auth()->user();
         $id = $current_user->id;
@@ -173,7 +173,20 @@ class ParentController extends Controller
             $query->where('user_id', $id);
         })->get();
 
-        return view('site.client.voucher', compact('vouchers', 'my_vouchers'));
+        return view('site.client.voucher', compact('vouchers'));
+    }
+
+    public function my_vouchers_view()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+
+        $my_vouchers = Voucher::where('is_redeemed', 1)
+        ->whereHas('infant', function ($query) use ($id) {
+            $query->where('user_id', $id);
+        })->get();
+
+        return view('site.client.myvouchers', compact('my_vouchers'));
     }
 
 

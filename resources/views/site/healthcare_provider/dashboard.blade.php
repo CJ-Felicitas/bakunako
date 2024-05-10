@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
+            <div style="background-color: #FDEDD4;" class="alert text-dark font-weight-bold">
                 List of Infants that Needed to be Vaccinated Today
             </div>
         </div>
@@ -38,7 +38,7 @@
         </div>
     </div>
     @if ($schedules->isEmpty())
-        <div class="alert alert-warning">
+        <div class="alert alert-warning text-center">
             There are no vaccination schedule for today.
         </div>
     @endif
