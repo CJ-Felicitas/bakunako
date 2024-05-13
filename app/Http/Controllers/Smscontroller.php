@@ -14,13 +14,12 @@ class Smscontroller extends Controller
         $this->smsService = $smsService;
     }
 
-    public function sendSms(Request $request)
+    public function sendSms($phoneNumber, $message)
     {
-        $phoneNumber = $request->input('phone_number');
-        $message = $request->input('message');
 
         try {
             $result = $this->smsService->sendSms($phoneNumber, $message);
+            Log::info("naka abot sa sms");
             return response()->json(['success' => true, 'message' => 'SMS sent successfully']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);

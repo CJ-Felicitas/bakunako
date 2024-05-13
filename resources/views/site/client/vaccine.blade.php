@@ -28,22 +28,47 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100"
-                    src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/BCG.png"
                     alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100"
-                    src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/HepatitisB.png"
                     alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100"
-                    src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/ipv.png"
                     alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/mmr.png"
+                    alt="Fourth slide">
+            </div>
+            <div class="carousel-item">
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/opv.png"
+                    alt="Fifth slide">
+            </div>
+            <div class="carousel-item">
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/pcv.png"
+                    alt="Sixth slide">
+            </div>
+            <div class="carousel-item">
+                <img width="588px" height="700px" class="d-block w-100"
+                    src="/images/pentavalent.png"
+                    alt="Seventh slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
