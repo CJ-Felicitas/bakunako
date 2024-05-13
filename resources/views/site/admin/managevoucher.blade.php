@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
+            <div class="alert text-dark" style="background-color: #FDEDD4">
                 Distribute Voucher
             </div>
         </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="row justify-content-end mt-3">
                     <div class="col-md-12 text-right">
-                        <button type="submit" class="btn btn-success">Distribute Vouchers</button>
+                        <button type="submit" class="btn text-white" style="background-color: #cd9f8e">Distribute Vouchers</button>
                     </div>
                 </div>
                 </form>
@@ -62,7 +62,7 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">List of all Vouchers</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">List of all Vouchers</h6>
                 </div>
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -86,7 +86,7 @@
                                     <td>{{ $voucher->redeemed_quantity }}</td>
                                     <td>{{ $voucher->vaccines->name }}</td>
                                     <td>{{ $voucher->total_quantity }}</td>
-                                    <td><a href="/admin/viewvouchers/{{ $voucher->id }}" class="btn btn-primary">View
+                                    <td><a href="/admin/viewvouchers/{{ $voucher->id }}" class="btn btn-sm text-white" style="background-color: #cd9f8e">View
                                             Vouchers</a></td>
                                 </tr>
                             @endforeach
@@ -101,7 +101,7 @@
     <div class="row mb-5 mt-2">
         <div class="col-md-12">
             <div class="card p-3">
-                <p class="text-primary font-weight-bold">Configure Voucher Distribution</p>
+                <p class="text-dark font-weight-bold">Configure Voucher Distribution</p>
                 <div class="form-group">
 
                     <div class="row">
@@ -143,15 +143,15 @@
                                                     {{ $active_voucher->updated_at }}
                                                 @endif
                                             </td>
-                                       
+
                                         </tr>
                                     @endforeach
-                                    
+
                                     </tbody>
                                 </table>
                             </div>
                             <hr>
-                            <label for="" class="font-weight-bold text-primary">Update Voucher Distribution
+                            <label for="" class="font-weight-bold text-dark">Update Voucher Distribution
                                 Panel</label>
                             <br>
                             <form id="updateDistributionForm" action="/admin/update_active_distribution" method="POST">
@@ -174,7 +174,7 @@
                                 <input type="text" name="password" class="form-control"
                                     placeholder="Enter Password to Confirm Changes">
                                 <br>
-                                <input type="submit" class="btn btn-primary btn-block" value="Update">
+                                <input type="submit" class="btn btn-block text-white" style="background-color: #cd9f8e" value="Update">
                         </div>
                     </div>
                     </form>

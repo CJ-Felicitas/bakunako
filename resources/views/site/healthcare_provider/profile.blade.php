@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
+            <div class="alert" style="background-color: #cd9f8e">
                 User Information
             </div>
         </div>

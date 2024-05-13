@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
+            <div class="alert text-dark" style="background-color:#FDEDD4;">
                 Create an Account
             </div>
         </div>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn text-white" style="background-color: #CD9F8E;">Submit</button>
                         </div>
                 </form>
             </div>

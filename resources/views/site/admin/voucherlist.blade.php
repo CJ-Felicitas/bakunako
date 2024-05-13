@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
+            <div class="alert text-white" style="background-color: #cd9f8e">
                 List of all voucher for item {{ $voucher_type->item_name }} of {{ $voucher_type->partners->name }}
             </div>
         </div>
@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Vouchers</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">Vouchers</h6>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">

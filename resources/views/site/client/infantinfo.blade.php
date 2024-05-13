@@ -28,7 +28,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary font-weight-bold text-center">
+            <div class="alert font-weight-bold text-center" style="background-color: #cd9f8e">
                 Infant Immunization Record
             </div>
         </div>
@@ -69,8 +69,8 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Schedule Info</h6>
-                    <a href="/parent/pdf/{{ $infant->id }}" class="btn btn-primary btn-sm">Download PDF</a>
+                    <h6 class="m-0 font-weight-bold text-dark">Schedule Info</h6>
+                    <a href="/parent/pdf/{{ $infant->id }}" class="btn btn-sm text-dark" style="background-color: #cd9f8e">Download PDF</a>
                 </div>
                 <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush" id="dataTableHover">

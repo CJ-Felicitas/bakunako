@@ -52,7 +52,7 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">List of all Infants</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">List of all Infants</h6>
                 </div>
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -75,7 +75,7 @@
                                     <td>{{ $infant->place_of_birth }}</td>
                                     <td>{{ $infant->sex }}</td>
                                     <td>{{ $infant->created_at }}</td>
-                                    <td><a href="/admin/infant/{{$infant->id}}" class="btn btn-sm btn-primary">View</a></td>
+                                    <td><a href="/admin/infant/{{$infant->id}}" class="btn btn-sm text-white" style="background-color: #CD9F8E;">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
