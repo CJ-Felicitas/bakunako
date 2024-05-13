@@ -34,6 +34,6 @@ class SendSms extends Command
             }
         }
 
-        $this->info('SMS messages sent successfully.');
+        $this->info("SMS Sent");
     }
 }

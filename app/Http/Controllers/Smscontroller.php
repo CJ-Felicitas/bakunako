@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\SmsService;
 use Illuminate\Http\Request;
-
+use Log;
 class Smscontroller extends Controller
 {
     protected $smsService;
