@@ -24,7 +24,7 @@ class ParentPageRoutes
         if (!Auth::check()) {
             return redirect('/');
         }
-        if (!$user && (($user->user_type_id == UserTypeEnum::ADMINISTRATOR) || ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER))) {
+        if (!$user || (($user->user_type_id == UserTypeEnum::ADMINISTRATOR) || ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER))) {
             Session::flush();
             return redirect('/login');
         }

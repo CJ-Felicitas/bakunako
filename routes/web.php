@@ -30,14 +30,9 @@ Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
 
 Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
 
-
-
-
 Route::get('/register', function () {
     return view('register');
 });
-
-
 
 // get the login page
 Route::get('/login', function () {
@@ -53,16 +48,13 @@ Route::post('/login_', [AuthController::class, 'login']);
 // register attempt
 Route::post('/register_', [RegistrationController::class, 'register']);
 
-// get the profile page
-Route::get('/profile', [ProfileController::class, 'showProfile']);
-
-
-
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
     Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 
+    // get the profile page
+    Route::get('/profile', [ProfileController::class, 'showProfile']);
     // get the parent dashboard
     Route::get('/dashboard', [ParentController::class, 'index']);
 
@@ -99,6 +91,8 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 // grouped routes for the ADMINISTRATOR pages
 Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
+    // get the profile page
+    Route::get('/profile', [ProfileController::class, 'showProfile']);
     // partner routes
     Route::get('/partners', [PartnerController::class, 'partner_view']);
     Route::post('/addPartner', [PartnerController::class, 'addPartner']);
@@ -129,6 +123,8 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
 Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->group(function () {
 
+    // get the profile page
+    Route::get('/profile', [ProfileController::class, 'showProfile']);
     // get the healthcare provider dashboard
     Route::get('/dashboard', [HealthCareProviderController::class, 'view_infants_schedule']);
     // get the feedback page for the healthcare provider page

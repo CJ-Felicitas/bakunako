@@ -202,17 +202,19 @@ class ParentController extends Controller
         //     $update_voucher_type->remaining_quantity = $update_voucher_type->remaining_quantity - 1;
         //     $update_voucher_type->save();
         // }
-            DB::commit();
 
+            DB::commit();
             try {
                 $user = Auth::user();
                 $phone_number = $user->phone_number;
                 $message = "yawa";
                 $result = $this->sendSms($phone_number, $message);
-                return $result;
             } catch (\Throwable $th) {
+
             return $th->getMessage();
-            }
+
+        }
+
             return redirect('/parent/dashboard')->with('success', 'Infant added successfully');
 
         } catch (\Throwable $th) {
