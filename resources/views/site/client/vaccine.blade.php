@@ -13,7 +13,7 @@
                 <h5 class="font-weight-bold">Vaccines play a crucial role in safeguarding infants from life-threatening
                     diseases, ultimately preserving millions of lives annually.
                 </h5>
-                <p> <span class="ml-5"></span>For routine vaccines to be effective, it is crucial that infants receive the
+                <p>For routine vaccines to be effective, it is crucial that infants receive the
                     required doses according to
                     the recommended schedule from birth until their first birthday. Additionally, infants should also
                     receive any
@@ -36,39 +36,25 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/BCG.png"
-                    alt="First slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/BCG.png" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/HepatitisB.png"
-                    alt="Second slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/HepatitisB.png" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/ipv.png"
-                    alt="Third slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/ipv.png" alt="Third slide">
             </div>
             <div class="carousel-item">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/mmr.png"
-                    alt="Fourth slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/mmr.png" alt="Fourth slide">
             </div>
             <div class="carousel-item">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/opv.png"
-                    alt="Fifth slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/opv.png" alt="Fifth slide">
             </div>
             <div class="carousel-item">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/pcv.png"
-                    alt="Sixth slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/pcv.png" alt="Sixth slide">
             </div>
             <div class="carousel-item">
-                <img width="588px" height="700px" class="d-block w-100"
-                    src="/images/pentavalent.png"
-                    alt="Seventh slide">
+                <img width="588px" height="700px" class="d-block w-100" src="/images/pentavalent.png" alt="Seventh slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

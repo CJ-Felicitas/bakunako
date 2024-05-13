@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary" role="alert">
+            <div class="alert text-dark" style="background-color: #FDEDD4;" role="alert">
                 Add Infant
             </div>
         </div>
@@ -50,7 +50,7 @@
                             <select class="form-control" name="sex" id="">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
-                    
+
                             </select>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                 };
                             </script>
                         @endif
-                            
+
                         @if (session('success'))
                         <script>
                             window.onload = function() {
@@ -135,7 +135,7 @@
 
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <button class="btn btn-block btn-primary" type="submit">Submit/Register</button>
+                            <button class="btn btn-block text-dark" style="background-color: #CD9F8E" type="submit">Submit/Register</button>
                         </div>
                     </div>
                 </div>

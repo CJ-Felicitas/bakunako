@@ -61,12 +61,12 @@
                                     <td>{{ $schedule->remarks }}</td>
                                     <td>
                                         @if ($schedule->date == \Carbon\Carbon::now('Asia/Manila')->toDateString() || $schedule->status == 'missed')
-                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                            <button type="button" class="btn text-white manage-btn" style="background-color: #CD9F8E;" data-toggle="modal"
                                                 data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
                                                 Manage
                                             </button>
                                         @else
-                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                            <button type="button" class="btn text-white manage-btn" style="background-color: #CD9F8E" data-toggle="modal"
                                                 data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}"
                                                 disabled>
                                                 Manage

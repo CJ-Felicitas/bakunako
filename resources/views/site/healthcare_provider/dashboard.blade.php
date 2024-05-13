@@ -31,7 +31,7 @@
                             <td>{{ $schedule->infant->sex }} </td>
                             <td>{{ $schedule->infant->user->address }}</td>
                             <td><a href="/healthcare_provider/vaccination_details/{{ $schedule->infant->id }}"
-                                    class="btn btn-primary">Manage</a></td>
+                                    class="btn text-white" style="background-color: #CD9F8E">Manage</a></td>
                     @endforeach
                 </tbody>
             </table>

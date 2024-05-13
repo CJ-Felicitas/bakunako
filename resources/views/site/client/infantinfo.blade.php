@@ -70,7 +70,7 @@
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Schedule Info</h6>
-                    <a href="/parent/pdf/{{ $infant->id }}" class="btn btn-sm text-dark" style="background-color: #cd9f8e">Download PDF</a>
+                    <a href="/parent/pdf/{{ $infant->id }}" class="btn btn-sm text-white" style="background-color: #cd9f8e">Download PDF</a>
                 </div>
                 <div class="table-responsive p-2">
                     <table class="table align-items-center table-flush" id="dataTableHover">

@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-primary">
+            <div class="alert text-dark" style="background-color: #FDEDD4;">
                 Infant Immunization Record
             </div>
         </div>
@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Vaccination Details of {{ $infant->infant_firstname }}
+                    <h6 class="m-0 font-weight-bold text-dark">Vaccination Details of {{ $infant->infant_firstname }}
                         {{ $infant->infant_middlename }} {{ $infant->infant_lastname }}</h6>
                 </div>
                 <div class="table-responsive p-2">
@@ -61,12 +61,12 @@
                                     <td>{{ $schedule->remarks }}</td>
                                     <td>
                                         @if ($schedule->date == \Carbon\Carbon::now('Asia/Manila')->toDateString() || $schedule->status == 'missed')
-                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                            <button type="button" style="background-color:#CD9F8E" class="btn text-white manage-btn" data-toggle="modal"
                                                 data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}">
                                                 Manage
                                             </button>
                                         @else
-                                            <button type="button" class="btn btn-primary manage-btn" data-toggle="modal"
+                                            <button type="button" style="background-color:#CD9F8E" class="btn text-white manage-btn" data-toggle="modal"
                                                 data-target="#exampleModal" data-schedule-id="{{ $schedule->id }}"
                                                 disabled>
                                                 Manage
