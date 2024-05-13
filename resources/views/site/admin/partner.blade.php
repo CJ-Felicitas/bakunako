@@ -25,7 +25,7 @@
                                 <th>Address</th>
                                 <th>Contact Number</th>
                                 <th>Partner Since</th>
-                                <th>Action</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -36,12 +36,12 @@
                                     <td>{{ $partner->address }}</td>
                                     <td>{{ $partner->phone_number }}</td>
                                     <td>{{ $partner->created_at }}</td>
-                                    <td>
-                                        <a style="background-color: #cd9f8e" href="/admin/partner/{{ $partner->id }}"
-                                            class="btn btn-sm btn-block m-1 text-white">Edit</a>
+                                    {{-- <td> --}}
+                                        {{-- <a style="background-color: #cd9f8e" href="/admin/partner/{{ $partner->id }}"
+                                            class="btn btn-sm btn-block m-1 text-white">Edit</a> --}}
                                         {{-- <button type="button" class="btn btn-block btn-sm btn-danger m-1" data-toggle="modal"
                                             data-target="#exampleModal" id="#myBtn">Delete</button> --}}
-                                    </td>
+                                    {{-- </td> --}}
                                 </tr>
                                 @if (!$partner == null)
                                     @include('site.admin.deletepartnermodal', ['partners' => $partner])
