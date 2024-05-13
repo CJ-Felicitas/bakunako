@@ -18,6 +18,7 @@ use App\Http\Controllers\VoucherController;
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 
 // Route::post('/verify_schedule', [ScheduleController::class, 'verify_schedule_session']);
 
@@ -51,7 +52,6 @@ Route::post('/register_', [RegistrationController::class, 'register']);
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
-    Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 
     // get the profile page
     Route::get('/profile', [ProfileController::class, 'showProfile']);

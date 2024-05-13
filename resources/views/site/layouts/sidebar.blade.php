@@ -6,7 +6,7 @@
 
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion custom-font-size" id="accordionSidebar">
-    <a style="background-color: white" class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a style="background-color: white" class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon">
             <img width="100%" src="/images/navbar-logo.png">
         </div>

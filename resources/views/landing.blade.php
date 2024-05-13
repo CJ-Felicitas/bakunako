@@ -19,7 +19,8 @@
                     </div>
                     <div class="col-md-6 mt-2">
                         <div class="text-center">
-                            <button style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</button>
+                            <a href="/login" style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</a>
+                            {{-- <button style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</button> --}}
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@
                 <img class="img-profile rounded-circle" src="/images/favicon.png" style="max-width: 60px">
                 <span class="ml-2 d-none d-lg-inline text-white small">
                     @auth
-                        {{-- {{ Auth::user()->first_name }} --}}
+                        {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }} {{ Auth::user()->last_name }}
                     @endauth
 
                 </span>

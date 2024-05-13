@@ -74,7 +74,7 @@
             window.onload = function() {
                 iziToast.success({
                     title: 'Success',
-                    message: 'Partner has been added successfully.',
+                    message: 'User has been added successfully.',
                 });
             };
         </script>

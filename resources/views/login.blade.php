@@ -38,7 +38,7 @@
 
                         <input type="submit" style="background-color:#cd9f8e" class="btn btn-block text-dark" value="Login">
                         <div class="mt-4"></div>
-                        <h5 class="text-center">Don't have an account? Click <a href="/register">here</a> to register</h5>
+                        <h5 class="text-center">Don't have an account? <a href="/register">Click here</a> to register</h5>
                         <a class="mt-3" href="/">Back</a>
                     </div>
                 </form>
