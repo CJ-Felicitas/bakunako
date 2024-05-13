@@ -39,7 +39,7 @@
     </div>
     @if ($schedules->isEmpty())
         <div class="alert alert-warning text-center">
-            There are no vaccination schedule for today.
+            There are no vaccination schedules for today.
         </div>
     @endif
 @endsection

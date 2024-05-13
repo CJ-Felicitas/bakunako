@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-6 mt-2">
                         <div class="text-center">
-                            <button class="btn btn-lg btn-primary btn-block">GET SCHEDULE</button>
+                            <button style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</button>
                         </div>
                     </div>
                 </div>
@@ -120,4 +120,14 @@
        </div>
         </div>
     </div>
+    @if (session('reg_success'))
+        <script>
+            window.onload = function() {
+                iziToast.success({
+                    title: 'Registered',
+                    message: 'User Registered Successfully',
+                });
+            };
+        </script>
+    @endif
 @endsection

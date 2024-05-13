@@ -32,7 +32,7 @@ class RegistrationController extends Controller
 
         $validated = $validator->validated();
 
-        // check if passwords are matched 
+        // check if passwords are matched
         if ($validated['password'] != $validated['confirm_password']) {
             return redirect('/register')->with('passwords_not_matched', 'Passwords do not match')->withInput();
         }
@@ -71,7 +71,7 @@ class RegistrationController extends Controller
             $parent->updated_at = Carbon::now();
             $parent->save();
 
-            return "user saved";
+            return redirect('/')->with('reg_success', 'k');
 
         } catch (\Throwable $th) {
             return $th;

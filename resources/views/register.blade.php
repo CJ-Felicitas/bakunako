@@ -1,16 +1,40 @@
-@extends('layouts.app')
-@section('content')
-    <div class="container">
-        <div class="row mt-5 justify-content-center mb-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header text-center pt-4">
-                        <p class="text-uppercase">
-                            <strong>Register</strong>
-                        </p>
-                    </div>
-                    <div class="card-body">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
+    <link href="/uikit/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/uikit/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/uikit/css/ruang-admin.min.css" rel="stylesheet">
+    <link href="/uikit/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom-font-size.css">
+
+    <style>
+        /* Add some background colors for visualization */
+
+        .right-column {
+          background-color: #cd9f8e;
+        }
+        .full-height {
+      height: 100vh;
+    }
+      </style>
+</head>
+<body>
+
+        <div class="row full-height">
+          <div class="col-md-6 left-column d-flex justify-content-center align-items-center">
+            <img src="/images/navbar-logo.png" style="max-width: 75%" alt="">
+          </div>
+          <div class="col-md-6 right-column">
+            <br><br><br><br>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="form-group p-3">
+                        <h3 class="text-dark">Register</h3>
                         <form action="/register_" method="post">
                             @csrf
                             <input value="{{ old('first_name') }}" type="text" name="first_name"
@@ -55,13 +79,18 @@
                                     Email Has Already Taken!
                                 </div>
                             @endif
-                            <button class="btn mb-2 btn-primary btn-block" type="submit">Register</button>
+                            <button class="btn btn-lg mb-2 btn-secondary btn-block" type="submit">Register</button>
                         </form>
 
-                        <label for="">Already have an account? <a href="/login">Login Here</a></label>
+                        <label class="text-dark" for="">Already have an account? <a href="/login">Login Here</a></label>
+                        <div class="mt-3"></div>
+                        <a href="/">Go Back</a>
                     </div>
                 </div>
             </div>
+          </div>
         </div>
-    </div>
-@endsection
+
+
+</body>
+</html>
