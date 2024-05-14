@@ -19,26 +19,27 @@
         <div class="col-md-12">
             <div class="row">
                 @foreach ($infants as $infant)
-                    <div class="col-md-4 mt-4">
-                        <a href="/parent/infant/{{ $infant->id }}">
-                            <div class="card">
-                                <div style="background-color: #FDEDD4"
-                                    class="card-header py-4  d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">{{ $infant->infant_firstname }}
-                                        {{ $infant->infant_middlename }} {{ $infant->infant_lastname }}</h6>
-                                </div>
-                                <div class="p-3" style="background-color: #CD9F8E">
-                                    <label for=""><b class="text-dark">Date of Birth</b></label>
-                                    <div><input type="text" class="form-control text-dark" disabled
-                                            value="{{ $infant->date_of_birth }}"></div>
-
-                                    <label class="mt-2" for=""><b class="text-dark">Sex</b></label>
-                                    <div><input type="text" class="form-control text-dark" disabled value="{{ $infant->sex }}">
-                                    </div>
-                                </div>
+                <div class="col-md-4 mt-4">
+                    <a href="/parent/infant/{{ $infant->id }}">
+                        <div class="card">
+                            <div style="background-color: #FDEDD4" class="card-header py-4  d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-dark">{{ $infant->infant_firstname }} {{ $infant->infant_middlename }} {{ $infant->infant_lastname }}</h6>
+                                <!-- Pencil icon for edit -->
+                                <a href="/edit/{{ $infant->id }}" class="btn btn-link">
+                                    <i class="fas fa-edit fa-fw text-dark" aria-hidden="true"></i>
+                                </a>
                             </div>
-                        </a>
-                    </div>
+                            <div class="p-3" style="background-color: #CD9F8E">
+                                <label for=""><b class="text-dark">Date of Birth</b></label>
+                                <div><input type="text" class="form-control text-dark" disabled value="{{ $infant->date_of_birth }}"></div>
+
+                                <label class="mt-2" for=""><b class="text-dark">Sex</b></label>
+                                <div><input type="text" class="form-control text-dark" disabled value="{{ $infant->sex }}"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
                 @endforeach
             </div>
         </div>

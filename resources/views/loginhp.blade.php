@@ -1,3 +1,5 @@
+{{-- HEALTHCARE PROVIDER --}}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,10 +23,10 @@
                 <img src="/images/navbar-logo.png" width="70%" alt="">
             </div>
             <div class="form-group mt-5">
-                <form action="/parentlogin_" method="post">
+                <form action="/hplogin_" method="post">
                     @csrf
                     <div class="card shadow p-3">
-                        <h3 class="text-center">Login as Parent</h3>
+                        <h3 class="text-center">Login as Heathcare Provider</h3>
                         <input value="{{ old('username') }}" type="text" name="username"
                         class="mb-2 form-control form-control-lg" placeholder="Username">
 
@@ -38,7 +40,7 @@
 
                     @if (session('account_error'))
                     <div class="alert alert-danger mt-1" role="alert">
-                        This account is not a Parent
+                        This account is not a Healthcare Provider
                     </div>
                 @endif
 

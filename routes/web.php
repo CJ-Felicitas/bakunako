@@ -36,15 +36,29 @@ Route::get('/register', function () {
 });
 
 // get the login page
-Route::get('/login', function () {
+Route::get('/login_healthcareprovider', function () {
+    return view('loginhp');
+});
+
+// get the login page
+Route::get('/login_parent', function () {
     return view('login');
 });
+
+// get the login page
+Route::get('/admin', function () {
+    return view('loginadmin');
+});
+
+Route::post('/hplogin_', [AuthController::class, 'login_hp']);
+Route::post('/adminlogin_', [AuthController::class, 'login_admin']);
+Route::post('/parentlogin_', [AuthController::class, 'login_parent']);
 
 // terminate currently authenticated user and kill all sessions
 Route::get('/logout', [AuthController::class, 'logout']);
 
 // login attempt
-Route::post('/login_', [AuthController::class, 'login']);
+// Route::post('/login_', [AuthController::class, 'login']);
 
 // register attempt
 Route::post('/register_', [RegistrationController::class, 'register']);
