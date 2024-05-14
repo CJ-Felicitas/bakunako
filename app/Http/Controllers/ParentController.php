@@ -14,14 +14,15 @@ use App\Models\Schedule;
 use App\Http\Controllers\Smscontroller;
 use Auth;
 use DB;
-
+use Twilio\Rest\Client;
 
 
 class ParentController extends Controller
 {
-    private $servicePlanId = 'e83586985e474afbb7eaadf8b74027ec';
-    private $bearerToken = '464b03a0a45040dfb7e0754139fa4cba';
-    private $sendFrom = '+447520651553';
+    // [please do not touch this]
+    // private $servicePlanId = 'e83586985e474afbb7eaadf8b74027ec';
+    // private $bearerToken = '464b03a0a45040dfb7e0754139fa4cba';
+    // private $sendFrom = '+447520651553';
 
 
     protected $smsController;
@@ -31,43 +32,70 @@ class ParentController extends Controller
         $this->smsController = $smsController;
     }
 
-
-    private function sendSms($phoneNumber, $message)
+    // this is the current function that is working right now
+    private function twilio($phone_numberIn, $messageIn)
     {
-        // Check if phoneNumber is a string, if so, convert it to an array
-        if (!is_array($phoneNumber)) {
-            $phoneNumber = explode(',', $phoneNumber);
+        try {
+            $sid = env("TWILIO_SID");
+            $token = env("TWILIO_TOKEN");
+            $client = new Client($sid, $token);
+
+            $number = $phone_numberIn;
+            $message = $messageIn;
+
+            $client->messages->create(
+                "$number",
+                [
+                    'from' => '+13148200519',
+                    'body' => "$message"
+                ]
+            );
+
+            return $client;
+
+        } catch (\Throwable $th) {
+            return $th->getMessage();
         }
-
-        // Set necessary fields to be JSON encoded
-        $content = [
-            'to' => array_values($phoneNumber),
-            'from' => $this->sendFrom,
-            'body' => $message
-        ];
-
-        $data = json_encode($content);
-
-        // Make API call
-        $ch = curl_init("https://us.sms.api.sinch.com/xms/v1/{$this->servicePlanId}/batches");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BEARER);
-        curl_setopt($ch, CURLOPT_XOAUTH2_BEARER, $this->bearerToken);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-        $result = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            throw new \Exception('Curl error: ' . curl_error($ch));
-        }
-
-        curl_close($ch);
-
-        return $result;
     }
+
+    // this function is not currently working right now due to API issues to the server [please do not touch this]
+
+    // private function sendSms($phoneNumber, $message)
+    // {
+    //     // Check if phoneNumber is a string, if so, convert it to an array
+    //     if (!is_array($phoneNumber)) {
+    //         $phoneNumber = explode(',', $phoneNumber);
+    //     }
+
+    //     // Set necessary fields to be JSON encoded
+    //     $content = [
+    //         'to' => array_values($phoneNumber),
+    //         'from' => $this->sendFrom,
+    //         'body' => $message
+    //     ];
+
+    //     $data = json_encode($content);
+
+    //     // Make API call
+    //     $ch = curl_init("https://us.sms.api.sinch.com/xms/v1/{$this->servicePlanId}/batches");
+    //     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    //     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BEARER);
+    //     curl_setopt($ch, CURLOPT_XOAUTH2_BEARER, $this->bearerToken);
+    //     curl_setopt($ch, CURLOPT_POST, true);
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+    //     $result = curl_exec($ch);
+
+    //     if (curl_errno($ch)) {
+    //         throw new \Exception('Curl error: ' . curl_error($ch));
+    //     }
+
+    //     curl_close($ch);
+
+    //     return $result;
+    // }
 
     // get the dashboard page of the infant
     public function index()
@@ -184,37 +212,23 @@ class ParentController extends Controller
                 $schedule->save();
             }
 
-        // //    fetch all voucher_types and assign the infant a voucher for each voucher_type
-        // $voucher_types = VoucherType::where('remaining_quantity', '>', 0)->get();
-
-        // foreach ($voucher_types as $voucher_type) {
-        //     $new_voucher = new Voucher();
-        //     $new_voucher->voucher_type_id = $voucher_type->id;
-        //     $new_voucher->infant_id = $infant->id;
-        //     $new_voucher->voucher_code = $voucher_type->item_name . $voucher_type->partner_id . $infant->id . $voucher_type->vaccine_id . $new_voucher->id;
-        //     $new_voucher->is_reedeemable = 0;
-        //     $new_voucher->is_redeemed = 0;
-        //     $new_voucher->created_at = Carbon::now();
-        //     $new_voucher->updated_at = Carbon::now();
-        //     $new_voucher->save();
-
-        //     $update_voucher_type = VoucherType::find($voucher_type->id);
-        //     $update_voucher_type->remaining_quantity = $update_voucher_type->remaining_quantity - 1;
-        //     $update_voucher_type->save();
-        // }
-
             DB::commit();
+
+            // firstname of the infant
+            $infant_firstname = $validated['infant_firstname'];
+            // lastname of the infant
+            $infant_lastname = $validated['infant_lastname'];
+
             try {
                 $user = Auth::user();
                 $phone_number = $user->phone_number;
-                $message = "yawa";
-                $result = $this->sendSms($phone_number, $message);
+
+                $message = "Hello there $user->first_name $user->last_name, your child $infant_firstname $infant_lastname has a vaccination schedule for BCG and Hepatitis B today!";
+
+                $this->twilio($phone_number, $message);
             } catch (\Throwable $th) {
-
-            return $th->getMessage();
-
-        }
-
+                //throw $th;
+            }
             return redirect('/parent/dashboard')->with('success', 'Infant added successfully');
 
         } catch (\Throwable $th) {
@@ -222,20 +236,22 @@ class ParentController extends Controller
             return $th->getMessage();
         }
     }
+
+
     public function voucher_rewards_view()
     {
         $current_user = auth()->user();
         $id = $current_user->id;
 
         $my_vouchers = Voucher::where('is_redeemed', 1)
-        ->whereHas('infant', function ($query) use ($id) {
-            $query->where('user_id', $id);
-        })->get();
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
 
         $vouchers = Voucher::where('is_reedeemable', 1)
-        ->whereHas('infant', function ($query) use ($id) {
-            $query->where('user_id', $id);
-        })->get();
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
 
         return view('site.client.voucher', compact('vouchers'));
     }
@@ -246,12 +262,14 @@ class ParentController extends Controller
         $id = $current_user->id;
 
         $my_vouchers = Voucher::where('is_redeemed', 1)
-        ->whereHas('infant', function ($query) use ($id) {
-            $query->where('user_id', $id);
-        })->get();
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
 
         return view('site.client.myvouchers', compact('my_vouchers'));
     }
 
 
 }
+
+

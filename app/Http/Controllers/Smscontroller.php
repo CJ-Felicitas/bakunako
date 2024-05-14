@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\SmsService;
 use Illuminate\Http\Request;
 use Log;
+use Twilio\Rest\Client;
+
 class Smscontroller extends Controller
 {
     protected $smsService;
@@ -25,4 +27,6 @@ class Smscontroller extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+
 }

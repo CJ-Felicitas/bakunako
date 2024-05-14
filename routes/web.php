@@ -27,7 +27,7 @@ Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 // });
 
 // get the register page
-Route::get('/sendsms', [Smscontroller::class, 'sendSms']);
+Route::get('/sendsms', [Smscontroller::class, 'twilio']);
 
 Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
 
@@ -128,10 +128,10 @@ Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->gr
     // get the healthcare provider dashboard
     Route::get('/dashboard', [HealthCareProviderController::class, 'view_infants_schedule']);
     // get the feedback page for the healthcare provider page
-    Route::get('/feedback', [FeedbackController::class, 'view']);
+    Route::get('/feedback', [FeedbackController::class, 'hpview']);
     Route::get('/vaccination_details/{id}', [HealthCareProviderController::class, 'view_vaccination_details']);
     // submit feedback controller for the healthcare provider page
-    Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
+    Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedbackhp']);
     // update status
     Route::post('/updateStatus', [HealthCareProviderController::class, 'updateStatus']);
 
