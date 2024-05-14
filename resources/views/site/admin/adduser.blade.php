@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="alert text-dark" style="background-color:#FDEDD4;">
-                Create an Account
+                Create an account for Healthcare Provider
             </div>
         </div>
     </div>

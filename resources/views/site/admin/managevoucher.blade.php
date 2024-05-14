@@ -84,7 +84,7 @@
                                     <td>{{ $voucher->item_name }}</td>
                                     <td>{{ $voucher->remaining_quantity }}</td>
                                     <td>{{ $voucher->redeemed_quantity }}</td>
-                                    <td>{{ $voucher->vaccines->name }}</td>
+                                    <td>{{ str_replace(range(0, 9), '', $voucher->vaccines->name) }}</td>
                                     <td>{{ $voucher->total_quantity }}</td>
                                     <td><a href="/admin/viewvouchers/{{ $voucher->id }}" class="btn btn-sm text-white" style="background-color: #cd9f8e">View
                                             Vouchers</a></td>

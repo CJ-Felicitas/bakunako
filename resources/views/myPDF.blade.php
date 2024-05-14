@@ -14,7 +14,7 @@
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
-        
+
         }
 
         .header {
@@ -67,7 +67,8 @@
             <div class="row">
                 <div class="col">
                     <h3 style="text-align: center">Personal Information</h3>
-                    <p><strong>Name:</strong> {{ $infant->infant_firstname }} {{$infant->infant_middlename}} {{$infant->infant_lastname}}</p>
+                    <p><strong>Name:</strong> {{ $infant->infant_firstname }} {{ $infant->infant_middlename }}
+                        {{ $infant->infant_lastname }}</p>
                     <p><strong>Date of Birth:</strong> {{ $infant->date_of_birth }}</p>
                     <p><strong>Place of Birth:</strong> {{ $infant->place_of_birth }}</p>
                     <p><strong>Sex:</strong> {{ $infant->sex }}</p>
@@ -77,7 +78,7 @@
             <hr>
             <div class="row">
                 <div class="col">
-                    <h3 style="text-align: center">Vaccination Schedule</h3>
+                    <h3 style="text-align: center">Infant Immunization Record</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -92,11 +93,20 @@
                         <tbody>
                             @foreach ($schedules as $schedule)
                                 <tr>
-                                    <td>{{ $schedule->vaccine->name }}</td>
-                                    <td>{{ $schedule->dose_number }}</td>
+                                    <td>{{ str_replace(range(0, 9), '', $schedule->vaccine->name) }}</td>
+                                    <td> @ordinal($schedule->dose_number) dose</td>
                                     <td>{{ $schedule->date }}</td>
-                                    <td>{{ $schedule->time_schedule_start }} {{ $schedule->time_schedule_end }}</td>
-                                    <td>{{ $schedule->status }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($schedule->time_schedule_start)->format('h:i A') }} -
+                                        {{ \Carbon\Carbon::parse($schedule->time_schedule_end)->format('h:i A') }}</td>
+                                    <td>
+                                        @if ($schedule->status == 'pending')
+                                            Pending
+                                        @elseif($schedule->status == 'done')
+                                            Done
+                                        @elseif($schedule->status == 'missed')
+                                            Missed
+                                        @endif
+                                    </td>
                                     <td>{{ $schedule->remarks }}</td>
                                 </tr>
                             @endforeach
