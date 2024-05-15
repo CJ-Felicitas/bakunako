@@ -49,7 +49,7 @@ class VoucherController extends Controller
     {
         /**
          * expected payload
-         * 
+         *
          * 1. Partner ID
          * 2. Name of Item
          * 3. Total Quantity
@@ -190,9 +190,9 @@ class VoucherController extends Controller
                 $voucher_type->redeemed_quantity = $total_redeemed;
                 $voucher_type->save();
 
-                return redirect('/parent/voucher')->with('success', 'Voucher claimed successfully');
+                return redirect('/parent/voucher/rewards')->with('success', 'Voucher claimed successfully');
             } elseif ($voucher->is_reedeemable == 0) {
-                return redirect('/parent/voucher')->with('error', 'Voucher is not reedeemable');
+                return redirect('/parent/voucher/rewards')->with('error', 'Voucher is not reedeemable');
             }
         } catch (ModelNotFoundException $th) {
             return $th->getMessage();

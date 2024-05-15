@@ -29,7 +29,7 @@ class HealthCareProviderController extends Controller
     public function view_vaccination_details($id)
     {
 
-        
+
         $currentDate = Carbon::now()->toDateString();
         $infant = Infant::find($id);
         $schedules = Schedule::where('infants_id', $id)->get();
@@ -52,7 +52,7 @@ class HealthCareProviderController extends Controller
         $validator = Validator::make($request->all(), [
             'status' => 'required',
             'schedule_id' => 'required',
-          
+
             'password' => 'required'
         ]);
 
@@ -76,7 +76,7 @@ class HealthCareProviderController extends Controller
 
                 // start transaction for safety purposes
                 DB::beginTransaction();
-                
+
                 // update the status of the schedule
                 $schedule->status = $validated['status'];
                 $schedule->save();
@@ -86,7 +86,7 @@ class HealthCareProviderController extends Controller
                 $active_vouchertype = VoucherType::where('id', $active_voucher->voucher_type_id)->first();
 
                 // check if the active_vouchertype has a remaining quantity
-                if ($active_vouchertype->remaining_quantity > 0) {
+                if ($active_vouchertype && $active_vouchertype->remaining_quantity > 0) {
                     // if there is still remaining then create new voucher
                     $voucher = new Voucher();
                     $voucher->voucher_type_id = $active_voucher->voucher_type_id;
@@ -104,7 +104,7 @@ class HealthCareProviderController extends Controller
                 }
 
                 DB::commit();
-               
+
                 return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
 
 
@@ -126,12 +126,12 @@ class HealthCareProviderController extends Controller
 
             //     // start transaction for safety purposes
             //     DB::beginTransaction();
-                
+
             //     // update the status of the schedule
             //     $schedule->status = $validated['status'];
             //     $schedule->remarks = $validated['remarks'];
             //     $schedule->save();
-                
+
             //     // save the changes
             //     DB::commit();
             //     // return "There is no voucher";

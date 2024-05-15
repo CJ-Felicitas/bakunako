@@ -70,6 +70,8 @@
                                                     <br>
                                                     <span class="text-uppercase">{{ $my_voucher->infant->infant_firstname }}
                                                         {{ $my_voucher->infant->infant_lastname }}</span>
+                                                        <br>
+                                                        <span class="text-success">{{$my_voucher->voucher_code}}</span>
                                                 </div>
                                             </div>
 
