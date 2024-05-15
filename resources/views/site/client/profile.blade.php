@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="/admin/editprofile" method="post">
+                            <form action="/parent/editprofile" method="post">
                                 @csrf
                                 <input type="hidden" name="userid" value="{{ $user->id }}">
                                 <label for="firstname">First Name</label>

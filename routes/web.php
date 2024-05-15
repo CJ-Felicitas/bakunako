@@ -27,7 +27,7 @@ Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 // });
 
 // get the register page
-Route::get('/sendsms', [Smscontroller::class, 'twilio']);
+// Route::get('/sendsms', [Smscontroller::class, 'twilio']);
 
 Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
 
@@ -66,7 +66,7 @@ Route::post('/register_', [RegistrationController::class, 'register']);
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
-
+    Route::post('/editprofile', [ParentController::class, 'editProfile']);
     // get the edit page
     Route::get('/edit/{id}', [ParentController::class,'edit_infant_view']);
     Route::post('/edit/infantdetails', [ParentController::class,'edit_infant']);
@@ -121,7 +121,7 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::get('/adduser', [AdminController::class, 'add_user_view']);
     Route::get('/dashboard', [AdminController::class, 'dashboard_view']);
     Route::get('/infant/{id}', [ParentController::class, 'show']);
-    Route::post('/editprofile', [ProfileController::class, 'editProfile']);
+    Route::post('/editprofile', [AdminController::class, 'editProfile']);
     Route::post('/updatepassword', [ProfileController::class, 'updatepassword']);
 
     // manage vaccination
@@ -139,7 +139,7 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
 
 
 Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->group(function () {
-
+    Route::post('/editprofile', [HealthCareProviderController::class, 'editProfile']);
     // get the profile page
     Route::get('/profile', [ProfileController::class, 'showProfile']);
     // get the healthcare provider dashboard
