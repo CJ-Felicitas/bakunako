@@ -1,5 +1,6 @@
 @extends('site.layouts.app')
 @section('custom-css')
+<link rel="stylesheet" href="/izitoast/iziToast.min.css">
     <style>
         #dataTableHover {
             border-collapse: collapse;
@@ -25,6 +26,7 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -113,4 +115,18 @@
             </div>
         </div>
     </div>
+
+    @if (session('edit_success'))
+    <script>
+        window.onload = function() {
+            iziToast.success({
+                title: 'Edit Success',
+                message: "The Infant's Information has been updated successfully",
+            });
+        };
+    </script>
+@endif
+@endsection
+@section('custom-script-header')
+<script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
 @endsection

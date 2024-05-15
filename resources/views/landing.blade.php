@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-md-6 d-flex justify-content-center mt-5 align-items-center">
-                <img src="/images/image_one.png" width="80%" alt="">
+                <img src="/images/1.png" width="80%" alt="">
             </div>
         </div>
         {{--  --}}
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-4 p-5 justify-content-center align-items-center">
-                <img width="100%" src="/images/why_image.png" alt="">
+                <img width="100%" src="/images/2.png" alt="">
             </div>
         </div>
         <div class="row mt-5"></div>
@@ -58,10 +58,10 @@
            <div class="row mt-5">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                        <img src="/images/BCG.png" height="200px" width="200px" class="card-img-top" alt="Fissure in Sandstone"/>
                         <div class="card-body" style="height: 250px">
-                          <h5 class="card-title">Bacillus Calmette–Guérin (BCG)</h5>
-                          <p class="card-text">Bacillus Calmette–Guérin (BCG) vaccine - is a live attenuated vaccine derived from a strain of
+                          <h5 class="card-title text-center">Bacillus Calmette–Guérin (BCG)</h5>
+                          <p class="card-text text-center">Bacillus Calmette–Guérin (BCG) vaccine - is a live attenuated vaccine derived from a strain of
                             Mycobacterium bovis that has been cultured and modified in such a way that it is safe for human use.</p>
 
                         </div>
@@ -69,10 +69,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                        <img src="/images/HepatitisB.png" height="200px" width="200px" class="card-img-top" alt="Fissure in Sandstone"/>
                         <div class="card-body" style="height: 250px">
-                          <h5 class="card-title" >Hepatitis B</h5>
-                          <p class="card-text">Hepatitis B vaccine is a highly effective prevention measure that can protect individuals from
+                          <h5 class="card-title text-center" >Hepatitis B</h5>
+                          <p class="card-text text-center">Hepatitis B vaccine is a highly effective prevention measure that can protect individuals from
                             contracting the virus. The vaccine works by helping the immune system build antibodies to fight off the
                             virus if exposed in the future</p>
 
@@ -81,10 +81,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                        <img src="/images/pentavalent-vaccine.png" height="200px" width="200px" class="card-img-top" alt="Fissure in Sandstone"/>
                         <div class="card-body" style="height: 250px">
-                          <h5 class="card-title">Pentavalent Vaccine</h5>
-                          <p class="card-text">Pentavalent vaccine is a combination vaccine that protects against five different diseases. This vaccine
+                          <h5 class="card-title text-center">Pentavalent Vaccine</h5>
+                          <p class="card-text text-center">Pentavalent vaccine is a combination vaccine that protects against five different diseases. This vaccine
                             is administered to infants and young children to provide immunity against these potentially dangerous
                             infections.</p>
 
@@ -95,10 +95,10 @@
            <div class="row mt-5">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                    <img src="/images/opv.png" class="card-img-top" height="200px" width="200px" alt="Fissure in Sandstone"/>
                     <div class="card-body" style="height: 250px">
-                      <h5 class="card-title">Oral Polio Vaccine (OPV)</h5>
-                      <p class="card-text">Oral Polio Vaccine (OPV) is a live attenuated vaccine that is administered orally to provide immunity
+                      <h5 class="card-title text-center">Oral Polio Vaccine (OPV)</h5>
+                      <p class="card-text text-center">Oral Polio Vaccine (OPV) is a live attenuated vaccine that is administered orally to provide immunity
                         against the poliovirus. Developed by Dr. Albert Sabin in the 1960s, OPV has played a crucial role in the
                         global effort to eradicate polio.</p>
 
@@ -107,10 +107,10 @@
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                    <img src="/images/ipv.png" class="card-img-top" height="200px" width="200px" alt="Fissure in Sandstone"/>
                     <div class="card-body" style="height: 250px">
-                      <h5 class="card-title">Inactivated Polio Vaccine (IPV)</h5>
-                      <p class="card-text">Inactivated Polio Vaccine (IPV) is a type of vaccine that is used to protect against poliovirus, the
+                      <h5 class="card-title text-center">Inactivated Polio Vaccine (IPV)</h5>
+                      <p class="card-text text-center">Inactivated Polio Vaccine (IPV) is a type of vaccine that is used to protect against poliovirus, the
                         virus that causes polio. IPV is made using a virus that has been killed, or inactivated, making it unable to
                         cause infection. When a person is vaccinated with IPV, their immune system recognizes the inactivated
                         virus as a threat and produces antibodies to attack it.</p>
@@ -120,10 +120,10 @@
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                    <img src="/images/pcv-v2.png" class="card-img-top" height="200px" width="200px" alt="Fissure in Sandstone"/>
                     <div class="card-body" style="height: 250px">
-                      <h5 class="card-title">Pneumococcal Conjugate Vaccine (PCV)</h5>
-                      <p class="card-text">Pneumococcal Conjugate Vaccine is a highly effective immunization created using the conjugate
+                      <h5 class="card-title text-center">Pneumococcal Conjugate Vaccine (PCV)</h5>
+                      <p class="card-text text-center">Pneumococcal Conjugate Vaccine is a highly effective immunization created using the conjugate
                         vaccine method. It is specifically designed to safeguard infants, young children, and adults from
                         illnesses caused by the bacterium Streptococcus pneumoniae.</p>
 
@@ -135,10 +135,10 @@
         <div class="row mt-3 mb-5 justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                    <img src="/images/mmr.png" class="card-img-top" height="200px" width="200px" alt="Fissure in Sandstone"/>
                     <div class="card-body" style="height: 250px">
-                      <h5 class="card-title">Measles, Mumps, Rubella (MMR)</h5>
-                      <p class="card-text">Measles, Mumps, Rubella (MMR) vaccine is a combination vaccine that protects against three serious
+                      <h5 class="card-title text-center">Measles, Mumps, Rubella (MMR)</h5>
+                      <p class="card-text text-center">Measles, Mumps, Rubella (MMR) vaccine is a combination vaccine that protects against three serious
                         and highly contagious viral diseases</p>
 
                     </div>

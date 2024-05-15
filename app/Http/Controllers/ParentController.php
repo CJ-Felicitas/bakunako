@@ -15,7 +15,8 @@ use App\Http\Controllers\Smscontroller;
 use Auth;
 use DB;
 use Twilio\Rest\Client;
-
+use Hash;
+use App\Models\User;
 
 class ParentController extends Controller
 {
@@ -269,6 +270,55 @@ class ParentController extends Controller
         return view('site.client.myvouchers', compact('my_vouchers'));
     }
 
+    public function edit_infant_view($id){
+        $infant = Infant::where('id', $id)->first();
+        return view('site.client.edit_infant', compact('infant'));
+    }
+
+    public function edit_infant(Request $request){
+        $current_user = auth()->user();
+        $id = $current_user->id;
+
+        $infant = Infant::where('id', $request->id)->first();
+
+        $parent = User::where('id', $id)->first();
+
+
+
+        try {
+            // check the password if its correct
+            if (!(Hash::check($request->password, $parent->password))) {
+                return redirect()->back()->with('password_error','error password');
+            } else {
+                DB::beginTransaction();
+                $infant->infant_firstname = $request->infant_firstname;
+                $infant->infant_middlename = $request->infant_middlename;
+                $infant->infant_lastname = $request->infant_lastname;
+                $infant->date_of_birth = $request->date_of_birth;
+                $infant->place_of_birth = $request->place_of_birth;
+                $infant->sex = $request->sex;
+                $infant->address = $request->address;
+                $infant->father_firstname = $request->father_firstname;
+                $infant->father_middlename = $request->father_middlename;
+                $infant->father_lastname = $request->father_lastname;
+                $infant->mother_firstname = $request->mother_firstname;
+                $infant->mother_middlename = $request->mother_middlename;
+                $infant->mother_lastname = $request->mother_lastname;
+                $infant->save();
+                DB::commit();
+            }
+
+            return redirect("/parent/infant/$infant->id}")->with('edit_success', 'asdasd');
+
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function vaccine_description_view(){
+        $vaccines = Vaccine::all();
+        return view('site.client.vaccine', compact('vaccines'));
+    }
 
 }
 

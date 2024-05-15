@@ -67,12 +67,15 @@ Route::post('/register_', [RegistrationController::class, 'register']);
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
 
+    // get the edit page
+    Route::get('/edit/{id}', [ParentController::class,'edit_infant_view']);
+    Route::post('/edit/infantdetails', [ParentController::class,'edit_infant']);
     // get the profile page
     Route::get('/profile', [ProfileController::class, 'showProfile']);
     // get the parent dashboard
     Route::get('/dashboard', [ParentController::class, 'index']);
-
     // get the add baby page
+
     Route::get('/addinfant', function () {
         return view('site.client.addinfant');
     });

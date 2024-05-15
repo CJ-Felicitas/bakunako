@@ -25,7 +25,7 @@
                             <div style="background-color: #FDEDD4" class="card-header py-4  d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-dark">{{ $infant->infant_firstname }} {{ $infant->infant_middlename }} {{ $infant->infant_lastname }}</h6>
                                 <!-- Pencil icon for edit -->
-                                <a href="/edit/{{ $infant->id }}" class="btn btn-link">
+                                <a href="/parent/edit/{{ $infant->id }}" class="btn btn-link">
                                     <i class="fas fa-edit fa-fw text-dark" aria-hidden="true"></i>
                                 </a>
                             </div>

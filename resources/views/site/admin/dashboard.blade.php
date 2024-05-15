@@ -2,7 +2,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-6 p-3">
-            <div class="card bg-gradient-primary text-white">
+            <div class="card text-white" style="background-color: #4f71e0">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-7 text-center">
@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="col-md-6 p-3">
-            <div class="card bg-gradient-danger text-white">
-                <div class="card-body">
+            <div class="card text-white">
+                <div class="card-body" style="background-color: #f98c48">
                     <div class="row">
                         <div class="col-md-7 text-center">
                             <h2>Number of Female Infants</h2>

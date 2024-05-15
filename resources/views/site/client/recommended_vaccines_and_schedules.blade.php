@@ -11,7 +11,7 @@
     <div class="row mb-5">
         <div class="col-md-12">
             <div class="card p-2">
-                <img src="/images/RecommendedVaccines.png" alt="vaccines" width="100%">
+                <img src="/images/Recommendenation.jpg" alt="vaccines" width="100%">
             </div>
         </div>
     </div>

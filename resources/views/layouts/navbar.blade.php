@@ -44,7 +44,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="/register">Sign Up</a>
+                        <a class="nav-link fw-bold" href="/register">Register</a>
                     </li>
                 </ul>
                 <!-- Right links -->
