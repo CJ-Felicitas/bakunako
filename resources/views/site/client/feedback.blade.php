@@ -42,7 +42,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-right">
-                        <button type="submit" class="btn font-weight-bold text-dark" style="background-color: #C8A796">Submit</button>
+                        <button type="submit" class="btn text-white" style="background-color: #C8A796">Submit</button>
                     </form>
                     </div>
                 </div>

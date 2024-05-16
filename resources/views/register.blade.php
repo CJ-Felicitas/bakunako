@@ -21,6 +21,13 @@
         .full-height {
       height: 100vh;
     }
+    /* CSS for eye icon */
+.eye-toggle {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
       </style>
 </head>
 <body>
@@ -82,7 +89,7 @@
                             <button class="btn btn-lg mb-2 btn-secondary btn-block" type="submit">Register</button>
                         </form>
 
-                        <label class="text-dark" for="">Already have an account? <a href="/login">Login Here</a></label>
+                        <label class="text-dark" for="">Already have an account? <a href="/login_parent">Login Here</a></label>
                         <div class="mt-3"></div>
                         <a href="/">Go Back</a>
                     </div>
@@ -91,6 +98,20 @@
           </div>
         </div>
 
-
+<script>1
+    document.querySelectorAll('.eye-toggle').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            const passwordField = document.querySelector(this.getAttribute('toggle'));
+            if (passwordField.getAttribute('type') === 'password') {
+                passwordField.setAttribute('type', 'text');
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
+            } else {
+                passwordField.setAttribute('type', 'password');
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
+            }
+        });
+    });</script>
 </body>
 </html>

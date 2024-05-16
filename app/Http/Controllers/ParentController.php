@@ -37,8 +37,8 @@ class ParentController extends Controller
     private function twilio($phone_numberIn, $messageIn)
     {
         try {
-            $sid = env("TWILIO_SID");
-            $token = env("TWILIO_TOKEN");
+            $sid = config('app.sms_sid');
+            $token = config('app.sms_token');
             $client = new Client($sid, $token);
 
             $number = $phone_numberIn;

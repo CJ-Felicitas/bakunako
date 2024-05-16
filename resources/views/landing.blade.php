@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-6 mt-2">
                         <div class="text-center">
-                            <a href="/login" style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</a>
+                            <a href="/login_parent" style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</a>
                             {{-- <button style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</button> --}}
                         </div>
                     </div>
@@ -37,10 +37,11 @@
             <div class="col-md-8">
                 <div class="p-5">
                     <h3 class="fw-bolder">Why Immunize your baby?</h3>
-                    <p id="whyimmunized">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                        a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of
-                        the printing and typesetting industry. Lorem Ipsum is simply dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text.</p>
+                    <p id="whyimmunized">Keeping your baby healthy and strong is every parent's biggest wish. Just like we give our kids healthy food and keep them safe, vaccines are another important way to protect them. Think of vaccines as a shield, a special shield that teaches your baby's body how to fight off nasty bugs that can make them very sick. These bugs can cause serious illnesses that might make your baby miss out on playtime and growing up strong.
+
+                        You see, babies are born with their bodies still learning how to fight off germs. That's why vaccines are super important, especially in the first few years of life. They help your baby's body learn to recognize and fight off those bad bugs before they have a chance to cause trouble. It's like giving your little one a head start in the battle against germs!
+
+                        When you follow the recommended vaccine schedule, you're not just protecting your baby, but also helping to protect other kids and even grown-ups who might be more vulnerable to getting sick.  It's like teamwork, we all play a part in keeping our community healthy and happy.  Talk to your baby's doctor to learn more about each vaccine and how it can help your child grow up healthy and strong. Remember, vaccinating your baby is an act of love, giving them the best chance to live a long, happy, and healthy life.</p>
                 </div>
             </div>
             <div class="col-md-4 p-5 justify-content-center align-items-center">

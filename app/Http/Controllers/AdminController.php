@@ -47,11 +47,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Validation failed',
-                'errors' => $validator->errors()
-            ], 400);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         // assign the validated data to the $validated variable
@@ -61,13 +57,13 @@ class AdminController extends Controller
         $existing_username = User::where('username', $validated['username'])->first();
 
         if ($existing_username) {
-            return "Username is already taken. Please try another one.";
+            return redirect()->back()->with('username_exists', 'asdassd');
         }
 
         // check if email is already taken
         $existing_email = User::where('email', $validated['email'])->first();
         if ($existing_email) {
-            return "Email is already taken. Please try another one.";
+            redirect()->back()->with('email_exists', 'asdassd');
         }
 
         // scan if there is already a user
@@ -79,11 +75,11 @@ class AdminController extends Controller
 
         // check the confirm password
         if ($validated['password'] != $validated['confirm_password']) {
-            return "mali ang password";
+            return redirect()->back()->with('password_wrong', 'asdassd');
         }
 
         if ($existing_user) {
-            return "User already exists.";
+            return redirect()->back()->with('user_exists', 'asdassd');
         }
 
         try {

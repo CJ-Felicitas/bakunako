@@ -3,13 +3,13 @@
     <link rel="stylesheet" href="/izitoast/iziToast.min.css">
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-primary">
-                Feedback Form
-            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div style="background-color: #FDEDD4;" class="alert text-dark font-weight-bold">
+            Feedback Form
         </div>
     </div>
+</div>
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-right">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn text-white" style="background-color: #C8A796">Submit</button>
                     </form>
                     </div>
                 </div>

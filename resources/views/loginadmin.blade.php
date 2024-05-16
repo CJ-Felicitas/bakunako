@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login as Admin</title>
     <link href="/uikit/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="/uikit/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/uikit/css/ruang-admin.min.css" rel="stylesheet">
@@ -46,9 +46,6 @@
 
                             <input type="submit" style="background-color:#cd9f8e" class="btn btn-block text-dark"
                                 value="Login">
-                            <div class="mt-4"></div>
-                            <h5 class="text-center">Don't have an account? <a href="/register">Click here</a> to
-                                register</h5>
                             <a class="mt-3" href="/">Back</a>
                         </div>
                     </form>

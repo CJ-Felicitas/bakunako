@@ -26,7 +26,7 @@ class AdminPageRoutes
 
         if (!$user || (($user->user_type_id == UserTypeEnum::PARENT) || ($user->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER))) {
             Session::flush();
-            return redirect('/login');
+            return redirect('/');
         }
 
         return $next($request);

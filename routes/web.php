@@ -67,6 +67,7 @@ Route::post('/register_', [RegistrationController::class, 'register']);
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
     Route::post('/editprofile', [ParentController::class, 'editProfile']);
+    Route::post('/updatepassword', [HealthCareProviderController::class, 'updatepassword']);
     // get the edit page
     Route::get('/edit/{id}', [ParentController::class,'edit_infant_view']);
     Route::post('/edit/infantdetails', [ParentController::class,'edit_infant']);
@@ -122,7 +123,7 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard_view']);
     Route::get('/infant/{id}', [ParentController::class, 'show']);
     Route::post('/editprofile', [AdminController::class, 'editProfile']);
-    Route::post('/updatepassword', [ProfileController::class, 'updatepassword']);
+    Route::post('/updatepassword', [AdminController::class, 'updatepassword']);
 
     // manage vaccination
     Route::get('/vaccination', [AdminController::class, 'view_infants_schedule']);
@@ -151,6 +152,7 @@ Route::prefix('healthcare_provider')->middleware('HealthCareProviderRoutes')->gr
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedbackhp']);
     // update status
     Route::post('/updateStatus', [HealthCareProviderController::class, 'updateStatus']);
+    Route::post('/updatepassword', [HealthCareProviderController::class, 'updatepassword']);
 
 });
 

@@ -29,7 +29,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
-
+    'sms_sid' => env('TWILIO_SID'),
+    'sms_token'=> env('TWILIO_TOKEN '),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

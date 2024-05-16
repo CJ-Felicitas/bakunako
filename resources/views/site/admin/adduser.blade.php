@@ -74,11 +74,51 @@
             window.onload = function() {
                 iziToast.success({
                     title: 'Success',
-                    message: 'User has been added successfully.',
+                    message: 'Healthcare Provider has been added successfully.',
                 });
             };
         </script>
     @endif
+    @if (session('password_wrong'))
+        <script>
+            window.onload = function() {
+                iziToast.error({
+                    title: 'Password Error',
+                    message: 'Password is Incorrect',
+                });
+            };
+        </script>
+    @endif
+    @if (session('username_exists'))
+        <script>
+            window.onload = function() {
+                iziToast.error({
+                    title: 'Username Exists',
+                    message: 'Username already taken',
+                });
+            };
+        </script>
+    @endif
+    @if (session('email_exists'))
+    <script>
+        window.onload = function() {
+            iziToast.error({
+                title: 'Email Exists',
+                message: 'Email is already taken',
+            });
+        };
+    </script>
+@endif
+@if (session('user_exists'))
+<script>
+    window.onload = function() {
+        iziToast.error({
+            title: 'User Exists',
+            message: 'Healthcare Provider is already registered',
+        });
+    };
+</script>
+@endif
     </div>
 @endsection
 @section('custom-script-header')

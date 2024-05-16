@@ -52,10 +52,10 @@
         </li>
     @elseif ($user->user_type_id == UserTypeEnum::PARENT)
         <!-- Show specific navigation options for parent -->
-        <li class="nav-item {{ Request::is('parent/dashboard*') ? 'active' : '' }}">
+        <li class="nav-item {{ (Request::is('parent/dashboard*') ? 'active' : '') }}">
             <a class="nav-link" href="/parent/dashboard">
                 <i class="fas fa-syringe fa-fw"></i>
-                <span style="{{ Request::is('parent/dashboard*') ? 'color: #CD9F8E;' : '' }}">Infant Vaccination</span></a>
+                <span style="{{ Request::is('parent/dashboard*') || Request::is('parent/infant*') ? 'color: #CD9F8E;' : '' }}">Infant Vaccination</span></a>
         </li>
         <!-- Add active class to the li if the current route matches -->
         <li class="nav-item {{ Request::is('parent/vaccines*') ? 'active' : '' }}">
