@@ -57,50 +57,32 @@ Route::post('/parentlogin_', [AuthController::class, 'login_parent']);
 // terminate currently authenticated user and kill all sessions
 Route::get('/logout', [AuthController::class, 'logout']);
 
-// login attempt
-// Route::post('/login_', [AuthController::class, 'login']);
-
 // register attempt
 Route::post('/register_', [RegistrationController::class, 'register']);
 
 // grouped routes for the PARENT pages
 Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
-
     Route::post('/editprofile', [ParentController::class, 'editProfile']);
     Route::post('/updatepassword', [HealthCareProviderController::class, 'updatepassword']);
-    // get the edit page
     Route::get('/edit/{id}', [ParentController::class,'edit_infant_view']);
     Route::post('/edit/infantdetails', [ParentController::class,'edit_infant']);
-    // get the profile page
     Route::get('/profile', [ProfileController::class, 'showProfile']);
-    // get the parent dashboard
     Route::get('/dashboard', [ParentController::class, 'index']);
-    // get the add baby page
-
-    Route::get('/addinfant', function () {
-        return view('site.client.addinfant');
-    });
-
-    // get the feedback page for the parent page
+    Route::get('/addinfant', function () {return view('site.client.addinfant');});
     Route::get('/feedback', [FeedbackController::class, 'view']);
-
-    Route::get('/vaccines', function () {
-        return view('site.client.vaccine');
-    });
-
+    Route::get('/vaccines', function () {return view('site.client.vaccine');});
     Route::get('/claimvoucher/{id}', [VoucherController::class, 'claimVoucher']);
-    // submit feedback controller for the parent page
     Route::post('/submitfeedback_', [FeedbackController::class, 'addFeedback']);
-
-    // store or save the record of the baby
     Route::post('/addinfant_', [ParentController::class, 'store']);
-
-    // get the full details of the baby page
     Route::get('/infant/{id}', [ParentController::class, 'show']);
-
     Route::get('/voucher/rewards', [ParentController::class, 'voucher_rewards_view']);
+    Route::get('/voucher/rewards/hepb', [ParentController::class, 'voucher_rewards_view_hepb']);
+    Route::get('/voucher/rewards/penta', [ParentController::class, 'voucher_rewards_view_penta']);
+    Route::get('/voucher/rewards/opv', [ParentController::class, 'voucher_rewards_view_opv']);
+    Route::get('/voucher/rewards/ipv', [ParentController::class, 'voucher_rewards_view_ipv']);
+    Route::get('/voucher/rewards/pcv', [ParentController::class, 'voucher_rewards_view_pcv']);
+    Route::get('/voucher/rewards/mmr', [ParentController::class, 'voucher_rewards_view_mmr']);
     Route::get('/voucher/my_vouchers', [ParentController::class, 'my_vouchers_view']);
-
     Route::get('/recommendedvaccinesandschedules', function () {
         return view('site.client.recommended_vaccines_and_schedules');
     });

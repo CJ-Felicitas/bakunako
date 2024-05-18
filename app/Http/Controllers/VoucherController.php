@@ -82,6 +82,7 @@ class VoucherController extends Controller
             }
 
             // create voucher type
+            DB::beginTransaction();
             $voucher_type = new VoucherType();
             $voucher_type->partner_id = $partner->id;
             $voucher_type->item_name = $validated['item_name'];
@@ -90,67 +91,20 @@ class VoucherController extends Controller
             $voucher_type->vaccine_id = $vaccine->id;
             $voucher_type->save();
 
-            // set active voucher
-            $active_voucher = ActiveVoucher::where('vaccine_id', $vaccine->id)->first();
+            // // set active voucher
+            // $active_voucher = ActiveVoucher::where('vaccine_id', $vaccine->id)->first();
 
-            // check if there is already an active voucher_type_id exists
-            if (!$active_voucher->voucher_type_id) {
-                $active_voucher->voucher_type_id = $voucher_type->id;
-                $active_voucher->updated_at = Carbon::now();
-                $active_voucher->save();
-            }
-
-
-
-            // count the number of infants
-            // $infant_count = Infant::count();
-
-            // // if infant_count is smaller than the total quantity of voucher_type then all infants will be assigned a voucher
-            // $all_infants = Infant::all();
-            // if ($infant_count <= $validated['total_quantity']) {
-            //     $count = 0;
-            //     foreach ($all_infants as $infant) {
-            //         $filter_item_name = str_replace(' ', '', $validated['item_name']);
-            //         $random_code = $this->generateRandomString(2);
-            //         $voucher = new Voucher();
-            //         $voucher->voucher_type_id = $voucher_type->id;
-            //         $voucher->infant_id = $infant->id;
-            //         $voucher->voucher_code = $filter_item_name . $random_code . "" . Carbon::now()->format('Ymd') . "" . $count;
-            //         $voucher->created_at = Carbon::now();
-            //         $voucher->updated_at = Carbon::now();
-            //         $voucher->save();
-            //         $count++;
-            //     }
-            //     // update the total remaining quantity of the voucher after the mass assignment
-            //     $update_voucher_type = VoucherType::find($voucher_type->id);
-            //     $current_quantity = $update_voucher_type->total_quantity;
-            //     $update_voucher_type->remaining_quantity = $current_quantity - $count;
-            //     $update_voucher_type->save();
+            // // check if there is already an active voucher_type_id exists
+            // if (!$active_voucher->voucher_type_id) {
+            //     $active_voucher->voucher_type_id = $voucher_type->id;
+            //     $active_voucher->updated_at = Carbon::now();
+            //     $active_voucher->save();
             // }
+            DB::commit();
 
-            // // if the infant count is greater than the total quantity of the voucher type then perform a random allocation of voucher
-            // if ($infant_count > $validated['total_quantity']) {
-            //     $count = 0;
-            //     for ($i = 0; $i < $voucher_type->total_quantity; $i++) {
-            //         $current_quantity =
-            //             $filter_item_name = str_replace(' ', '', $validated['item_name']);
-            //         $random_code = $this->generateRandomString(2);
-            //         $voucher = new Voucher();
-            //         $voucher->voucher_type_id = $voucher_type->id;
-            //         $voucher->infant_id = rand(1, $infant_count);
-            //         $voucher->voucher_code = $filter_item_name . $random_code . "" . Carbon::now()->format('Ymd') . "" . $count;
-            //         $voucher->created_at = Carbon::now();
-            //         $voucher->updated_at = Carbon::now();
-            //         $voucher->save();
-            //         $count++;
-            //     }
-            //     $update_voucher_type = VoucherType::find($voucher_type->id);
-            //     $current_quantity = $update_voucher_type->total_quantity;
-            //     $update_voucher_type->remaining_quantity = $current_quantity - $count;
-            //     $update_voucher_type->save();
-            // }
             return redirect()->back()->with('voucher_distribute_success', 'Voucher added successfully');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $th->getMessage();
         }
     }
@@ -169,7 +123,8 @@ class VoucherController extends Controller
 
     public function claimVoucher($id)
     {
-        // id = voucher id
+        // first' param is voucher id
+
         try {
             $voucher = Voucher::findOrFail($id);
             $voucher_type = VoucherType::where('id', $voucher->voucher_type_id)->first();
@@ -179,6 +134,7 @@ class VoucherController extends Controller
             }
 
             if ($voucher->is_reedeemable == 1 && $voucher->is_redeemed == 0) {
+
                 // claim the voucher
                 $voucher->is_redeemed = 1;
                 $voucher->redeemed_at = Carbon::now('Asia/Manila');
@@ -212,7 +168,8 @@ class VoucherController extends Controller
         }
     }
 
-    public function updateActiveVoucher(Request $request){
+    public function updateActiveVoucher(Request $request)
+    {
         // start validation
         $validator = Validator::make($request->all(), [
             'voucher_type_id' => 'required',

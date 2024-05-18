@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\VaccinesEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use DB;
 use Twilio\Rest\Client;
 use Hash;
 use App\Models\User;
+
 
 class ParentController extends Controller
 {
@@ -147,7 +149,8 @@ class ParentController extends Controller
             'father_lastname' => 'required',
             'father_middlename' => 'required',
             'mother_firstname' => 'required',
-            'mother_lastname' => 'required',
+            'mother_lastname' => 'required',// parent is the target user
+
             'mother_middlename' => 'required',
         ]);
 
@@ -224,7 +227,7 @@ class ParentController extends Controller
                 $user = Auth::user();
                 $phone_number = $user->phone_number;
 
-                $message = "Hello there $user->first_name $user->last_name, your child $infant_firstname $infant_lastname has a vaccination schedule for BCG and Hepatitis B today!";
+                $message = "Hello there $user->first_name $user->last_name, your baby $infant_firstname $infant_lastname has a vaccination schedule for BCG and Hepatitis B today!";
 
                 $this->twilio($phone_number, $message);
             } catch (\Throwable $th) {
@@ -239,22 +242,137 @@ class ParentController extends Controller
     }
 
 
+    // bcg
     public function voucher_rewards_view()
     {
         $current_user = auth()->user();
         $id = $current_user->id;
 
-        $my_vouchers = Voucher::where('is_redeemed', 1)
+        $BCG = VaccinesEnum::BCG;
+
+
+        // bcg
+        $BCGs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($BCG) {
+                $query->where('vaccine_id', $BCG);
+            })
             ->whereHas('infant', function ($query) use ($id) {
                 $query->where('user_id', $id);
             })->get();
 
-        $vouchers = Voucher::where('is_reedeemable', 1)
+        return view('site.client.voucher', compact('BCGs'));
+    }
+
+    public function voucher_rewards_view_mmr()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+        $MMR = VaccinesEnum::MMR;
+
+        // mmr
+        $MMRs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($MMR) {
+                $query->where('vaccine_id', $MMR);
+            })
             ->whereHas('infant', function ($query) use ($id) {
                 $query->where('user_id', $id);
             })->get();
 
-        return view('site.client.voucher', compact('vouchers'));
+        return view('site.client.mmrvoucher', compact('MMRs'));
+    }
+
+    public function voucher_rewards_view_pcv()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+        $PCV = VaccinesEnum::PCV;
+
+        // pcv
+        $PCVs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($PCV) {
+                $query->where('vaccine_id', $PCV);
+            })
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
+
+        return view('site.client.pcvvoucher', compact('PCVs'));
+    }
+
+    public function voucher_rewards_view_ipv()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+        $IPV = VaccinesEnum::IPV;
+
+        // ipv
+        $IPVs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($IPV) {
+                $query->where('vaccine_id', $IPV);
+            })
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
+
+        return view('site.client.ipvvoucher', compact('IPVs'));
+    }
+
+    public function voucher_rewards_view_opv()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+        $OPV = VaccinesEnum::OPV;
+
+        // opv
+        $OPVs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($OPV) {
+                $query->where('vaccine_id', $OPV);
+            })
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
+
+
+        return view('site.client.opvvoucher', compact('OPVs'));
+    }
+
+    public function voucher_rewards_view_penta()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+
+        $PENTAVALENT = VaccinesEnum::PENTAVALENT;
+
+        // pentavalent
+        $PENTAVALENTs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($PENTAVALENT) {
+                $query->where('vaccine_id', $PENTAVALENT);
+            })
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
+
+
+        return view('site.client.pentavoucher', compact('PENTAVALENTs'));
+    }
+
+    public function voucher_rewards_view_hepb()
+    {
+        $current_user = auth()->user();
+        $id = $current_user->id;
+
+        $HEPATITIS_B = VaccinesEnum::HEPATITIS_B;
+
+        // hepb
+        $HEPATITIS_Bs = Voucher::where('is_reedeemable', 1)
+            ->whereHas('voucherType', function ($query) use ($HEPATITIS_B) {
+                $query->where('vaccine_id', $HEPATITIS_B);
+            })
+            ->whereHas('infant', function ($query) use ($id) {
+                $query->where('user_id', $id);
+            })->get();
+
+        return view('site.client.hepbvoucher', compact('HEPATITIS_Bs'));
     }
 
     public function my_vouchers_view()
@@ -270,12 +388,14 @@ class ParentController extends Controller
         return view('site.client.myvouchers', compact('my_vouchers'));
     }
 
-    public function edit_infant_view($id){
+    public function edit_infant_view($id)
+    {
         $infant = Infant::where('id', $id)->first();
         return view('site.client.edit_infant', compact('infant'));
     }
 
-    public function edit_infant(Request $request){
+    public function edit_infant(Request $request)
+    {
         $current_user = auth()->user();
         $id = $current_user->id;
 
@@ -288,7 +408,7 @@ class ParentController extends Controller
         try {
             // check the password if its correct
             if (!(Hash::check($request->password, $parent->password))) {
-                return redirect()->back()->with('password_error','error password');
+                return redirect()->back()->with('password_error', 'error password');
             } else {
                 DB::beginTransaction();
                 $infant->infant_firstname = $request->infant_firstname;
@@ -315,7 +435,8 @@ class ParentController extends Controller
         }
     }
 
-    public function vaccine_description_view(){
+    public function vaccine_description_view()
+    {
         $vaccines = Vaccine::all();
         return view('site.client.vaccine', compact('vaccines'));
     }

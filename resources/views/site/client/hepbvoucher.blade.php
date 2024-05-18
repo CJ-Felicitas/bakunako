@@ -78,14 +78,14 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md">
             <a href="/parent/voucher/rewards">
-                <div style="background-color: #C8A796;" class="alert alert-success font-weight-bold text-white text-center">
+                <div style="background-color: #C8A796;" class="alert alert-success font-weight-bold text-dark text-center">
                     BCG
                 </div>
             </a>
         </div>
         <div class="col-md">
             <a href="/parent/voucher/rewards/hepb">
-                <div style="background-color: #C8A796;" class="alert font-weight-bold text-dark text-center">
+                <div style="background-color: #C8A796;" class="alert font-weight-bold text-white text-center">
                     HEPATITIS B
                 </div>
             </a>
@@ -129,16 +129,16 @@
 
     <div class="row">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-dark">Voucher Rewards for BCG</h6>
+            <h6 class="m-0 font-weight-bold text-dark">Voucher Rewards for HEPATITIS B</h6>
         </div>
         <div class="col-md-12">
-            @if ($BCGs->isEmpty())
+            @if ($HEPATITIS_Bs->isEmpty())
                 <div class="alert alert-warning">
                     No vouchers available as of this moment
                 </div>
-            @elseif(!$BCGs->isEmpty())
+            @elseif(!$HEPATITIS_Bs->isEmpty())
                 <div class="row">
-                    @foreach ($BCGs as $voucher)
+                    @foreach ($HEPATITIS_Bs as $voucher)
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-body">

@@ -98,7 +98,7 @@
     </div>
 
     {{-- voucher distributtion --}}
-    <div class="row mb-5 mt-2">
+    {{-- <div class="row mb-5 mt-2">
         <div class="col-md-12">
             <div class="card p-3">
                 <p class="text-dark font-weight-bold">Configure Voucher Distribution</p>
@@ -181,6 +181,7 @@
                 </div>
             </div>
         </div>
+    </div> --}}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
