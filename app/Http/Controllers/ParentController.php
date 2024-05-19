@@ -104,7 +104,7 @@ class ParentController extends Controller
     public function index()
     {
         // get all the infants of the currently authenticated user
-        $infants = Infant::where('user_id', auth()->user()->id)->get();
+        $infants = Infant::where('user_id', auth()->user()->id)->orderBy('created_at','desc')->get();
         return view('site.client.dashboard', compact('infants'));
     }
 

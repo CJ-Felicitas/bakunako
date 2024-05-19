@@ -51,34 +51,58 @@
 
                     <div class="row">
                         @foreach ($my_vouchers as $my_voucher)
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                                    {{ $my_voucher->voucherType->partners->name }}</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    {{ $my_voucher->voucherType->item_name }}</div>
-                                                <div class="mt-2 mb-0 text-muted text-xs">
-                                                    @if ($my_voucher->is_redeemed == 1)
-                                                        <span class="text-secondary mr-2">CLAIMED AT</span>
-                                                        <span>{{ $my_voucher->redeemed_at }}</span>
-                                                    @elseif($my_voucher->is_redeemed == 0)
-                                                        <span class="text-success mr-2">NOT YET CLAIMED</span>
-                                                    @endif
-                                                    <br>
-                                                    <span class="text-uppercase">{{ $my_voucher->infant->infant_firstname }}
-                                                        {{ $my_voucher->infant->infant_lastname }}</span>
-                                                        <br>
-                                                        <span class="text-success">{{$my_voucher->voucher_code}}</span>
-                                                </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                                {{ $my_voucher->voucherType->partners->name }}
                                             </div>
-
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ $my_voucher->voucherType->item_name }}
+                                            </div>
+                                            <div class="mt-2 mb-0 text-muted text-xs">
+                                                @if ($my_voucher->is_redeemed == 1)
+                                                    <span class="text-secondary mr-2">CLAIMED AT</span>
+                                                    <span>{{ $my_voucher->redeemed_at }}</span>
+                                                @elseif($my_voucher->is_redeemed == 0)
+                                                    <span class="text-success mr-2">NOT YET CLAIMED</span>
+                                                @endif
+                                                <br>
+                                                <span class="text-uppercase">{{ $my_voucher->infant->infant_firstname }} {{ $my_voucher->infant->infant_lastname }}</span>
+                                                <br>
+                                                <span class="text-success" style="font-size: 20px;" id="voucher-code-{{ $my_voucher->id }}">
+                                                    ***********
+                                                </span>
+                                                <span class="ml-2">
+                                                    <i class="fas fa-eye-slash" id="toggle-eye-{{ $my_voucher->id }}" onclick="toggleVoucherCode({{ $my_voucher->id }})" style="cursor: pointer;"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <script>
+                        function toggleVoucherCode(id) {
+                            var voucherCodeElement = document.getElementById('voucher-code-' + id);
+                            var eyeIcon = document.getElementById('toggle-eye-' + id);
+                            if (voucherCodeElement.textContent.includes('*')) {
+                                // Reveal the voucher code
+                                voucherCodeElement.textContent = "{{ $my_voucher->voucher_code }}"; // Adjust this to pass the actual voucher code dynamically if needed
+                                eyeIcon.classList.remove('fa-eye-slash');
+                                eyeIcon.classList.add('fa-eye');
+                            } else {
+                                // Hide the voucher code
+                                voucherCodeElement.textContent = '*************';
+                                eyeIcon.classList.remove('fa-eye');
+                                eyeIcon.classList.add('fa-eye-slash');
+                            }
+                        }
+                        </script>
+
                         @endforeach
                         {{-- end of voucher line --}}
                     </div>

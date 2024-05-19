@@ -87,7 +87,7 @@
         <li class="nav-item {{ Request::is('healthcare_provider/dashboard*') ? 'active' : '' }}">
             <a class="nav-link" href="/healthcare_provider/dashboard">
                 <i class="fas fa-syringe fa-fw"></i>
-                <span style="{{ Request::is('healthcare_provider/dashboard*') ? 'color: #CD9F8E;' : '' }}">Infant Vaccination</span></a>
+                <span style="{{ Request::is('healthcare_provider/dashboard*') ? 'color: #CD9F8E;' : '' }}">Vaccine Infants</span></a>
         </li>
         <!-- Add active class to the li if the current route matches -->
         <li class="nav-item {{ Request::is('healthcare_provider/feedback*') ? 'active' : '' }}">

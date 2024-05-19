@@ -35,18 +35,34 @@
 
         <div class="row mt-5">
             <div class="col-md-8">
-                <div class="p-5">
+                <div class="p-5" style="margin-top:100px">
                     <h3 class="fw-bolder">Why Immunize your baby?</h3>
-                    <p id="whyimmunized">Keeping your baby healthy and strong is every parent's biggest wish. Just like we give our kids healthy food and keep them safe, vaccines are another important way to protect them. Think of vaccines as a shield, a special shield that teaches your baby's body how to fight off nasty bugs that can make them very sick. These bugs can cause serious illnesses that might make your baby miss out on playtime and growing up strong.
+                    <p id="whyimmunized" style="font-size: 23px">Keeping your baby healthy and strong is every parent's biggest wish. Just like we give our kids healthy food and keep them safe, vaccines are another important way to protect them. Think of vaccines as a shield, a special shield that teaches your baby's body how to fight off nasty bugs that can make them very sick. These bugs can cause serious illnesses that might make your baby miss out on playtime and growing up strong.
 
                         You see, babies are born with their bodies still learning how to fight off germs. That's why vaccines are super important, especially in the first few years of life. They help your baby's body learn to recognize and fight off those bad bugs before they have a chance to cause trouble. It's like giving your little one a head start in the battle against germs!
 
                         When you follow the recommended vaccine schedule, you're not just protecting your baby, but also helping to protect other kids and even grown-ups who might be more vulnerable to getting sick.  It's like teamwork, we all play a part in keeping our community healthy and happy.  Talk to your baby's doctor to learn more about each vaccine and how it can help your child grow up healthy and strong. Remember, vaccinating your baby is an act of love, giving them the best chance to live a long, happy, and healthy life.</p>
                 </div>
             </div>
-            <div class="col-md-4 p-5 justify-content-center align-items-center">
+            <div class="col-md-4 p-5 mt-5 justify-content-center align-items-center">
                 <img width="100%" src="/images/2.png" alt="">
             </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4 p-5 mt-5 justify-content-center align-items-center">
+                <img width="100%" src="/images/why.png" alt="">
+            </div>
+            <div class="col-md-8 justify-content-center">
+                <div class="p-5" style="margin-top: 130px">
+                    <h3 class="fw-bolder">What is Bakunako?</h3>
+                    <p id="whyimmunized" style="font-size: 23px">BakunAko knows how important your baby's health is. That's why we created an easy way to keep them safe from dangerous illnesses. Think of vaccines as a shield that teaches your baby's body how to fight off those nasty bugs. With BakunAko, it's easy to track your baby's vaccinations and get reminders when it's time for the next one.
+
+                        And there's more! BakunAko even gives you rewards for keeping your baby's vaccinations up-to-date. Think of it as a thank you for helping your baby grow up happy and healthy!
+
+                        Learn more about how BakunAko can protect your little one.  Remember, vaccinating your baby is an act of love. BakunAko is here to make it even easier!</p>
+                </div>
+            </div>
+
         </div>
         <div class="row mt-5"></div>
         <div class="row mt-5"></div>

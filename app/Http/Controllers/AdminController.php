@@ -232,9 +232,6 @@ class AdminController extends Controller
                 $voucher->created_at = Carbon::now();
                 $voucher->updated_at = Carbon::now();
                 $voucher->save();
-
-                $active_vouchertype->remaining_quantity = $active_vouchertype->remaining_quantity - 1;
-                $active_vouchertype->save();
             }
 
 
