@@ -162,8 +162,8 @@
                                         </div>
                                         <div class="col-auto">
                                             @if ($voucher->is_redeemed == 0)
-                                                <a href="/parent/claimvoucher/{{ $voucher->id }}"
-                                                    class="btn btn-success btn-sm">CLAIM</a>
+                                            <a href="/parent/claimvoucher/{{ $voucher->id }}?infantid={{ $voucher->infant->id }}"
+                                                class="btn btn-success btn-sm">CLAIM</a>
                                             @elseif($voucher->is_redeemed == 1)
                                                 <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
                                             @endif
@@ -189,6 +189,29 @@
             };
         </script>
     @endif
+
+    @if (session('already_claimed'))
+        <script>
+            window.onload = function() {
+                iziToast.errorr({
+                    title: 'Voucher Claimed',
+                    message: "already claimed",
+                });
+            };
+        </script>
+    @endif
+
+    @if (session('limit_error'))
+    <script>
+        window.onload = function() {
+            iziToast.warning({
+                title: 'Error',
+                message: "{{ session('limit_error') }}",
+            });
+        };
+    </script>
+@endif
+
 @endsection
 
 @section('custom-script')

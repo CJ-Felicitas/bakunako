@@ -121,39 +121,77 @@ class VoucherController extends Controller
         return $randomString;
     }
 
-    public function claimVoucher($id)
+    public function claimVoucher($id, Request $request)
     {
-        // first' param is voucher id
+        // first param is voucher id
+        $infant_id = $request->query('infantid');
 
         try {
+            // check if the infant has already claimed two vouchers
+            $check_voucher = Voucher::where('infant_id', $infant_id)
+                ->where('is_redeemed', 1)
+                ->count();
+
+            // the voucher itself
             $voucher = Voucher::findOrFail($id);
-            $voucher_type = VoucherType::where('id', $voucher->voucher_type_id)->first();
+
+            $infant = Infant::find($infant_id);
+
+            if ($check_voucher == 1) {
+                return redirect()->back()->with('limit_error', "The voucher for $infant->infant_firstname $infant->infant_lastname has already been claimed");
+            }
+
+            // the voucher type
+            $voucher_type = VoucherType::find($voucher->voucher_type_id);
 
             if ($voucher->is_redeemed == 1) {
                 return back()->with('already_claimed', 'Voucher has already been claimed');
             }
 
             if ($voucher->is_reedeemable == 1 && $voucher->is_redeemed == 0) {
+                DB::beginTransaction();
+                try {
+                    // claim the voucher
+                    $voucher->is_redeemed = 1;
+                    $voucher->redeemed_at = Carbon::now('Asia/Manila');
+                    $voucher->save();
 
-                // claim the voucher
-                $voucher->is_redeemed = 1;
-                $voucher->redeemed_at = Carbon::now('Asia/Manila');
-                $voucher->save();
+                    $total_redeemed = Voucher::where('voucher_type_id', $voucher_type->id)
+                        ->where('is_redeemed', 1)
+                        ->count();
 
-                $total_redeemed = Voucher::where('voucher_type_id', $voucher_type->id)->where('is_redeemed', 1)->count();
+                    // update the voucher type status
+                    $voucher_type->redeemed_quantity = $total_redeemed;
+                    $voucher_type->remaining_quantity = $voucher_type->remaining_quantity - 1;
+                    $voucher_type->save();
 
-                // update the voucher type status
-                $voucher_type->redeemed_quantity = $total_redeemed;
-                $voucher_type->save();
+                    // delete all the vouchers that are not necessary anymore since it was already claimed
+                    $check_voucher_stage_two = Voucher::where('infant_id', $infant_id)
+                        ->where('is_redeemed', 1)
+                        ->count();
 
-                return redirect('/parent/voucher/rewards')->with('success', 'Voucher claimed successfully');
+                    if ($check_voucher_stage_two == 1) {
+                        Voucher::where('infant_id', $infant->id)
+                            ->where('is_redeemed', 0)
+                            ->delete();
+                    }
+
+                    DB::commit();
+                    return redirect()->back()->with('success', 'Voucher claimed successfully');
+                } catch (\Throwable $th) {
+                    DB::rollBack();
+                    return redirect()->back()->with('error', 'An error occurred while claiming the voucher');
+                }
             } elseif ($voucher->is_reedeemable == 0) {
-                return redirect('/parent/voucher/rewards')->with('error', 'Voucher is not reedeemable');
+                return redirect()->back()->with('error', 'Voucher is not reedeemable');
             }
+
+            return redirect()->back()->with('server_error', 'An unexpected error occurred');
         } catch (ModelNotFoundException $th) {
-            return $th->getMessage();
+            return redirect()->back()->with('error', 'Voucher not found');
         }
     }
+
 
     public function vaccines_associated_with_voucher(Request $request)
     {
@@ -184,6 +222,7 @@ class VoucherController extends Controller
         $validated = $validator->validated();
 
         try {
+
             // check if the password is correct
             $user = auth()->user();
             if (!Hash::check($validated['password'], $user->password)) {
@@ -209,6 +248,7 @@ class VoucherController extends Controller
             $active_voucher->save();
 
             return redirect()->back()->with('success', 'Active voucher updated successfully');
+
         } catch (\Throwable $th) {
             //throw $th;
         }

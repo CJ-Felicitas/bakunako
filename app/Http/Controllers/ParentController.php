@@ -253,12 +253,14 @@ class ParentController extends Controller
 
         // bcg
         $BCGs = Voucher::where('is_reedeemable', 1)
-            ->whereHas('voucherType', function ($query) use ($BCG) {
-                $query->where('vaccine_id', $BCG);
-            })
-            ->whereHas('infant', function ($query) use ($id) {
-                $query->where('user_id', $id);
-            })->get();
+        ->whereHas('voucherType', function ($query) use ($BCG) {
+            $query->where('vaccine_id', $BCG);
+        })
+        ->whereHas('infant', function ($query) use ($id) {
+            $query->where('user_id', $id);
+        })
+        ->orderBy('infant_id')
+        ->get();
 
         return view('site.client.voucher', compact('BCGs'));
     }

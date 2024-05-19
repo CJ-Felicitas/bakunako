@@ -97,29 +97,11 @@ class HealthCareProviderController extends Controller
                 $voucher->updated_at = Carbon::now();
                 $voucher->save();
 
-                // update the remaining quantity of the voucher
-                $voucher_type->remaining_quantity = $voucher_type->remaining_quantity - 1;
-                $voucher_type->save();
+                // // update the remaining quantity of the voucher
+                // $voucher_type->remaining_quantity = $voucher_type->remaining_quantity - 1;
+                // $voucher_type->save();
             }
-            // check the active vouchers that are available for the infant
-            // $active_voucher = ActiveVoucher::where('vaccine_id', $schedule->vaccines_id)->first();
-            // $active_vouchertype = VoucherType::where('id', $active_voucher->voucher_type_id)->first();
-            // // check if the active_vouchertype has a remaining quantity
-            // if ($active_vouchertype && $active_vouchertype->remaining_quantity > 0) {
-            //     // if there is still remaining then create new voucher
-            //     $voucher = new Voucher();
-            //     $voucher->voucher_type_id = $active_voucher->voucher_type_id;
-            //     $voucher->infant_id = $infant_id;
-            //     $random_code = $this->generateRandomString(2);
-            //     $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
-            //     $voucher->is_reedeemable = 1;
-            //     $voucher->is_redeemed = 0;
-            //     $voucher->created_at = Carbon::now();
-            //     $voucher->updated_at = Carbon::now();
-            //     $voucher->save();
-            //     $active_vouchertype->remaining_quantity = $active_vouchertype->remaining_quantity - 1;
-            //     $active_vouchertype->save();
-            // }
+
             DB::commit();
             return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
         } catch (\Exception $e) {
