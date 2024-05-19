@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="card mb-4">
+    <div class="card mb-4 p-2">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-dark">Infants Details</h6>
         </div>
@@ -42,4 +42,11 @@
             There are no vaccination schedules for today.
         </div>
     @endif
+@endsection
+@section('custom-script')
+    <script>
+        $(document).ready(function() {
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+    </script>
 @endsection

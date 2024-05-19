@@ -28,10 +28,10 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-12">
-            <div class="alert font-weight-bold text-center" style="background-color: #cd9f8e">
-                Infant Immunization Record
+            <div class="alert text-dark font-weight-bold text-center" style="background-color: #FDEDD4;">
+                <p class="mt-3" style="font-size: 23px">Infant Immunization Record</p>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                     <a href="/pdf/{{ $infant->id }}" class="btn btn-sm text-white" style="background-color: #cd9f8e">Download PDF</a>
                 </div>
                 <div class="table-responsive p-2">
-                    <table class="table align-items-center table-flush" id="dataTableHover">
+                    <table class="table table-bordered align-items-center table-flush" id="dataTableHover">
                         <thead class="thead-light">
                             <tr>
                                 <th class="text-center">Vaccine</th>
@@ -91,7 +91,7 @@
                                 <tr>
                                     <td>{{ str_replace(range(0, 9), '', $schedule->vaccine->name) }}</td>
                                     <td class="text-center">@ordinal($schedule->dose_number) dose</td>
-                                    <td class="text-center">{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}
+                                    <td class="text-center font-weight-bold text-dark">{{ \Carbon\Carbon::parse($schedule->date)->format('F j, Y') }}
                                     </td>
                                     <td class="text-center">
                                         {{ \Carbon\Carbon::parse($schedule->time_schedule_start)->format('h:i A') }} -

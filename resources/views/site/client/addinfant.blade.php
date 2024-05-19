@@ -5,8 +5,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert text-dark" style="background-color: #FDEDD4;" role="alert">
-                Add Infant
+            <div class="alert text-dark text-center font-weight-bold p-1" style="background-color: #FDEDD4;" role="alert">
+                <p class="mt-3" style="font-size: 25px">INFANT PROFILING</p>
             </div>
         </div>
     </div>
@@ -120,22 +120,23 @@
                         @endif
 
                         @if (session('success'))
-                        <script>
-                            window.onload = function() {
-                                iziToast.success({
-                                    title: 'Registration Success',
-                                    message: 'The infant has been registered successfully.',
-                                });
-                            };
-                        </script>
-                    @endif
+                            <script>
+                                window.onload = function() {
+                                    iziToast.success({
+                                        title: 'Registration Success',
+                                        message: 'The infant has been registered successfully.',
+                                    });
+                                };
+                            </script>
+                        @endif
 
 
                     </div>
 
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <button class="btn btn-block text-dark" style="background-color: #CD9F8E" type="submit">Submit/Register</button>
+                            <button class="btn btn-block text-dark" style="background-color: #CD9F8E"
+                                type="submit">Submit/Register</button>
                         </div>
                     </div>
                 </div>
@@ -145,6 +146,5 @@
 @endsection
 
 @section('custom-script-header')
-<script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
+    <script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
 @endsection
-
