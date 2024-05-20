@@ -12,7 +12,22 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile rounded-circle" src="/images/favicon.png" style="max-width: 60px">
+
+                @if (Auth::user()->user_type_id == UserTypeEnum::ADMINISTRATOR)
+                <img class="img-profile rounded-circle" src="/images/admin_icon.png" style="max-width: 60px">
+                @endif
+
+
+                @if (Auth::user()->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER)
+                <img class="img-profile rounded-circle" src="/images/hp_icon.png" style="max-width: 60px">
+                @endif
+
+
+                @if (Auth::user()->user_type_id == UserTypeEnum::PARENT)
+                <img class="img-profile rounded-circle" src="/images/parent_icon.png" style="max-width: 60px">
+                @endif
+
+
                 <span class="ml-2 d-none d-lg-inline text-white small">
                     @auth
                         {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }} {{ Auth::user()->last_name }}

@@ -20,15 +20,7 @@ Route::get('/', function () {
 });
 Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 
-// Route::post('/verify_schedule', [ScheduleController::class, 'verify_schedule_session']);
-
-// Route::get('/verify', function () {
-//     return view('sched');
-// });
-
-// get the register page
-// Route::get('/sendsms', [Smscontroller::class, 'twilio']);
-
+// do not hilabot this
 Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
 
 Route::get('/register', function () {
