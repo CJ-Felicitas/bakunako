@@ -13,8 +13,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div style="background-color: #FDEDD4;" class="alert alert-primary font-weight-bold text-dark">
-                Rewards
+            <div style="background-color: #FDEDD4; font-size: 25px" class="alert text-center alert-primary font-weight-bold text-dark">
+                My Vouchers
             </div>
         </div>
     </div>

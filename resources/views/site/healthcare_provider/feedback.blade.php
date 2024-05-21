@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div style="background-color: #FDEDD4;" class="alert text-dark font-weight-bold">
+        <div style="background-color: #FDEDD4; font-size: 25px" class="alert text-center text-dark font-weight-bold">
             Feedback Form
         </div>
     </div>

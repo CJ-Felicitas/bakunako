@@ -2,14 +2,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div style="background-color: #FDEDD4;" class="alert text-dark font-weight-bold">
-                List of Infants that Needed to be Vaccinated Today
+            <div style="background-color: #FDEDD4; font-size: 25px" class="alert text-center text-dark font-weight-bold">
+                Vaccine Infants
             </div>
         </div>
     </div>
     <div class="card mb-4 p-2">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-dark">Infants Details</h6>
+            <h6 class="m-0 font-weight-bold text-dark">List of Infants that needed to be vaccinated today</h6>
         </div>
         <div class="table-responsive">
             <table class="table align-items-center table-flush table-hover" id="dataTableHover">

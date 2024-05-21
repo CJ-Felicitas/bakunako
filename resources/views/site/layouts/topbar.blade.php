@@ -14,17 +14,17 @@
                 aria-haspopup="true" aria-expanded="false">
 
                 @if (Auth::user()->user_type_id == UserTypeEnum::ADMINISTRATOR)
-                <img class="img-profile rounded-circle" src="/images/admin_icon.png" style="max-width: 60px">
+                <img class="img-profile rounded-circle" src="/images/admin_webp.webp" style="max-width: 60px">
                 @endif
 
 
                 @if (Auth::user()->user_type_id == UserTypeEnum::HEALTHCARE_PROVIDER)
-                <img class="img-profile rounded-circle" src="/images/hp_icon.png" style="max-width: 60px">
+                <img class="img-profile rounded-circle" src="/images/hp_webp.webp" style="max-width: 60px">
                 @endif
 
 
                 @if (Auth::user()->user_type_id == UserTypeEnum::PARENT)
-                <img class="img-profile rounded-circle" src="/images/parent_icon.png" style="max-width: 60px">
+                <img class="img-profile rounded-circle" src="/images/parent_webp.webp" style="max-width: 60px">
                 @endif
 
 

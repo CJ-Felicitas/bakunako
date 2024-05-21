@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="alert text-dark" style="background-color:#FDEDD4">
+            <div class="alert text-dark text-center font-weight-bold" style="background-color:#FDEDD4; font-size: 25px">
                 Feedbacks
             </div>
         </div>
