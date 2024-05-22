@@ -45,16 +45,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Contact Admin</h5>
+                    <h5 class="modal-title" id="contactModalLabel">Contact Technical Support
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Email:</strong> admin@example.com</p>
-                    <p><strong>Phone Number:</strong> (123) 456-7890</p>
+                    <p><strong>Email:</strong> bakunakotechnicalsup@gmail.com</p>
+                    <p><strong>Phone Number:</strong> 09302785172</p>
                     <p><strong>Telephone Number:</strong> (098) 765-4321</p>
-                    <p><strong>Address:</strong> 123 Admin Street, Admin City, Admin Country</p>
+                    <p><strong>Address:</strong> Davao City, Philippines</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
