@@ -57,7 +57,7 @@
                                 class="mb-2 form-control form-control-lg" placeholder="Email" required>
 
                             <input value="{{ old('phone_number') }}" type="text" name="phone_number"
-                                class="mb-2 form-control form-control-lg" placeholder="Phone Number" required>
+                                class="mb-2 form-control form-control-lg" placeholder="Phone Number: Ex: +639650859745" required>
 
                             <input value="{{ old('address') }}" type="text" name="address"
                                 class="mb-2 form-control form-control-lg" placeholder="Address" required>
