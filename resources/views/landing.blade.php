@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-6 mt-2">
                         <div class="text-center">
-                            <a href="/login_parent" style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</a>
+                            <a href="/login_parent" style="background-color: #cd9f8e; border-radius: 24px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</a>
                             {{-- <button style="background-color: #cd9f8e; border-radius: 20px" class="btn btn-lg btn-block text-dark">GET SCHEDULE</button> --}}
                         </div>
                     </div>
@@ -36,8 +36,8 @@
         <div class="row mt-5">
             <div class="col-md-8">
                 <div class="p-5" style="margin-top:100px">
-                    <h3 class="fw-bolder">Why Immunize your baby?</h3>
-                    <p id="whyimmunized" style="font-size: 23px">Keeping your baby healthy and strong is every parent's biggest wish. Just like we give our kids healthy food and keep them safe, vaccines are another important way to protect them. Think of vaccines as a shield, a special shield that teaches your baby's body how to fight off nasty bugs that can make them very sick. These bugs can cause serious illnesses that might make your baby miss out on playtime and growing up strong.
+                    <h3 class="fw-bolder">Why Vaccinate your Baby?</h3>
+                    <p id="whyimmunized" style="font-size: 19px">Keeping your baby healthy and strong is every parent's biggest wish. Just like we give our kids healthy food and keep them safe, vaccines are another important way to protect them. Think of vaccines as a shield, a special shield that teaches your baby's body how to fight off nasty bugs that can make them very sick. These bugs can cause serious illnesses that might make your baby miss out on playtime and growing up strong.
 
                         You see, babies are born with their bodies still learning how to fight off germs. That's why vaccines are super important, especially in the first few years of life. They help your baby's body learn to recognize and fight off those bad bugs before they have a chance to cause trouble. It's like giving your little one a head start in the battle against germs!
 
@@ -50,12 +50,12 @@
         </div>
         <div class="row mt-5">
             <div class="col-md-4 p-5 mt-5 justify-content-center align-items-center">
-                <img width="100%" src="/images/why.png" alt="">
+                <img width="100%" src="/images/whatisbakunako.png" alt="">
             </div>
             <div class="col-md-8 justify-content-center">
                 <div class="p-5" style="margin-top: 130px">
                     <h3 class="fw-bolder">What is Bakunako?</h3>
-                    <p id="whyimmunized" style="font-size: 23px">BakunAko knows how important your baby's health is. That's why we created an easy way to keep them safe from dangerous illnesses. Think of vaccines as a shield that teaches your baby's body how to fight off those nasty bugs. With BakunAko, it's easy to track your baby's vaccinations and get reminders when it's time for the next one.
+                    <p id="whyimmunized" style="font-size: 19px">BakunAko knows how important your baby's health is. That's why we created an easy way to keep them safe from dangerous illnesses. Think of vaccines as a shield that teaches your baby's body how to fight off those nasty bugs. With BakunAko, it's easy to track your baby's vaccinations and get reminders when it's time for the next one.
 
                         And there's more! BakunAko even gives you rewards for keeping your baby's vaccinations up-to-date. Think of it as a thank you for helping your baby grow up happy and healthy!
 
@@ -161,8 +161,6 @@
                     </div>
                   </div>
             </div>
-
-
        </div>
     </div>
     @if (session('reg_success'))
