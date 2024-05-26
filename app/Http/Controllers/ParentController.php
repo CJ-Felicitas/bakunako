@@ -222,7 +222,14 @@ class ParentController extends Controller
                 $user = Auth::user();
                 $phone_number = $user->phone_number;
 
-                $message = "Hello there $user->first_name $user->last_name, your baby $infant_firstname $infant_lastname has a vaccination schedule for BCG and Hepatitis B today!";
+                // get the date
+                $now = Carbon::now();
+                $month = $now->month;
+                $month_str = $now->format('F');
+                $year = $now->year;
+                $day = $now->day;
+
+                $message = "Hello there $user->first_name $user->last_name, your baby $infant_firstname $infant_lastname has a vaccination schedule for BCG and Hepatitis B today ".$month_str." ".$day." ".$year;
 
                 $this->twilio($phone_number, $message);
             } catch (\Throwable $th) {
