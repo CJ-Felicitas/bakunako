@@ -22,11 +22,6 @@ use App\Models\User;
 
 class ParentController extends Controller
 {
-    // [please do not touch this]
-    // private $servicePlanId = 'e83586985e474afbb7eaadf8b74027ec';
-    // private $bearerToken = '464b03a0a45040dfb7e0754139fa4cba';
-    // private $sendFrom = '+447520651553';
-
 
     protected $smsController;
 
@@ -39,8 +34,8 @@ class ParentController extends Controller
     private function twilio($phone_numberIn, $messageIn)
     {
         try {
-            $sid = config('app.sms_sid');
-            $token = config('app.sms_token');
+            $sid = "";
+            $token = "";
             $client = new Client($sid, $token);
 
             $number = $phone_numberIn;

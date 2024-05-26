@@ -124,20 +124,27 @@ class VoucherController extends Controller
     public function claimVoucher($id, Request $request)
     {
         // first param is voucher id
+        // second param is infant id
         $infant_id = $request->query('infantid');
-
+        $vtype = $request->query('vtype');
+        $vaccine_id = $request->query('vid');
         try {
-            // check if the infant has already claimed two vouchers
+            // check if the infant has already claimed two vouchers\
             $check_voucher = Voucher::where('infant_id', $infant_id)
+                ->whereHas('voucherType', function ($query) use ($vaccine_id) {
+                    $query->where('vaccine_id', $vaccine_id);
+                })
                 ->where('is_redeemed', 1)
                 ->count();
 
-            // the voucher itself
+            // return $check_voucher;
+            // The specific voucher
             $voucher = Voucher::findOrFail($id);
 
+            // the infant
             $infant = Infant::find($infant_id);
 
-            if ($check_voucher == 1) {
+            if ($check_voucher > 0) {
                 return redirect()->back()->with('limit_error', "The voucher for $infant->infant_firstname $infant->infant_lastname has already been claimed");
             }
 
@@ -165,19 +172,17 @@ class VoucherController extends Controller
                     $voucher_type->remaining_quantity = $voucher_type->remaining_quantity - 1;
                     $voucher_type->save();
 
-                    // delete all the vouchers that are not necessary anymore since it was already claimed
-                    $check_voucher_stage_two = Voucher::where('infant_id', $infant_id)
-                        ->where('is_redeemed', 1)
-                        ->count();
+                    Voucher::where('infant_id', $infant_id)
+                        ->whereHas('voucherType', function ($query) use ($vaccine_id) {
+                            $query->where('vaccine_id', $vaccine_id);
+                        })
+                        ->where('is_redeemed', 0)
+                        ->delete();
 
-                    if ($check_voucher_stage_two == 1) {
-                        Voucher::where('infant_id', $infant->id)
-                            ->where('is_redeemed', 0)
-                            ->delete();
-                    }
 
                     DB::commit();
                     return redirect()->back()->with('success', 'Voucher claimed successfully');
+
                 } catch (\Throwable $th) {
                     DB::rollBack();
                     return redirect()->back()->with('error', 'An error occurred while claiming the voucher');

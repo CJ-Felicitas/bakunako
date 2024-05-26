@@ -164,11 +164,11 @@
                                         </div>
                                         <div class="col-auto">
                                             @if ($voucher->is_redeemed == 0)
-                                             <a href="/parent/claimvoucher/{{ $voucher->id }}?infantid={{ $voucher->infant->id }}"
-                                                    class="btn btn-success btn-sm">CLAIM</a>
-                                            @elseif($voucher->is_redeemed == 1)
-                                                <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
-                                            @endif
+                                            <a href="/parent/claimvoucher/{{ $voucher->id }}?infantid={{ $voucher->infant->id }}&vtype={{$voucher->voucherType->id}}&vid={{$voucher->voucherType->vaccine_id}}"
+                                                class="btn btn-success btn-sm">CLAIM</a>
+                                        @elseif($voucher->is_redeemed == 1)
+                                            <button disabled class="btn btn-secondary btn-sm">CLAIMED</button>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
