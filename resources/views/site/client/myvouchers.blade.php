@@ -1,4 +1,5 @@
 @extends('site.layouts.app')
+
 @section('custom-css')
     <link rel="stylesheet" href="/izitoast/iziToast.min.css">
     <style>
@@ -6,10 +7,11 @@
             text-decoration: none;
         }
         a:hover {
-        text-decoration: none; /* Remove underline on hover */
-    }
+            text-decoration: none; /* Remove underline on hover */
+        }
     </style>
 @endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -23,17 +25,17 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="/parent/voucher/rewards">
-                    <div style="background-color: #C8A796;" class="alert font-weight-bold text-dark text-center">
-                        <i class="fas fa-gift fa-fw"></i> Claim Rewards
-                    </div>
-                </a>
+                        <div style="background-color: #C8A796;" class="alert font-weight-bold text-dark text-center">
+                            <i class="fas fa-gift fa-fw"></i> Claim Rewards
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-6">
                     <a href="/parent/voucher/my_vouchers">
-                    <div class="alert alert-success font-weight-bold text-dark text-center">
-                        <i class="fas fa-receipt fa-fw"></i>My Vouchers
-                    </div>
-                </a>
+                        <div class="alert alert-success font-weight-bold text-dark text-center">
+                            <i class="fas fa-receipt fa-fw"></i>My Vouchers
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -48,9 +50,8 @@
                     No vouchers available as of this moment
                 </div>
             @elseif(!$my_vouchers->isEmpty())
-
-                    <div class="row">
-                        @foreach ($my_vouchers as $my_voucher)
+                <div class="row">
+                    @foreach ($my_vouchers as $my_voucher)
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -76,7 +77,7 @@
                                                     ***********
                                                 </span>
                                                 <span class="ml-2">
-                                                    <i class="fas fa-eye-slash" id="toggle-eye-{{ $my_voucher->id }}" onclick="toggleVoucherCode({{ $my_voucher->id }})" style="cursor: pointer;"></i>
+                                                    <i class="fas fa-eye-slash" id="toggle-eye-{{ $my_voucher->id }}" onclick="toggleVoucherCode({{ $my_voucher->id }}, '{{ $my_voucher->voucher_code }}')" style="cursor: pointer;"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -86,27 +87,26 @@
                         </div>
 
                         <script>
-                        function toggleVoucherCode(id) {
+                        function toggleVoucherCode(id, code) {
                             var voucherCodeElement = document.getElementById('voucher-code-' + id);
                             var eyeIcon = document.getElementById('toggle-eye-' + id);
                             if (voucherCodeElement.textContent.includes('*')) {
                                 // Reveal the voucher code
-                                voucherCodeElement.textContent = "{{ $my_voucher->voucher_code }}"; // Adjust this to pass the actual voucher code dynamically if needed
+                                voucherCodeElement.textContent = code;
                                 eyeIcon.classList.remove('fa-eye-slash');
                                 eyeIcon.classList.add('fa-eye');
                             } else {
                                 // Hide the voucher code
-                                voucherCodeElement.textContent = '*************';
+                                voucherCodeElement.textContent = '***********';
                                 eyeIcon.classList.remove('fa-eye');
                                 eyeIcon.classList.add('fa-eye-slash');
                             }
                         }
                         </script>
 
-                        @endforeach
-                        {{-- end of voucher line --}}
-                    </div>
-
+                    @endforeach
+                    {{-- end of voucher line --}}
+                </div>
             @endif
         </div>
     </div>
@@ -129,6 +129,7 @@
         });
     </script>
 @endsection
+
 @section('custom-script-header')
     <script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
 @endsection
