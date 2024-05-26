@@ -34,7 +34,7 @@
 
         <div class="row full-height">
           <div class="col-md-6 left-column d-flex justify-content-center align-items-center">
-            <img src="/images/navbar-logo.png" style="max-width: 75%" alt="">
+            <img src="/images/navbar1-logo.webp" style="max-width: 75%" alt="">
           </div>
           <div class="col-md-6 right-column">
             <br><br><br><br>

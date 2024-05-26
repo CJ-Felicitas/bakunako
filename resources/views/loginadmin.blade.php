@@ -21,7 +21,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6 justify-content-center">
                 <div class="col-md-12 text-center"> <!-- Removed justify-content-center -->
-                    <img src="/images/navbar-logo.png" width="70%" alt="">
+                    <img src="/images/navbar1-logo.webp" width="70%" alt="">
                 </div>
                 <div class="form-group mt-5">
                     <form action="/adminlogin_" method="post">

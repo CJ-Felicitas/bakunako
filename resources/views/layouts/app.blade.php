@@ -13,7 +13,8 @@
     @yield('content')
     <footer class="bg-secondary text-dark p-2">
         <div class="container mx-auto text-center">
-            <p>&copy; Bakunako. All rights reserved.</p>
+            <p>&copy; BakunAko
+                All rights reserved 2024.</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

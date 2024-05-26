@@ -8,7 +8,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion custom-font-size" id="accordionSidebar">
     <a style="background-color: white" class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon">
-            <img width="100%" src="/images/navbar-logo.webp">
+            <img width="100%" src="/images/navbar1-logo.webp">
         </div>
         {{-- <div class="sidebar-brand-text mx-3 text-dark">Bakunako</div> --}}
     </a>

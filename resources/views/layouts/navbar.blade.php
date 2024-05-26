@@ -21,7 +21,7 @@
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="#">
                     <img
-                        src="/images/navbar-logo.png"
+                        src="/images/navbar1-logo.webp"
                         height="40"
                         alt="MDB Logo"
                         loading="lazy"
