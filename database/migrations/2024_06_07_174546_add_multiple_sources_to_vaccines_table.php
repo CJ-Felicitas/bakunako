@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('vaccines', function (Blueprint $table) {
-            $table->longtext('source')->nullable();
+            $table->longtext('source_two')->nullable();
+            $table->longtext('source_three')->nullable();
+            $table->longtext('source_four')->nullable();
+            $table->longtext('source_five')->nullable();
         });
     }
 
@@ -25,7 +28,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('vaccines_tablee', function (Blueprint $table) {
+        Schema::table('vaccines', function (Blueprint $table) {
             //
         });
     }

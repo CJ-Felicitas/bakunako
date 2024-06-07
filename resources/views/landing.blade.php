@@ -91,113 +91,21 @@
                 <h3 class="text-center">About Vaccines</h3>
             </div>
             <div class="row mt-5">
+
+
+                @foreach ($a as $vaccine)
                 <div class="col-md-4 mt-3">
                     <div class="card">
-                        <img src="/images/BCG.png" height="200px" width="200px" class="card-img-top"
+                        <img src="/{{ $vaccine->dir }}" class="card-img-top" height="200px" width="200px"
                             alt="Fissure in Sandstone" />
                         <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Bacillus Calmette–Guérin (BCG)</h5>
-                            <p class="card-text text-center">Bacillus Calmette–Guérin (BCG) vaccine - is a live attenuated
-                                vaccine derived from a strain of
-                                Mycobacterium bovis that has been cultured and modified in such a way that it is safe for
-                                human use.</p>
+                            <h5 class="card-title text-center">{{ str_replace(range(0, 9), '', $vaccine->name) }}</h5>
+                            <p class="card-text text-center">{{ $vaccine->description }}</p>
 
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mt-3">
-                    <div class="card">
-                        <img src="/images/HepatitisB.png" height="200px" width="200px" class="card-img-top"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Hepatitis B</h5>
-                            <p class="card-text text-center">Hepatitis B vaccine is a highly effective prevention measure
-                                that can protect individuals from
-                                contracting the virus. The vaccine works by helping the immune system build antibodies to
-                                fight off the
-                                virus if exposed in the future</p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-3">
-                    <div class="card">
-                        <img src="/images/pentavalent-vaccine.png" height="200px" width="200px" class="card-img-top"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Pentavalent Vaccine</h5>
-                            <p class="card-text text-center">Pentavalent vaccine is a combination vaccine that protects
-                                against five different diseases. This vaccine
-                                is administered to infants and young children to provide immunity against these potentially
-                                dangerous
-                                infections.</p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
-                    <div class="card">
-                        <img src="/images/opv.png" class="card-img-top" height="200px" width="200px"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Oral Polio Vaccine (OPV)</h5>
-                            <p class="card-text text-center">Oral Polio Vaccine (OPV) is a live attenuated vaccine that is
-                                administered orally to provide immunity
-                                against the poliovirus. Developed by Dr. Albert Sabin in the 1960s, OPV has played a crucial
-                                role in the
-                                global effort to eradicate polio.</p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-3">
-                    <div class="card">
-                        <img src="/images/ipv.png" class="card-img-top" height="200px" width="200px"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Inactivated Polio Vaccine (IPV)</h5>
-                            <p class="card-text text-center">Inactivated Polio Vaccine (IPV) is a type of vaccine that is
-                                used to protect against poliovirus, the
-                                virus that causes polio. IPV is made using a virus that has been killed, or inactivated,
-                                making it unable to
-                                cause infection. When a person is vaccinated with IPV, their immune system recognizes the
-                                inactivated
-                                virus as a threat and produces antibodies to attack it.</p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-3">
-                    <div class="card">
-                        <img src="/images/pcv-v2.png" class="card-img-top" height="200px" width="200px"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Pneumococcal Conjugate Vaccine (PCV)</h5>
-                            <p class="card-text text-center">Pneumococcal Conjugate Vaccine is a highly effective
-                                immunization created using the conjugate
-                                vaccine method. It is specifically designed to safeguard infants, young children, and adults
-                                from
-                                illnesses caused by the bacterium Streptococcus pneumoniae.</p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mt-3">
-                    <div class="card">
-                        <img src="/images/mmr.png" class="card-img-top" height="200px" width="200px"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body" style="height: 250px">
-                            <h5 class="card-title text-center">Measles, Mumps, Rubella (MMR)</h5>
-                            <p class="card-text text-center">Measles, Mumps, Rubella (MMR) vaccine is a combination vaccine
-                                that protects against three serious
-                                and highly contagious viral diseases</p>
-
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 @foreach ($vaccines as $vaccine)
                 <div class="col-md-4 mt-3">
                     <div class="card">
@@ -240,17 +148,44 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="privacyModalLabel">Data Privacy Statement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="privacyModalLabel">BakunAko Data Privacy Statement</h5>
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Your data privacy statement content goes here -->
-                    <p>This is the data privacy statement of your website...</p>
+                 <div>
+                    The right to privacy is a fundamental human right. Acknowledging this, the BakunAko, endeavors to safeguard its users’ data privacy by adhering to data privacy principles and employing standard safety measures in the collection, processing, disclosure and retention of personal data in accordance with the Data Privacy Act of 2012 (R.A. 10173), its Implementing Rules and Regulations (IRR) and to issuances of the National Privacy Commission.
+                 </div>
+
+                 <div class="mt-2">
+                    At BakunAko, we are committed to protecting your privacy and ensuring the security of your personal information. This Data Privacy Statement outlines how we collect, use, disclose, and protect your data when you use the BakunAko system.
+                 </div>
+
+                 <div class="mt-2">
+                    1. We collect personal information directly from you when you use the BakunAko system. This information includes but is not limited to your name, contact details, and any other information necessary to provide you with our services.
+                 </div>
+
+                 <div class="mt-2">
+                    2. We use the personal information we collect to provide you with the services offered by the BakunAko system. This may include scheduling vaccination appointments, sending reminders, and facilitating communication between you and healthcare providers. We may also use your information for internal purposes such as improving our services and conducting research.
+                 </div>
+
+                 <div class="mt-2">3. Utmost care and due diligence are practiced by the BakunAko system in handling personal data. The BakunAko shall never share or disclose data to third-parties without prior consent from the data subjects. Whenever disclosure of data is necessary and permitted, the University conscientiously reviews the privacy and security policies of the authorized third-party service providers or external partners. The BakunAko may also be required to disclose data in compliance with legal or regulatory obligations.</div>
+
+                 <div class="mt-2">4. We take the security of your personal information seriously and have implemented appropriate technical and organizational measures to protect it from unauthorized access, disclosure, alteration, or destruction. </div>
+
+                 <div class="mt-2">5. We will retain your personal information for as long as necessary to fulfill the purposes outlined in this Data Privacy Statement, unless a longer retention period is required or permitted by law. </div>
+
+                 <div class="mt-2">6. You have the right to access, and update, your personal information held by BakunAko. You may also have other rights depending on your jurisdiction, such as the right to restrict processing or data portability.</div>
+
+                 <div class="mt-2">7. We may update this Data Privacy Statement from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes by posting the updated Privacy Statement on our website or through other appropriate channels. </div>
+
+                 <div class="mt-2">8. If you have any questions or concerns about the BakunAko Data Privacy Statement or our privacy practices, please don’t hesitate to contact us through this email: bakunakodpo@gmail.com.</div>
+
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Agree</button>
                 </div>
             </div>
         </div>

@@ -17,8 +17,11 @@ use App\Http\Controllers\VaccineController;
 use App\Models\Vaccine;
 // get the landing page/default page
 Route::get('/', function () {
-    $vaccines = Vaccine::all();
-    return view('landing', compact('vaccines'));
+    $vaccines = Vaccine::where('days_count', null)->get();
+    $id = [1,2,3,6,9,10,13];
+
+    $a = Vaccine::whereIn('id', $id)->get();
+    return view('landing', compact('vaccines', 'a'));
 });
 Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 
@@ -67,6 +70,7 @@ Route::prefix('parent')->middleware('ParentPageRoutes')->group(function () {
 
     Route::get('/vaccines', function () {
         $vaccines = Vaccine::all();
+
         return view('site.client.vaccine', compact('vaccines'));
     });
 

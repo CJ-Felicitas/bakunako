@@ -27,9 +27,15 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "At Birth",
             'protection_from'=>'HepatitisB',
             'days_count' => 0,
-            'dir' => "vaccine_photos/BCG.png"
+            'dir' => "vaccine_photos/BCG.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
         DB::table('vaccines')->insert([
+
+
             'name' => 'Hepatitis B',
             'dose_number' => 1,
             'description' => 'Hepatitis B vaccine is a highly effective prevention measure that can protect individuals from
@@ -40,7 +46,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "At Birth",
             'protection_from'=>'Tuberculosis',
             'days_count' => 0,
-            'dir' => "vaccine_photos/HepatitisB.png"
+            'dir' => "vaccine_photos/HepatitisB.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
         // pentavalent vaccine
         DB::table('vaccines')->insert([
@@ -54,7 +64,12 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Diphtheria, Pertussis, Tetanus, Haemophilus Influenzae type b and Hepatitis B',
             'days_count' => 45,
-            'dir' => "vaccine_photos/pentavalent-vaccine.png"
+            'dir' => "vaccine_photos/pentavalent-vaccine.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+
         ]);
 
         DB::table('vaccines')->insert([
@@ -68,7 +83,12 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Diphtheria, Pertussis, Tetanus, Haemophilus Influenzae type b and Hepatitis B',
             'days_count' => 75,
-            'dir' => "vaccine_photos/pentavalent-vaccine.png"
+            'dir' => "vaccine_photos/pentavalent-vaccine.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+
         ]);
 
         DB::table('vaccines')->insert([
@@ -82,7 +102,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Diphtheria, Pertussis, Tetanus, Haemophilus Influenzae type b and Hepatitis B',
             'days_count' => 105,
-            'dir' => "vaccine_photos/pentavalent-vaccine.png"
+            'dir' => "vaccine_photos/pentavalent-vaccine.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
 
         // opv
@@ -97,7 +121,12 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Poliovirus',
             'days_count' => 45,
-            'dir' => "vaccine_photos/opv.png"
+            'dir' => "vaccine_photos/opv.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+
         ]);
 
         DB::table('vaccines')->insert([
@@ -111,7 +140,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Poliovirus',
             'days_count' => 75,
-            'dir' => "vaccine_photos/opv.png"
+            'dir' => "vaccine_photos/opv.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
 
         DB::table('vaccines')->insert([
@@ -125,7 +158,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Poliovirus',
             'days_count' => 105,
-            'dir' => "vaccine_photos/opv.png"
+            'dir' => "vaccine_photos/opv.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
 
         // IPV
@@ -141,7 +178,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "14 weeks from Birth",
             'protection_from'=>'Poliovirus',
             'days_count' => 105,
-            'dir' => "vaccine_photos/ipv.png"
+            'dir' => "vaccine_photos/ipv.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
         // PCV
         DB::table('vaccines')->insert([
@@ -155,7 +196,12 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Pneumonia and Meningitis',
             'days_count' => 45,
-            'dir' => "vaccine_photos/pcv-v2.png"
+            'dir' => "vaccine_photos/pcv-v2.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+
         ]);
         DB::table('vaccines')->insert([
             'name' => 'PCV 2',
@@ -168,7 +214,12 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Pneumonia and Meningitis',
             'days_count' => 75,
-            'dir' => "vaccine_photos/pcv-v2.png"
+            'dir' => "vaccine_photos/pcv-v2.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+
         ]);
         DB::table('vaccines')->insert([
             'name' => 'PCV 3',
@@ -181,7 +232,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "6, 10 and 14 weeks from Birth",
             'protection_from'=>'Pneumonia and Meningitis',
             'days_count' => 105,
-            'dir' => "vaccine_photos/pcv-v2.png"
+            'dir' => "vaccine_photos/pcv-v2.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
         ]);
         // MMR
         DB::table('vaccines')->insert([
@@ -194,7 +249,11 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "9 months and 1 year old from Birth",
             'protection_from'=>'Measles, Mumps and Rubella',
             'days_count' => 270,
-            'dir' => "vaccine_photos/mmr.png"
+            'dir' => "vaccine_photos/mmr.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
 
         ]);
 
@@ -208,7 +267,12 @@ class VaccineSeeder extends Seeder
             'when_to_give'=> "9 months and 1 year old from Birth",
             'protection_from'=>'Measles, Mumps and Rubella',
             'days_count' => 365,
-            'dir' => "vaccine_photos/mmr.png"
+            'dir' => "vaccine_photos/mmr.png",
+            'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+
 
         ]);
 
