@@ -105,19 +105,23 @@ class AdminController extends Controller
             return $th->getMessage();
         }
     }
-
     public function dashboard_view()
     {
         $male_count = Infant::where('sex', 'Male')->count();
         $female_count = Infant::where('sex', 'Female')->count();
         $total = $male_count + $female_count;
         $infants = Infant::all();
+
+        $checkvouchers = VoucherType::where('remaining_quantity', 0)->get();
+
+
+
         return view('site.admin.dashboard', [
             'male_count' => $male_count,
             'female_count' => $female_count,
             'total' => $total,
-            'infants' => $infants
-        ]);
+            'infants' => $infants,
+        ], compact('checkvouchers'));
     }
     public function add_user_view()
     {
@@ -215,7 +219,7 @@ class AdminController extends Controller
             $vaccine_id = $schedule->vaccines_id;
 
             if (!Hash::check($validated['password'], $user->password)) {
-                return redirect()->back()->with('password', 'Password is incorrect');
+                return redirect("/admin/vaccination_details/$schedule->infants_id")->with('password', 'Password is incorrect');
             }
 
             // start transaction for safety purposes
@@ -229,26 +233,39 @@ class AdminController extends Controller
             // get all the voucher types and iterate each one of them to create a new voucher for the user
             $voucher_types = VoucherType::where('vaccine_id', $vaccine_id)->get();
 
-            // start creating the voucher
-            foreach ($voucher_types as $voucher_type) {
-                $voucher = new Voucher();
-                $voucher->voucher_type_id = $voucher_type->id;
-                $voucher->infant_id = $infant_id;
-                $random_code = $this->generateRandomString(2);
-                $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
-                $voucher->is_reedeemable = 1;
-                $voucher->is_redeemed = 0;
-                $voucher->created_at = Carbon::now();
-                $voucher->updated_at = Carbon::now();
-                $voucher->save();
+            if ($schedule->voucher_check = null) {
+                foreach ($voucher_types as $voucher_type) {
 
-                // // update the remaining quantity of the voucher
-                // $voucher_type->remaining_quantity = $voucher_type->remaining_quantity - 1;
-                // $voucher_type->save();
+                    if ($voucher_type->remaining_quantity == 0) {
+                        DB::commit();
+                        return redirect("/admin/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+                    } elseif ($voucher_type->remaining_quantity > 0) {
+                        $voucher = new Voucher();
+                        $voucher->voucher_type_id = $voucher_type->id;
+                        $voucher->infant_id = $infant_id;
+                        $random_code = $this->generateRandomString(2);
+                        $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
+                        $voucher->is_reedeemable = 1;
+                        $voucher->is_redeemed = 0;
+                        $voucher->created_at = Carbon::now();
+                        $voucher->updated_at = Carbon::now();
+
+                        $schedule_update = Schedule::find($validated['schedule_id']);
+                        $schedule_update->voucher_check = "done";
+
+                        $schedule_update->save();
+                        $voucher->save();
+
+                        DB::commit();
+                        return redirect("/admin/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+                    }
+                }
+            } elseif ($schedule->voucher_check == "done"){
+                return redirect("/admin/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
             }
 
-            DB::commit();
-            return redirect()->back()->with('success', 'Status updated successfully');
+
+
         } catch (\Exception $e) {
             DB::rollBack();
             return $e;

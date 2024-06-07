@@ -27,10 +27,10 @@
                 <span style="{{ Request::is('admin/vaccination*') ? 'color: #CD9F8E' : '' }}">Vaccine Infants</span></a>
         </li>
 
-        <li class="nav-item {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('admin/addvaccine*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/addvaccine">
                 <i class="fas fa-fw fa-notes-medical"></i>
-                <span style="{{ Request::is('admin/dashboard*') ? 'color: #CD9F8E' : '' }}">Manage Vaccines</span></a>
+                <span style="{{ Request::is('admin/addvaccine*') ? 'color: #CD9F8E' : '' }}">Manage Vaccines</span></a>
         </li>
 
         <!-- Add active class to the li if the current route matches -->

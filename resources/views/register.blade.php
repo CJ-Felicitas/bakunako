@@ -14,7 +14,19 @@
 
     <style>
         /* Add some background colors for visualization */
-
+        .password-message {
+                                        color: red;
+                                        font-size: 0.9em;
+                                        margin-top: 5px;
+                                    }
+                                    .error-messages {
+                                        list-style: none;
+                                        padding: 0;
+                                        margin: 0;
+                                    }
+                                    .error-messages li {
+                                        margin-bottom: 3px;
+                                    }
         .right-column {
           background-color: #cd9f8e;
         }
@@ -74,8 +86,41 @@
                             <input value="{{ old('username') }}" type="text" name="username"
                                 class="mb-2 form-control form-control-lg" placeholder="Username" required>
 
-                            <input value="{{ old('password') }}" type="password" name="password"
-                                class="form-control form-control-lg mb-2" placeholder="Password" required>
+                                <input value="{{ old('password') }}" type="password" name="password"
+                                class="form-control form-control-lg mb-2" placeholder="Password" required
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.">
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const passwordInput = document.querySelector('input[name="password"]');
+                                        const message = document.createElement('div');
+                                        message.className = 'password-message';
+                                        passwordInput.parentNode.insertBefore(message, passwordInput.nextSibling);
+
+                                        passwordInput.addEventListener('input', function() {
+                                            const value = passwordInput.value;
+                                            const rules = [
+                                                { regex: /.{8,}/, message: "At least 8 characters" },
+                                                { regex: /[A-Z]/, message: "At least one uppercase letter" },
+                                                { regex: /[a-z]/, message: "At least one lowercase letter" },
+                                                { regex: /\d/, message: "At least one number" }
+                                            ];
+
+                                            const errors = rules.filter(rule => !rule.regex.test(value)).map(rule => rule.message);
+
+                                            if (errors.length > 0) {
+                                                message.innerHTML = `<ul class="error-messages">${errors.map(error => `<li>${error}</li>`).join('')}</ul>`;
+                                                passwordInput.setCustomValidity("Password does not meet the requirements");
+                                            } else {
+                                                message.innerHTML = '';
+                                                passwordInput.setCustomValidity('');
+                                            }
+                                        });
+                                    });
+                                </script>
+
+
 
                             <input value="{{ old('confirm_password') }}" type="password" name="confirm_password"
                                 class="form-control form-control-lg mb-2" placeholder="Confirm Password" required>

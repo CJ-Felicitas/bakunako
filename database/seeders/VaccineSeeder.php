@@ -24,7 +24,10 @@ class VaccineSeeder extends Seeder
             Mycobacterium bovis that has been cultured and modified in such a way that it is safe for human use.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 0
+            'when_to_give'=> "At Birth",
+            'protection_from'=>'HepatitisB',
+            'days_count' => 0,
+            'dir' => "vaccine_photos/BCG.png"
         ]);
         DB::table('vaccines')->insert([
             'name' => 'Hepatitis B',
@@ -34,7 +37,10 @@ class VaccineSeeder extends Seeder
             virus if exposed in the future.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 0
+            'when_to_give'=> "At Birth",
+            'protection_from'=>'Tuberculosis',
+            'days_count' => 0,
+            'dir' => "vaccine_photos/HepatitisB.png"
         ]);
         // pentavalent vaccine
         DB::table('vaccines')->insert([
@@ -45,7 +51,10 @@ class VaccineSeeder extends Seeder
             infections.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 45
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Diphtheria, Pertussis, Tetanus, Haemophilus Influenzae type b and Hepatitis B',
+            'days_count' => 45,
+            'dir' => "vaccine_photos/pentavalent-vaccine.png"
         ]);
 
         DB::table('vaccines')->insert([
@@ -56,7 +65,10 @@ class VaccineSeeder extends Seeder
             infections.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 75
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Diphtheria, Pertussis, Tetanus, Haemophilus Influenzae type b and Hepatitis B',
+            'days_count' => 75,
+            'dir' => "vaccine_photos/pentavalent-vaccine.png"
         ]);
 
         DB::table('vaccines')->insert([
@@ -67,7 +79,10 @@ class VaccineSeeder extends Seeder
             infections.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 105
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Diphtheria, Pertussis, Tetanus, Haemophilus Influenzae type b and Hepatitis B',
+            'days_count' => 105,
+            'dir' => "vaccine_photos/pentavalent-vaccine.png"
         ]);
 
         // opv
@@ -79,7 +94,10 @@ class VaccineSeeder extends Seeder
             global effort to eradicate polio',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 45
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Poliovirus',
+            'days_count' => 45,
+            'dir' => "vaccine_photos/opv.png"
         ]);
 
         DB::table('vaccines')->insert([
@@ -90,7 +108,10 @@ class VaccineSeeder extends Seeder
             global effort to eradicate polio',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 75
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Poliovirus',
+            'days_count' => 75,
+            'dir' => "vaccine_photos/opv.png"
         ]);
 
         DB::table('vaccines')->insert([
@@ -101,7 +122,10 @@ class VaccineSeeder extends Seeder
             global effort to eradicate polio',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 105
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Poliovirus',
+            'days_count' => 105,
+            'dir' => "vaccine_photos/opv.png"
         ]);
 
         // IPV
@@ -114,7 +138,10 @@ class VaccineSeeder extends Seeder
             virus as a threat and produces antibodies to attack it',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 105
+            'when_to_give'=> "14 weeks from Birth",
+            'protection_from'=>'Poliovirus',
+            'days_count' => 105,
+            'dir' => "vaccine_photos/ipv.png"
         ]);
         // PCV
         DB::table('vaccines')->insert([
@@ -125,7 +152,10 @@ class VaccineSeeder extends Seeder
             illnesses caused by the bacterium Streptococcus pneumoniae',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 45
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Pneumonia and Meningitis',
+            'days_count' => 45,
+            'dir' => "vaccine_photos/pcv-v2.png"
         ]);
         DB::table('vaccines')->insert([
             'name' => 'PCV 2',
@@ -135,7 +165,10 @@ class VaccineSeeder extends Seeder
             illnesses caused by the bacterium Streptococcus pneumoniae',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 75
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Pneumonia and Meningitis',
+            'days_count' => 75,
+            'dir' => "vaccine_photos/pcv-v2.png"
         ]);
         DB::table('vaccines')->insert([
             'name' => 'PCV 3',
@@ -145,7 +178,10 @@ class VaccineSeeder extends Seeder
             illnesses caused by the bacterium Streptococcus pneumoniae',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 105
+            'when_to_give'=> "6, 10 and 14 weeks from Birth",
+            'protection_from'=>'Pneumonia and Meningitis',
+            'days_count' => 105,
+            'dir' => "vaccine_photos/pcv-v2.png"
         ]);
         // MMR
         DB::table('vaccines')->insert([
@@ -155,7 +191,10 @@ class VaccineSeeder extends Seeder
             and highly contagious viral diseases',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 270
+            'when_to_give'=> "9 months and 1 year old from Birth",
+            'protection_from'=>'Measles, Mumps and Rubella',
+            'days_count' => 270,
+            'dir' => "vaccine_photos/mmr.png"
 
         ]);
 
@@ -166,7 +205,10 @@ class VaccineSeeder extends Seeder
             and highly contagious viral diseases',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'days_count' => 365
+            'when_to_give'=> "9 months and 1 year old from Birth",
+            'protection_from'=>'Measles, Mumps and Rubella',
+            'days_count' => 365,
+            'dir' => "vaccine_photos/mmr.png"
 
         ]);
 

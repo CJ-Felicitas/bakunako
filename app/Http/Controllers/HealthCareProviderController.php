@@ -84,28 +84,37 @@ class HealthCareProviderController extends Controller
             // get all the voucher types and iterate each one of them to create a new voucher for the user
             $voucher_types = VoucherType::where('vaccine_id', $vaccine_id)->get();
 
-            // start creating the voucher
-            foreach ($voucher_types as $voucher_type) {
+            if ($schedule->voucher_check = null) {
+                foreach ($voucher_types as $voucher_type) {
 
-                if ($voucher_type->remaining_quantity == 0) {
-                    DB::commit();
-                    return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
-                } elseif ($voucher_type->remaining_quantity > 0) {
-                    $voucher = new Voucher();
-                    $voucher->voucher_type_id = $voucher_type->id;
-                    $voucher->infant_id = $infant_id;
-                    $random_code = $this->generateRandomString(2);
-                    $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
-                    $voucher->is_reedeemable = 1;
-                    $voucher->is_redeemed = 0;
-                    $voucher->created_at = Carbon::now();
-                    $voucher->updated_at = Carbon::now();
-                    $voucher->save();
+                    if ($voucher_type->remaining_quantity == 0) {
+                        DB::commit();
+                        return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+                    } elseif ($voucher_type->remaining_quantity > 0) {
+                        $voucher = new Voucher();
+                        $voucher->voucher_type_id = $voucher_type->id;
+                        $voucher->infant_id = $infant_id;
+                        $random_code = $this->generateRandomString(2);
+                        $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
+                        $voucher->is_reedeemable = 1;
+                        $voucher->is_redeemed = 0;
+                        $voucher->created_at = Carbon::now();
+                        $voucher->updated_at = Carbon::now();
 
-                    DB::commit();
-                    return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+                        $schedule_update = Schedule::find($validated['schedule_id']);
+                        $schedule_update->voucher_check = "done";
+
+                        $schedule_update->save();
+                        $voucher->save();
+
+                        DB::commit();
+                        return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+                    }
                 }
+            } elseif ($schedule->voucher_check == "done"){
+                return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
             }
+
 
 
         } catch (\Exception $e) {
