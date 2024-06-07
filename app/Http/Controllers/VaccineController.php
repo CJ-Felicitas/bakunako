@@ -120,7 +120,7 @@ class VaccineController extends Controller
         $vaccine->description = $request->input('description');
         $vaccine->protection_from = $request->protection_from;
         $vaccine->when_to_give = $request->when_to_give;
-        $vaccine->protection_from_description = $request->protection_from_description;
+        $vaccine->protection_from_details = $request->protection_from_description;
         $vaccine->dir = $filePath ?? null;
         $vaccine->save();
 
