@@ -25,10 +25,10 @@ class PDFController extends Controller
             'infant' => $infant,
             'schedules' => $schedule
         ];
-        
+
         $pdf = PDF::loadView('myPDF', $data);
         $pdf->setBasePath(public_path());
 
-        return $pdf->download('bakunako.pdf');
+        return $pdf->download('BakunAko.pdf');
     }
 }
