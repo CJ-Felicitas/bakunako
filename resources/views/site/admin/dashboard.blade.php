@@ -98,11 +98,11 @@
                      </button>
                  </div>
                  <div class="modal-body">
-                     <!-- Your data privacy statement content goes here -->
+                     <!-- Reminders for 0 count of vouchers for vaccine -->
                      <h4 class="font-weight-bold">The following vouchers are depleted</h4>
                      @foreach ($checkvouchers as $checkvoucher)
                      <ul class="mt-3">
-                        <li><div><h5><b>{{$checkvoucher->item_name}}</b> from <b>{{$checkvoucher->vaccines->name}}</b></h5></div></li>
+                        <li><div><h5><b>{{$checkvoucher->item_name}}</b> of <b>{{$checkvoucher->vaccines->name}} Vaccine</b></h5></div></li>
                      </ul>
 
                      @endforeach
