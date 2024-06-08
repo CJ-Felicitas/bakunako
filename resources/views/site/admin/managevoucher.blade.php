@@ -186,6 +186,7 @@
         <script>
             $(document).ready(function() {
                 $('#vaccineSelect').change(function() {
+
                     var vaccineId = $(this).val();
                     $.ajax({
                         url: '/admin/vaccines_to_vouchers',
@@ -194,6 +195,7 @@
                             vaccine_id: vaccineId
                         },
                         success: function(response) {
+
                             $('#voucherSelect').empty();
                             response.forEach(function(voucher) {
                                 $('#voucherSelect').append('<option value="' + voucher.id +

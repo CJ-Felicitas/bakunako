@@ -99,9 +99,12 @@
                  </div>
                  <div class="modal-body">
                      <!-- Your data privacy statement content goes here -->
-                     <h4>The following vouchers are depleted</h4>
+                     <h4 class="font-weight-bold">The following vouchers are depleted</h4>
                      @foreach ($checkvouchers as $checkvoucher)
-                        <div>{{$checkvoucher->item_name}}</div>
+                     <ul class="mt-3">
+                        <li><div><h5>{{$checkvoucher->item_name}}</h5></div></li>
+                     </ul>
+
                      @endforeach
                  </div>
                  <div class="modal-footer">

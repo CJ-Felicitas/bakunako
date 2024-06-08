@@ -26,11 +26,14 @@ Route::get('/', function () {
 Route::get('/pdf/{id}', [PDFController::class, 'generatePDF']);
 
 // do not hilabot this
-Route::get('/vaccines_to_vouchers', [VoucherController::class, 'vaccines_associated_with_voucher']);
+
 
 Route::get('/register', function () {
     return view('register');
 });
+
+//alternative to broken route of site.admin.managevouchers
+Route::get('/alternative_get_vaccines', [VoucherController::class, 'list']);
 
 // get the login page
 Route::get('/login_healthcareprovider', function () {

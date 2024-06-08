@@ -30,15 +30,20 @@ class VoucherController extends Controller
     {
         // general view for voucher that returns the list of voucher_types
         $partners = Partner::all();
-        $excludedNames = Vaccine::where('name', 'REGEXP', '[1-2]$')
-            ->pluck('name')
-            ->toArray();
+        // $excludedNames = Vaccine::where('name', 'REGEXP', '[1-2]$')
+        //     ->pluck('name')
+        //     ->toArray();
 
-        // Manually add "MMR 2" to the list of excluded names
-        $excludedNames = array_diff($excludedNames, ['MMR 2']);
+        // // Manually add "MMR 2" to the list of excluded names
+        // $excludedNames = array_diff($excludedNames, ['MMR 2']);
 
-        $vaccines = Vaccine::whereNotIn('name', $excludedNames)->get();
-        $vouchers = Voucher::all();
+        // $vaccines = Vaccine::whereNotIn('name', $excludedNames)->get();
+
+        $excludedIds = [3, 5, 6, 7, 10, 11, 14];
+
+            $vaccines = Vaccine::whereNotIn('id', $excludedIds)->get();
+            $vouchers = Voucher::all();
+
         $voucher_types = VoucherType::orderByDesc('remaining_quantity')->get();
         $active_vouchers = ActiveVoucher::all();
 
@@ -208,8 +213,11 @@ class VoucherController extends Controller
         try {
             // get all the voucher types that has the vaccine_id
             $vaccine_id = $request->vaccine_id;
+
             $voucher_types = VoucherType::where('vaccine_id', $vaccine_id)->get();
-            return response()->json($voucher_types);
+            return response()->json([
+                'asdsa' => 'asdsad'
+             ]);
         } catch (\Throwable $th) {
             return response()->json($th->getMessage());
         }
@@ -261,5 +269,11 @@ class VoucherController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+
+
+    public function list(){
+
     }
 }

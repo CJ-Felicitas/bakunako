@@ -155,7 +155,7 @@
                         <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
                         <td>{{$user->address}}</td>
                         <td>{{$user->email}}</td>
-                        <td>Davao Doc</td>
+                        <td>{{$user->assigned_at}}</td>
                         <td>{{$user->created_at}}</td>
                         <td>{{$user->phone_number}}</td>
 
