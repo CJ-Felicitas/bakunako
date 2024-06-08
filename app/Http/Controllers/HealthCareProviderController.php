@@ -49,6 +49,9 @@ class HealthCareProviderController extends Controller
     // updates or marks the infant if its either done vaccinated or not and also the remarks
     public function updateStatus(Request $request)
     {
+
+
+
         $validator = Validator::make($request->all(), [
             'status' => 'required',
             'schedule_id' => 'required',
@@ -56,23 +59,25 @@ class HealthCareProviderController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->all()]);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         // assign the data that has been validated
         $validated = $validator->validated();
 
-        // check if the password is correct via try catch
+        // check if the password is correct
+        $user = auth()->user();
+        $schedule = Schedule::find($validated['schedule_id']);
+
+        if (!$schedule) {
+            return redirect()->back()->with('error', 'Schedule not found');
+        }
+
+        if (!Hash::check($validated['password'], $user->password)) {
+            return redirect()->back()->with('error', 'Password is incorrect');
+        }
+
         try {
-            $user = auth()->user();
-            $schedule = Schedule::find($validated['schedule_id']);
-            $infant_id = $schedule->infants_id;
-            $vaccine_id = $schedule->vaccines_id;
-
-            if (!Hash::check($validated['password'], $user->password)) {
-                return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('password', 'Password is incorrect');
-            }
-
             // start transaction for safety purposes
             DB::beginTransaction();
 
@@ -81,47 +86,39 @@ class HealthCareProviderController extends Controller
             $schedule->status = $validated['status'];
             $schedule->save();
 
-            // get all the voucher types and iterate each one of them to create a new voucher for the user
-            $voucher_types = VoucherType::where('vaccine_id', $vaccine_id)->get();
+            $voucher_types = VoucherType::where('vaccine_id', $schedule->vaccines_id)->get();
 
-            if ($schedule->voucher_check = null) {
+            if ($schedule->check_voucher == null) {
                 foreach ($voucher_types as $voucher_type) {
-
-                    if ($voucher_type->remaining_quantity == 0) {
-                        DB::commit();
-                        return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
-                    } elseif ($voucher_type->remaining_quantity > 0) {
+                    if ($voucher_type->remaining_quantity > 0) {
                         $voucher = new Voucher();
                         $voucher->voucher_type_id = $voucher_type->id;
-                        $voucher->infant_id = $infant_id;
+                        $voucher->infant_id = $schedule->infants_id;
                         $random_code = $this->generateRandomString(2);
-                        $voucher->voucher_code = $random_code . '' . $infant_id . '' . Carbon::now()->format('Ymd');
+                        $voucher->voucher_code = $random_code . $schedule->infants_id . Carbon::now()->format('Ymd');
                         $voucher->is_reedeemable = 1;
                         $voucher->is_redeemed = 0;
                         $voucher->created_at = Carbon::now();
                         $voucher->updated_at = Carbon::now();
 
-                        $schedule_update = Schedule::find($validated['schedule_id']);
-                        $schedule_update->voucher_check = "done";
-
-                        $schedule_update->save();
                         $voucher->save();
-
-                        DB::commit();
-                        return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
+                        $schedule->check_voucher = "done";
+                        $schedule->save();
+                        break;
                     }
                 }
-            } elseif ($schedule->voucher_check == "done"){
-                return redirect("/healthcare_provider/vaccination_details/$schedule->infants_id")->with('success', 'Status updated successfully');
             }
 
-
+            DB::commit();
+            return redirect()->back()->with('success', 'Status updated successfully');
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return $e;
+            return $e->getMessage();
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
+
 
     private function generateRandomString($length = 12)
     {
