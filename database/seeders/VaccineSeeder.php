@@ -25,7 +25,7 @@ class VaccineSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'when_to_give'=> "At Birth",
-            'protection_from'=>'HepatitisB',
+            'protection_from'=>'Tuberculosis',
             'days_count' => 0,
             'dir' => "vaccine_photos/BCG.png",
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
@@ -53,7 +53,7 @@ the Philippines has the highest TB incidence rate in Asia, with 554 cases per 10
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'when_to_give'=> "At Birth",
-            'protection_from'=>'Tuberculosis',
+            'protection_from'=>'Hepatitis B',
             'days_count' => 0,
             'dir' => "vaccine_photos/HepatitisB.png",
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
@@ -63,14 +63,11 @@ the Philippines has the highest TB incidence rate in Asia, with 554 cases per 10
             'protection_from_details' => 'Hepatitis B virus is a serious liver infection that, when contracted in infancy, often remains
 asymptomatic for many years. However, if left untreated, it can progress to cirrhosis and liver cancer in
 adulthood. Children under the age of 6 who contract the hepatitis B virus are at the highest risk of
-developing chronic infections. Hepatitis B virus is a serious liver infection that, when contracted in
-infancy, often remains asymptomatic for many years. However, if left untreated, it can progress to cirrhosis
-and liver cancer in adulthood. Children under the age of 6 who contract the hepatitis B virus are at the
-highest risk of developing chronic infections.'
+developing chronic infections.'
         ]);
         // pentavalent vaccine
         DB::table('vaccines')->insert([
-            'name' => 'Pentavalent 1',
+            'name' => 'Pentavalent',
             'dose_number' => 1,
             'description' => 'Pentavalent vaccine is a combination vaccine that protects against five different diseases. This vaccine
             is administered to infants and young children to provide immunity against these potentially dangerous
@@ -108,7 +105,7 @@ developing chronic infections.'
         ]);
 
         DB::table('vaccines')->insert([
-            'name' => 'Pentavalent 2',
+            'name' => 'Pentavalent',
             'dose_number' => 2,
             'description' => 'Pentavalent vaccine is a combination vaccine that protects against five different diseases. This vaccine
             is administered to infants and young children to provide immunity against these potentially dangerous
@@ -127,7 +124,7 @@ developing chronic infections.'
         ]);
 
         DB::table('vaccines')->insert([
-            'name' => 'Pentavalent 3',
+            'name' => 'Pentavalent',
             'dose_number' => 3,
             'description' => 'Pentavalent vaccine is a combination vaccine that protects against five different diseases. This vaccine
             is administered to infants and young children to provide immunity against these potentially dangerous
@@ -146,7 +143,7 @@ developing chronic infections.'
 
         // opv
         DB::table('vaccines')->insert([
-            'name' => 'OPV 1',
+            'name' => 'OPV',
             'dose_number' => 1,
             'description' => 'Oral Polio Vaccine (OPV) is a live attenuated vaccine that is administered orally to provide immunity
             against the poliovirus. Developed by Dr. Albert Sabin in the 1960s, OPV has played a crucial role in the
@@ -163,12 +160,12 @@ developing chronic infections.'
             'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
             'protection_from_details' => 'Polio is a highly contagious virus that affects approximately 1 in 200 individuals who become
 infected. Tragically, 5 to 10 percent of those cases result in death due to paralysis of the respiratory
-muscles. Once paralysis occurs, there is currently no known cure for polio'
+muscles. Once paralysis occurs, there is currently no known cure for polio.'
 
         ]);
 
         DB::table('vaccines')->insert([
-            'name' => 'OPV 2',
+            'name' => 'OPV',
             'dose_number' => 2,
             'description' => 'Oral Polio Vaccine (OPV) is a live attenuated vaccine that is administered orally to provide immunity
             against the poliovirus. Developed by Dr. Albert Sabin in the 1960s, OPV has played a crucial role in the
@@ -186,7 +183,7 @@ muscles. Once paralysis occurs, there is currently no known cure for polio'
         ]);
 
         DB::table('vaccines')->insert([
-            'name' => 'OPV 3',
+            'name' => 'OPV',
             'dose_number' => 3,
             'description' => 'Oral Polio Vaccine (OPV) is a live attenuated vaccine that is administered orally to provide immunity
             against the poliovirus. Developed by Dr. Albert Sabin in the 1960s, OPV has played a crucial role in the
@@ -227,7 +224,7 @@ muscles. Once paralysis occurs, there is currently no known cure for polio.'
         ]);
         // PCV
         DB::table('vaccines')->insert([
-            'name' => 'PCV 1',
+            'name' => 'PCV',
             'dose_number' => 1,
             'description' => 'Pneumococcal Conjugate Vaccine is a highly effective immunization created using the conjugate
             vaccine method. It is specifically designed to safeguard infants, young children, and adults from
@@ -248,7 +245,7 @@ consequences if left untreated.'
 
         ]);
         DB::table('vaccines')->insert([
-            'name' => 'PCV 2',
+            'name' => 'PCV',
             'dose_number' => 2,
             'description' => 'Pneumococcal Conjugate Vaccine is a highly effective immunization created using the conjugate
             vaccine method. It is specifically designed to safeguard infants, young children, and adults from
@@ -266,7 +263,7 @@ consequences if left untreated.'
 
         ]);
         DB::table('vaccines')->insert([
-            'name' => 'PCV 3',
+            'name' => 'PCV',
             'dose_number' => 3,
             'description' => 'Pneumococcal Conjugate Vaccine is a highly effective immunization created using the conjugate
             vaccine method. It is specifically designed to safeguard infants, young children, and adults from
@@ -284,7 +281,7 @@ consequences if left untreated.'
         ]);
         // MMR
         DB::table('vaccines')->insert([
-            'name' => 'MMR 1',
+            'name' => 'MMR',
             'dose_number' => 1,
             'description' => 'Measles, Mumps, Rubella (MMR) vaccine is a combination vaccine that protects against three serious
             and highly contagious viral diseases',
@@ -313,7 +310,7 @@ ears, heart, and brain. This condition is known as Congenital Rubella Syndrome'
         ]);
 
         DB::table('vaccines')->insert([
-            'name' => 'MMR 2',
+            'name' => 'MMR',
             'dose_number' => 2,
             'description' => 'Measles, Mumps, Rubella (MMR) vaccine is a combination vaccine that protects against three serious
             and highly contagious viral diseases',

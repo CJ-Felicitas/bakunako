@@ -39,17 +39,18 @@
                             <input type="text" class="form-control" name="dose_number" placeholder="(nth) dose of the vaccine">
 
                             <label for="vaccine_name" class="mt-3">Protection Against</label>
-                            <input type="text" class="form-control" name="protection_from" placeholder="Protection Against from what Disease, Illness, or Virus?">
+                            <input type="text" class="form-control" name="protection_from" placeholder="Protection Against from what Disease, Illness, or Virus">
 
                             <label for="vaccine_name" class="mt-3">When to Give</label>
-                            <input type="text" class="form-control" name="when_to_give" placeholder="Ideal date to administer the vaccine">
-
-                            <label for="vaccine_name" class="mt-3">Information</label>
-                            <input type="text" class="form-control" name="protection_from_description" placeholder="Information">
+                            <input type="text" class="form-control" name="when_to_give" placeholder="Ideal date to administer the vaccine E.g. 6, 10 and 14 weeks from Birth">
 
                             <label for="description" class="mt-3">Description of the Vaccine</label>
                             <textarea name="description" id="description" cols="30" rows="5" class="form-control" style="resize: none"
                             placeholder="Vaccine's Description"></textarea>
+
+                            <label for="protection_from_details" class="mt-3">Information</label>
+                            <textarea name="protection_from_details" id="protection_from_details" cols="70" rows="10" class="form-control" style="resize: none"
+                            placeholder="Vaccine Information"></textarea>
 
                             <label for="vaccine_name" class="mt-3">Sources</label>
                             <input type="text" class="form-control" name="source" placeholder="Source of vaccine description">
@@ -125,11 +126,11 @@
                             <label for="" class="mt-3">When to give</label>
                             <input type="text" name="when_to_give" class="form-control">
 
-                            <label for="" class="mt-3">Information</label>
-                            <input type="text" name="protection_from_details" class="form-control">
-
                             <label for="" class="mt-3">Description</label>
                             <input type="text" name="description" class="form-control">
+
+                            <label for="" class="mt-3">Information</label>
+                            <input type="text" name="protection_from_details" class="form-control">
 
                             <label for="" class="mt-3">1st Source</label>
                             <input type="text" name="source" class="form-control">
