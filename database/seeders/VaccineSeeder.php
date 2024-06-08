@@ -31,7 +31,16 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details' => 'Tuberculosis (TB) is a contagious infection that primarily targets the lungs, although in infants
+and young children, it can also affect other parts of the body such as the brain, bones, joints, and internal
+organs (known as extrapulmonary or miliary tuberculosis). Severe cases of TB can lead to serious
+complications. Fortunately, the BCG vaccine has been shown to provide protection against meningitis and
+disseminated TB in children.
+Tuberculosis (TB) is a challenging disease to treat once contracted, with treatment often being
+lengthy and not always successful. The 2020 World Health Organization global TB report revealed that
+the Philippines has the highest TB incidence rate in Asia, with 554 cases per 100,000 Filipinos.'
+
         ]);
         DB::table('vaccines')->insert([
 
@@ -50,7 +59,14 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details' => 'Hepatitis B virus is a serious liver infection that, when contracted in infancy, often remains
+asymptomatic for many years. However, if left untreated, it can progress to cirrhosis and liver cancer in
+adulthood. Children under the age of 6 who contract the hepatitis B virus are at the highest risk of
+developing chronic infections. Hepatitis B virus is a serious liver infection that, when contracted in
+infancy, often remains asymptomatic for many years. However, if left untreated, it can progress to cirrhosis
+and liver cancer in adulthood. Children under the age of 6 who contract the hepatitis B virus are at the
+highest risk of developing chronic infections.'
         ]);
         // pentavalent vaccine
         DB::table('vaccines')->insert([
@@ -68,7 +84,26 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details' => 'Diphtheria is a bacterial infection that primarily affects the nose, throat, tonsils, and skin. The
+diphtheria toxin produced by the bacteria can lead to the formation of obstructive pseudo-membranes in
+the upper respiratory tract, which can result in difficulty breathing and swallowing, particularly in children.
+In severe cases, diphtheria can cause paralysis, heart failure, kidney failure, and in some instances, death.
+It is crucial to seek medical attention promptly if diphtheria is suspected, as early treatment can
+significantly improve outcomes.
+Pertussis, commonly known as whooping cough, is a highly contagious respiratory disease that
+can result in prolonged coughing spells lasting for weeks. In severe cases, it can lead to difficulty
+breathing, pneumonia, and other serious complications.
+Tetanus is a serious medical condition that results in excruciating muscle contractions. In children,
+it can lead to the locking of neck and jaw muscles, a condition commonly known as lockjaw. This can
+make it extremely difficult for children to perform basic functions such as opening their mouth,
+swallowing, breastfeeding, or even breathing. Unfortunately, even with proper treatment, tetanus can often
+prove to be fatal.
+Haemophilus influenzae type b is a bacterium that can cause serious diseases such as meningitis
+and pneumonia in infants and young children. These bacteria are commonly found in the human
+nasopharynx and can be transmitted to others through droplets from nasopharyngeal secretions.
+80-90% of infants infected with Hepatitis B within their first year of life are at a high risk of
+developing chronic infections.'
 
         ]);
 
@@ -125,7 +160,10 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details' => 'Polio is a highly contagious virus that affects approximately 1 in 200 individuals who become
+infected. Tragically, 5 to 10 percent of those cases result in death due to paralysis of the respiratory
+muscles. Once paralysis occurs, there is currently no known cure for polio'
 
         ]);
 
@@ -182,7 +220,10 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details'=>'Polio is a highly contagious virus that affects approximately 1 in 200 individuals who become
+infected. Tragically, 5 to 10 percent of those cases result in death due to paralysis of the respiratory
+muscles. Once paralysis occurs, there is currently no known cure for polio.'
         ]);
         // PCV
         DB::table('vaccines')->insert([
@@ -200,7 +241,10 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details' => 'Pneumococcal diseases, such as pneumonia and meningitis, are prevalent worldwide, particularly
+among children under 2 years old. These illnesses are a significant source of sickness and can have serious
+consequences if left untreated.'
 
         ]);
         DB::table('vaccines')->insert([
@@ -253,7 +297,18 @@ class VaccineSeeder extends Seeder
             'source' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_two' => 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
             'source_three'=> 'https://www.unicef.org/philippines/stories/routine-immunization-children-philippines',
-            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis'
+            'source_four'=> 'https://www.who.int/news-room/fact-sheets/detail/tuberculosis',
+            'protection_from_details'=> 'Measles is an extremely contagious disease characterized by symptoms such as fever, runny nose,
+white spots in the back of the mouth, and a rash. The most common complications associated with measles
+include ear infections, diarrhea, and pneumonia. In severe cases, measles can lead to blindness, brain
+swelling, and other serious health issues.
+Mumps is a viral infection that can lead to various symptoms such as headaches, fatigue, fever,
+and swelling of the salivary glands. In severe cases, complications may arise, including meningitis, orchitis
+(inflammation of the testicles), and even deafness. It is important to seek medical attention if you suspect
+you have mumps to prevent these potential complications.
+Rubella infection typically presents as a mild illness in children and adults. However, in pregnant
+women, it can have severe consequences such as miscarriage, stillbirth, or birth defects affecting the eyes,
+ears, heart, and brain. This condition is known as Congenital Rubella Syndrome'
 
         ]);
 

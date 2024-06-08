@@ -140,7 +140,7 @@ class VaccineController extends Controller
                 'dose_number' => $vaccine->dose_number,
                 'protection_from' => $vaccine->protection_from,
                 'when_to_give' => $vaccine->when_to_give,
-                'protection_from_description' => $vaccine->protection_from_description,
+                'protection_from_details' => $vaccine->protection_from_details,
                 'description' => $vaccine->description,
                 'source' => $vaccine->source,
                 'source_two' => $vaccine->source_two,

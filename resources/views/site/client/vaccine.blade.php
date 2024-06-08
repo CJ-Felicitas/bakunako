@@ -80,8 +80,8 @@
                     <div class="mt-3 text-align-justify">
                         {{$vaccine->protection_from_details}}
                     </div>
-                    <div>
-                        Source:
+                    <div class="mt-3">
+                        <div class="font-weight-bold">Source: </div>
                         @if ($vaccine->source !=null)
                             <div class="mt-2">{{$vaccine->source}}</div>
                         @endif

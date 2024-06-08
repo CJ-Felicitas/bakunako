@@ -44,8 +44,8 @@
                             <label for="vaccine_name" class="mt-3">When to Give</label>
                             <input type="text" class="form-control" name="when_to_give" placeholder="Ideal date to administer the vaccine">
 
-                            <label for="vaccine_name" class="mt-3">Description of Illness that the Vaccine Prevents or cures</label>
-                            <input type="text" class="form-control" name="protection_from_description" placeholder="Describe the Disease, Ilness, or Virus.">
+                            <label for="vaccine_name" class="mt-3">Information</label>
+                            <input type="text" class="form-control" name="protection_from_description" placeholder="Information">
 
                             <label for="description" class="mt-3">Description of the Vaccine</label>
                             <textarea name="description" id="description" cols="30" rows="5" class="form-control" style="resize: none"
@@ -125,8 +125,8 @@
                             <label for="" class="mt-3">When to give</label>
                             <input type="text" name="when_to_give" class="form-control">
 
-                            <label for="" class="mt-3">Protection from description</label>
-                            <input type="text" name="protection_from_description" class="form-control">
+                            <label for="" class="mt-3">Information</label>
+                            <input type="text" name="protection_from_details" class="form-control">
 
                             <label for="" class="mt-3">Description</label>
                             <input type="text" name="description" class="form-control">
@@ -209,7 +209,7 @@
                     $('#descriptionModal input[name="dose_number"]').val(data.dose_number);
                     $('#descriptionModal input[name="protection_from"]').val(data.protection_from);
                     $('#descriptionModal input[name="when_to_give"]').val(data.when_to_give);
-                    $('#descriptionModal input[name="protection_from_description"]').val(data.protection_from_description);
+                    $('#descriptionModal input[name="protection_from_details"]').val(data.protection_from_details);
                     $('#descriptionModal input[name="description"]').val(data.description);
                     $('#descriptionModal input[name="source"]').val(data.source);
                     $('#descriptionModal input[name="source_two"]').val(data.source_two);
