@@ -189,7 +189,7 @@ class ParentController extends Controller
             $infant->mother_middlename = $validated['mother_middlename'];
             $infant->user_id = auth()->user()->id;
             $infant->created_at = Carbon::now();
-            $infant->updated_at = Carbon::now();
+
             $infant->save();
 
             // loop through the vaccines and to assign a schedule to the infant to the schedules table

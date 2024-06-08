@@ -104,7 +104,7 @@ class HealthCareProviderController extends Controller
                         $voucher->save();
                         $schedule->check_voucher = "done";
                         $schedule->save();
-                        break;
+
                     }
                 }
             }
