@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 'username' => 'healthcareprovider',
                 'phone_number' => '09650859743',
                 'user_type_id' => 3,
-                'assigned_at' => 'Life and Care',  // PLACE DEFAILT ASSIGNMENT HERE
+                'assigned_at' => 'Life & Care',  // PLACE DEFAILT ASSIGNMENT HERE
                 'address' => 'Davao City',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
