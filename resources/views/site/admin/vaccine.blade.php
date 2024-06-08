@@ -53,7 +53,7 @@
                             placeholder="Vaccine Information"></textarea>
 
                             <label for="vaccine_name" class="mt-3">Sources</label>
-                            <input type="text" class="form-control" name="source" placeholder="Source of vaccine description">
+                            <input type="text" class="form-control" name="source" placeholder="Sources of Information's">
                         </div>
                         <button type="submit" style="background-color: #cd9f8e" class="btn btn-block text-white">Upload</button>
                     </form>
