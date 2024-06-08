@@ -92,17 +92,17 @@
          <div class="modal-dialog modal-lg" role="document">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h5 class="modal-title" id="privacyModalLabel">Reminder</h5>
+                     <h5 class="font-weight-bold"id="privacyModalLabel">Reminder !!!</h5>
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                      </button>
                  </div>
                  <div class="modal-body">
                      <!-- Reminders for 0 count of vouchers for vaccine -->
-                     <h4 class="font-weight-bold">The following vouchers are depleted</h4>
+                     <h4>The following vouchers are depleted</h4>
                      @foreach ($checkvouchers as $checkvoucher)
                      <ul class="mt-3">
-                        <li><div><h5><b>{{$checkvoucher->item_name}}</b> of <b>{{$checkvoucher->vaccines->name}} Vaccine</b></h5></div></li>
+                        <li><div><h6><b>{{$checkvoucher->item_name}}</b> of <b>{{$checkvoucher->vaccines->name}} Vaccine</b></h6></div></li>
                      </ul>
 
                      @endforeach
