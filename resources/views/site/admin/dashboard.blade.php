@@ -102,7 +102,7 @@
                      <h4 class="font-weight-bold">The following vouchers are depleted</h4>
                      @foreach ($checkvouchers as $checkvoucher)
                      <ul class="mt-3">
-                        <li><div><h5>{{$checkvoucher->item_name}}</h5></div></li>
+                        <li><div><h5><b>{{$checkvoucher->item_name}}</b> from <b>{{$checkvoucher->vaccines->name}}</b></h5></div></li>
                      </ul>
 
                      @endforeach
