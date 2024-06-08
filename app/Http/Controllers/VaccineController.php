@@ -83,7 +83,7 @@ class VaccineController extends Controller
 
     public function add_vaccine_view(Request $request)
     {
-        $vaccines = Vaccine::all();
+        $vaccines = Vaccine::where('delete', null)->get();
         return view('site.admin.vaccine', compact('vaccines'));
     }
 
@@ -126,7 +126,7 @@ class VaccineController extends Controller
         $vaccine->save();
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Vaccine added successfully!');
+        return redirect()->back()->with('success_add', 'Vaccine added successfully!');
     }
 
 
@@ -134,9 +134,71 @@ class VaccineController extends Controller
     {
         $vaccine = Vaccine::find($id);
         if ($vaccine) {
-            return response()->json(['description' => $vaccine->description]);
+            return response()->json([
+                'id' => $vaccine->id,
+                'name' => $vaccine->name,
+                'dose_number' => $vaccine->dose_number,
+                'protection_from' => $vaccine->protection_from,
+                'when_to_give' => $vaccine->when_to_give,
+                'protection_from_description' => $vaccine->protection_from_description,
+                'description' => $vaccine->description,
+                'source' => $vaccine->source,
+                'source_two' => $vaccine->source_two,
+                'source_three' => $vaccine->source_three,
+                'source_four' => $vaccine->source_four,
+                'source_five' => $vaccine->source_five
+            ]);
         } else {
             return response()->json(['error' => 'Vaccine not found'], 404);
         }
     }
+
+    public function deleteVaccine($id){
+        $vaccine = Vaccine::find($id);
+        // custom soft delete
+        $vaccine->delete = "yes"; // Make sure the attribute name matches your database column
+        $vaccine->save(); // Save the change to the database
+        return redirect()->back()->with('success_delete', 'Vaccine has been soft deleted successfully.');
+    }
+    public function editvaccine(Request $request, $id)
+    {
+        // Validate incoming request data
+
+        try {
+            DB::beginTransaction();
+
+            // Check if the vaccine exists
+            $vaccine = DB::table('vaccines')->find($id);
+
+            if (!$vaccine) {
+                throw new \Exception("Vaccine not found");
+            }
+
+            // Update the vaccine data
+            DB::table('vaccines')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->input('name'),
+                    'dose_number' => $request->input('dose_number'),
+                    'description' => $request->input('description'),
+                    'protection_from' => $request->input('protection_from'),
+                    'when_to_give' => $request->input('when_to_give'),
+                    'source' => $request->input('source'),
+                    'source_two' => $request->input('source_two'),
+                    'source_three' => $request->input('source_three'),
+                    'source_four' => $request->input('source_four'),
+                    'source_five' => $request->input('source_five'),
+                    'protection_from_details' => $request->input('protection_from_description'),
+                ]);
+
+            DB::commit();
+
+            return redirect()->back()->with('success_edit', 'Vaccine has been updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error_edit', 'Failed to update the vaccine: ' . $e->getMessage());
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 @extends('site.layouts.app')
-
+@section('custom-css')
+    <link rel="stylesheet" href="/izitoast/iziToast.min.css">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -52,7 +54,7 @@
                             <label for="vaccine_name" class="mt-3">Sources</label>
                             <input type="text" class="form-control" name="source" placeholder="Source of vaccine description">
                         </div>
-                        <button type="submit" class="btn btn-block btn-primary">Upload</button>
+                        <button type="submit" style="background-color: #cd9f8e" class="btn btn-block text-white">Upload</button>
                     </form>
                 </div>
             </div>
@@ -73,7 +75,7 @@
                                 <th>Dose Number</th>
                                 <th>Date Added</th>
                                 <th>Description</th>
-                                <th class="text-center">Edit</th>
+                                <th class="text-center">Manage</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +86,8 @@
                                 <td>{{ $vaccine->created_at }}</td>
                                 <td>{{$vaccine->description}}</td>
                                 <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#descriptionModal" data-id="{{ $vaccine->id }}">Edit</button>
+                                    <button style="background-color: #cd9f8e"  class="btn btn-block text-white" data-toggle="modal" data-target="#descriptionModal" data-id="{{ $vaccine->id }}">Edit</button>
+                                    <button  class="btn btn-danger mt-1"><a style="text-decoration: none;"class="text-white" href="/admin/deletevaccine/{{$vaccine->id}}">Delete</a></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -100,48 +103,127 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="descriptionModalLabel">Vaccine Description</h5>
+                    <h5 class="modal-title" id="descriptionModalLabel">Manage</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                   <div class="form-group">
-                    <form action="/editvaccine" method="post">
-                        <label for="">Name of Vaccine</label>
-                    <input type="text" name="name" class="form-control">
+                    <div class="form-group">
 
-                    <label for="" class="mt-3">dose number</label>
-                    <input type="text" name="dose_number" class="form-control">
+                        <form id="formx" action="/admin/editvaccine/{{$vaccine->id}}" method="post">
+                            @csrf
+                            <label for="">Name of Vaccine</label>
+                            <input type="text" name="name" class="form-control">
 
-                    <label for="" class="mt-3">protection from</label>
-                    <input type="text" name="protection_from" class="form-control" >
+                            <label for="" class="mt-3">Dose number</label>
+                            <input type="text" name="dose_number" class="form-control">
 
-                    <label for="" class="mt-3">When to give</label>
-                    <input type="text" name="when_to_give" class="form-control">
+                            <label for="" class="mt-3">Protection from</label>
+                            <input type="text" name="protection_from" class="form-control">
 
-                    <label for="" class="mt-3">Protection from description</label>
-                    <input type="text" name="protection_from_description" class="form-control">
+                            <label for="" class="mt-3">When to give</label>
+                            <input type="text" name="when_to_give" class="form-control">
 
-                    <label for="" class="mt-3">Description</label>
-                    <input type="text" name="description" class="form-control">
+                            <label for="" class="mt-3">Protection from description</label>
+                            <input type="text" name="protection_from_description" class="form-control">
 
-                    <label for="" class="mt-3">Source</label>
-                    <input type="text" name="source" class="form-control" >
+                            <label for="" class="mt-3">Description</label>
+                            <input type="text" name="description" class="form-control">
 
-                    <button class="btn btn-primary mt-3 btn-block" type="submit">Edit</button>
+                            <label for="" class="mt-3">1st Source</label>
+                            <input type="text" name="source" class="form-control">
 
-                    </form>
-                   </div>
+                            <label for="" class="mt-3">2nd Source</label>
+                            <input type="text" name="source_two" class="form-control">
+
+                            <label for="" class="mt-3">3rd Source</label>
+                            <input type="text" name="source_three" class="form-control">
+
+                            <label for="" class="mt-3">4th Source</label>
+                            <input type="text" name="source_four" class="form-control">
+
+                            <label for="" class="mt-3">5th Source</label>
+                            <input type="text" name="source_five" class="form-control">
+
+                    </div>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn text-white" style="background-color: #cd9f8e" type="submit">Save Changes</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
+    @if (session('success_edit'))
+    <script>
+        window.onload = function() {
+            iziToast.success({
+                title: 'Changes Applied',
+                message: 'The changes to the vaccine has been applied successfully',
+            });
+        };
+    </script>
+@endif
 
+@if (session('error_edit'))
+<script>
+    window.onload = function() {
+        iziToast.error({
+            title: 'Edit Failed',
+            message: 'Something went wrong during the edit',
+        });
+    };
+</script>
+@endif
 
+@if (session('success_delete'))
+<script>
+    window.onload = function() {
+        iziToast.warning({
+            title: 'Vaccine Deleted',
+            message: 'Deleted Successfully',
+        });
+    };
+</script>
+@endif
+
+<script src="/uikit/vendor/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#descriptionModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var vaccineId = button.data('id'); // Extract vaccine ID from data-* attributes
+            console.log(vaccineId);
+            $.ajax({
+                url: '/admin/getdescription/' + vaccineId,
+                method: 'GET',
+                success: function(data) {
+                    console.log('Data received:', data); // Log the received data to the console
+
+                    // Ensure the form fields are populated
+      // Update the form's action attribute
+      $('#formx').attr('action', '/admin/editvaccine/' + vaccineId);
+                    $('#descriptionModal input[name="name"]').val(data.name);
+                    $('#descriptionModal input[name="dose_number"]').val(data.dose_number);
+                    $('#descriptionModal input[name="protection_from"]').val(data.protection_from);
+                    $('#descriptionModal input[name="when_to_give"]').val(data.when_to_give);
+                    $('#descriptionModal input[name="protection_from_description"]').val(data.protection_from_description);
+                    $('#descriptionModal input[name="description"]').val(data.description);
+                    $('#descriptionModal input[name="source"]').val(data.source);
+                    $('#descriptionModal input[name="source_two"]').val(data.source_two);
+                    $('#descriptionModal input[name="source_three"]').val(data.source_three);
+                    $('#descriptionModal input[name="source_four"]').val(data.source_four);
+                    $('#descriptionModal input[name="source_five"]').val(data.source_five);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error); // Log any error to the console
+                }
+            });
+        });
+    });
+</script>
 
     <script>
         function previewPhoto(event) {
@@ -161,20 +243,9 @@
             }
         }
 
-        $('#descriptionModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var vaccineId = button.data('id'); // Extract vaccine ID from data-* attributes
 
-            $.ajax({
-                url: '/admin/getdescription/' + vaccineId,
-                method: 'GET',
-                success: function(data) {
-                    $('#modalDescription').text(data.description);
-                },
-                error: function() {
-                    $('#modalDescription').text('Failed to load description');
-                }
-            });
-        });
     </script>
+@endsection
+@section('custom-script-header')
+    <script src="/izitoast/iziToast.min.js" type="text/javascript"></script>
 @endsection

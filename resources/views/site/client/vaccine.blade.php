@@ -9,7 +9,113 @@
     </div>
 
 
-    @foreach ($vaccines as $vaccine)
+    {{-- rule -> first entry first --}}
+    @php
+    $uniqueVaccines = collect($vaccines)->groupBy(function ($item) {
+        // Extract the class name by splitting at the first space and taking the first part
+        return explode(' ', $item->name)[0];
+    })->map(function ($group) {
+        // Return the first item of each group
+        return $group->first();
+    });
+@endphp
+
+@foreach ($uniqueVaccines as $vaccine)
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card p-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="/{{$vaccine->dir}}" style="max-width: 100%; max-height:100%" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="mt-3">{{ str_replace(range(0, 9), '', $vaccine->name) }}</div>
+                                        <div>
+                                            Protection from: {{$vaccine->protection_from}}
+                                        </div>
+                                        <div>
+                                            When to give: {{$vaccine->when_to_give}}
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <button data-toggle="modal"
+                                                    data-target="#{{ str_replace(' ', '', $vaccine->name) }}" id="#modalScroll" class="btn text-white" style="background-color: #C8A796">More Details</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 mt-3 d-flex justify-content-center">
+                                        <img src="/images/2.png" class="mx-auto" style="max-width: 50%;" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Scrollable -->
+    <div class="modal fade" id="{{ str_replace(' ', '', $vaccine->name) }}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">{{ str_replace(range(0, 9), '', $vaccine->name) }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="font-weight-bold">Vaccine: {{ str_replace(range(0, 9), '', $vaccine->name) }}</h5>
+                    <p>{{$vaccine->description}}</p>
+
+                    <div class="mt-3"><span class="font-weight-bold">Protection From :</span> {{$vaccine->protection_from}}</div>
+                    <div>
+                        <span class="font-weight-bold">When to give:</span> {{$vaccine->when_to_give}}
+                    </div>
+                    <div class="mt-3 text-align-justify">
+                        {{$vaccine->protection_from_details}}
+                    </div>
+                    <div>
+                        Source:
+                        @if ($vaccine->source !=null)
+                            <div class="mt-2">{{$vaccine->source}}</div>
+                        @endif
+
+                        @if ($vaccine->source_one !=null)
+                            <div class="mt-2">{{$vaccine->source_one}}</div>
+                        @endif
+
+                        @if ($vaccine->source_two !=null)
+                            <div class="mt-2">{{$vaccine->source_two}}</div>
+                        @endif
+
+                        @if ($vaccine->source_three !=null)
+                            <div class="mt-2">{{$vaccine->source_three}}</div>
+                        @endif
+
+                        @if ($vaccine->source_four !=null)
+                            <div class="mt-2">{{$vaccine->source_four}}</div>
+                        @endif
+
+                        @if ($vaccine->source_five !=null)
+                            <div class="mt-2">{{$vaccine->source_five}}</div>
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn text-white" style="background-color: #C8A796" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+    {{-- @foreach ($vaccines as $vaccine)
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="row">
@@ -105,7 +211,7 @@
         </div>
       </div>
     </div>
-    @endforeach
+    @endforeach --}}
 
 
 

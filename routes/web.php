@@ -103,7 +103,10 @@ Route::prefix('admin')->middleware('AdminPageRoutes')->group(function () {
     Route::post('/addPartner', [PartnerController::class, 'addPartner']);
     Route::post('/delete_partner', [PartnerController::class, 'partner_delete']);
     Route::get('/addvaccine',[VaccineController::class,'add_vaccine_view']);
+    Route::get('/deletevaccine/{id}', [VaccineController::class, 'deleteVaccine']);
+
     Route::post('/addvaccine_', [VaccineController::class,'add_vaccine']);
+    Route::post('/editvaccine/{id}', [VaccineController::class, 'editvaccine']);
     Route::get('/getdescription/{id}', [VaccineController::class, 'getDescription']);
     // misc routes
     Route::get('/feedbacks', [AdminController::class, 'view_feedbacks']);
